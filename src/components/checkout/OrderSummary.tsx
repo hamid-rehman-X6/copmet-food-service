@@ -54,7 +54,7 @@ export function OrderSummary() {
 
       <div className="mt-6 flex items-center gap-3 rounded-lg bg-success-soft p-4 text-success-soft-foreground">
         <Icon className="h-5 w-5" name="gift" />
-        <span className="text-xs font-semibold">You&apos;re earning {checkoutTotals.points} Gather Points with this order!</span>
+        <span className="text-xs font-semibold">You&apos;re earning {checkoutTotals.points} Copmet Points with this order!</span>
       </div>
     </Card>
   );

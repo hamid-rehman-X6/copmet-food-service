@@ -1,8 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { brandName, mainNavigation } from "@/constants/navigation";
+import { brandAssets, brandName, mainNavigation } from "@/constants/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
@@ -23,8 +24,16 @@ export function SiteHeader({
   return (
     <header className="sticky top-0 z-50 h-20 border-b border-border/50 bg-background/95 shadow-sm backdrop-blur">
       <nav className="page-shell flex h-full items-center justify-between gap-4">
-        <Link className="heading-font text-2xl font-bold text-primary md:text-3xl" href="/">
-          {brandName}
+        <Link className="flex shrink-0 items-center" href="/">
+          <Image
+            alt={brandAssets.logo.alt}
+            className="h-10 w-auto md:h-12"
+            height={724}
+            priority
+            src={brandAssets.logo.src}
+            width={2172}
+          />
+          <span className="sr-only">{brandName}</span>
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -49,10 +58,10 @@ export function SiteHeader({
           {showSearch ? (
             <label className="hidden items-center gap-2 rounded-full border border-border bg-surface-low px-4 py-2 lg:flex">
               <Icon className="h-4 w-4 text-muted-foreground" name="search" />
-              <span className="sr-only">Search gatherings</span>
+              <span className="sr-only">Search menu</span>
               <input
                 className="w-44 bg-transparent text-sm outline-none placeholder:text-border-strong"
-                placeholder="Find your gathering..."
+                placeholder="Find your favorites..."
                 type="search"
               />
             </label>

@@ -4,7 +4,7 @@ export function NewsletterCta() {
   return (
     <section className="bg-primary px-[var(--spacing-page)] py-20 text-primary-foreground">
       <div className="mx-auto max-w-4xl text-center">
-        <h2 className="heading-font mb-5 text-4xl font-bold md:text-5xl">Gather more, stress less.</h2>
+        <h2 className="heading-font mb-5 text-4xl font-bold md:text-5xl">Order more, stress less.</h2>
         <p className="mx-auto mb-10 max-w-2xl text-sm leading-6 opacity-90 md:text-base">
           Join our community for weekly seasonal menu updates and chef tips for the perfect dinner party.
         </p>

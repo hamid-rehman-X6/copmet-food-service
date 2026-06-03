@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
+import { brandAssets, brandName } from "@/constants/navigation";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nourish & Gather",
-  description: "Handcrafted meals for shared moments, delivered with heart.",
+  title: brandName,
+  description: "Handcrafted meals from Copmet Food Service, delivered with heart.",
+  icons: {
+    icon: brandAssets.favicon,
+    shortcut: brandAssets.favicon,
+    apple: brandAssets.favicon,
+  },
 };
 
 export default function RootLayout({

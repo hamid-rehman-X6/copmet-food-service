@@ -11,7 +11,6 @@ export function HomeHero() {
         className="object-cover object-center"
         fill
         priority
-        quality={100}
         sizes="100vw"
         src={homeHero.image.src}
       />

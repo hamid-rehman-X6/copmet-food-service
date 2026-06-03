@@ -1,5 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
-import { brandName, footerColumns } from "@/constants/navigation";
+import { brandAssets, brandName, footerColumns } from "@/constants/navigation";
 import { Button } from "@/components/common/Button";
 
 type SiteFooterProps = {
@@ -13,11 +14,18 @@ export function SiteFooter({ newsletter = false }: SiteFooterProps) {
     <footer className="mt-20 border-t border-border/60 bg-muted py-14">
       <div className="page-shell grid gap-10 md:grid-cols-4">
         <div>
-          <Link className="heading-font mb-4 block text-2xl font-semibold text-primary" href="/">
-            {brandName}
+          <Link className="mb-4 flex w-fit items-center" href="/">
+            <Image
+              alt={brandAssets.logo.alt}
+              className="h-12 w-auto"
+              height={724}
+              src={brandAssets.logo.src}
+              width={2172}
+            />
+            <span className="sr-only">{brandName}</span>
           </Link>
           <p className="max-w-xs text-sm leading-6 text-muted-foreground">
-            Crafting shared moments through intentional nourishment and sustainable gathering.
+            Crafting shared moments through reliable food service and thoughtful meal delivery.
           </p>
         </div>
 
@@ -38,7 +46,7 @@ export function SiteFooter({ newsletter = false }: SiteFooterProps) {
           <div>
             <h2 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground">Newsletter</h2>
             <p className="mb-5 text-sm leading-6 text-muted-foreground">
-              Join our table for weekly recipes and gatherings.
+              Join our table for weekly recipes and meal updates.
             </p>
             <form className="flex gap-2">
               <input

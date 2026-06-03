@@ -48,7 +48,7 @@ export function MenuSidebar() {
 
       <div className="rounded-xl bg-tertiary-container p-6 text-tertiary-container-foreground">
         <h2 className="heading-font mb-3 text-2xl font-semibold">Free Delivery</h2>
-        <p className="mb-5 text-sm leading-6">On your first gathering order over $45.</p>
+        <p className="mb-5 text-sm leading-6">On your first Copmet Food Service order over $45.</p>
         <button className="w-full rounded-lg bg-card px-4 py-3 text-sm font-semibold text-tertiary transition-colors hover:bg-surface-low">
           Claim Now
         </button>

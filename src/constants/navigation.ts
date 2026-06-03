@@ -1,6 +1,14 @@
 import type { FooterColumn, NavItem } from "@/types/common.types";
 
-export const brandName = "Nourish & Gather";
+export const brandName = "Copmet Food Service";
+
+export const brandAssets = {
+  logo: {
+    src: "/images/logos/cfs-logo.png",
+    alt: "Copmet Food Service logo",
+  },
+  favicon: "/images/logos/favicon.png",
+};
 
 export const mainNavigation: NavItem[] = [
   { label: "Menu", href: "/our-menu" },
