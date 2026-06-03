@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#07200b",
+                    "on-secondary-container": "#764e00",
+                    "surface-container-high": "#ebe8e2",
+                    "surface-dim": "#dddad4",
+                    "outline-variant": "#ddc0b8",
+                    "primary-container": "#bd5533",
+                    "tertiary": "#486347",
+                    "secondary-container": "#fec166",
+                    "inverse-surface": "#31302d",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#f7fff2",
+                    "tertiary-container": "#607c5e",
+                    "on-tertiary-fixed-variant": "#334d33",
+                    "on-primary-fixed": "#3a0b00",
+                    "secondary": "#815600",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ccebc7",
+                    "on-primary-fixed-variant": "#802909",
+                    "on-secondary-fixed": "#291800",
+                    "secondary-fixed": "#ffddb1",
+                    "background": "#fdf9f3",
+                    "on-surface": "#1c1c18",
+                    "on-surface-variant": "#56423c",
+                    "surface-container": "#f1ede7",
+                    "on-background": "#1c1c18",
+                    "surface-container-highest": "#e6e2dc",
+                    "surface": "#fdf9f3",
+                    "on-secondary-fixed-variant": "#614000",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#ffb59e",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#f7bc61",
+                    "primary-fixed": "#ffdbd0",
+                    "surface-tint": "#a0401f",
+                    "outline": "#8a726b",
+                    "surface-bright": "#fdf9f3",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f7f3ed",
+                    "tertiary-fixed-dim": "#b0cfad",
+                    "inverse-primary": "#ffb59e",
+                    "inverse-on-surface": "#f4f0ea",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#9d3e1d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "48px",
+                    "base": "8px",
+                    "md": "24px",
+                    "xl": "80px",
+                    "margin-desktop": "64px",
+                    "margin-mobile": "16px",
+                    "sm": "12px",
+                    "gutter": "24px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Quicksand"],
+                    "body-lg": ["Be Vietnam Pro"],
+                    "label-md": ["Be Vietnam Pro"],
+                    "body-md": ["Be Vietnam Pro"],
+                    "display-lg": ["Quicksand"],
+                    "label-sm": ["Be Vietnam Pro"],
+                    "display-lg-mobile": ["Quicksand"],
+                    "headline-md": ["Quicksand"]
+            },
+            "fontSize": {
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "display-lg-mobile": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .soft-shadow {
+            box-shadow: 0 10px 30px -5px rgba(157, 62, 29, 0.08);
+        }
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(157, 62, 29, 0.12);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fdf9f3;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ddc0b8;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopAppBar -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-background shadow-sm h-20 flex items-center">
+<div class="flex justify-between items-center px-margin-desktop w-full max-w-7xl mx-auto h-full">
+<div class="font-headline-md text-headline-md font-bold text-primary">Nourish &amp; Gather</div>
+<div class="hidden md:flex items-center space-x-lg">
+<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1" href="#">Menu</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">How it Works</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">About</a>
+</div>
+<div class="flex items-center space-x-md">
+<button class="p-base hover:bg-surface-container-low rounded-full transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+</button>
+<div class="flex items-center space-x-base">
+<button class="font-label-md text-label-md text-primary px-md py-base hover:bg-surface-container-low rounded-full transition-colors duration-200">Login</button>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-md py-base rounded-full hover:shadow-lg transition-all duration-200 flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="shopping_cart">shopping_cart</span>
+                        Cart
+                    </button>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-xl px-margin-desktop max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row gap-lg">
+<!-- Sidebar Filters -->
+<aside class="w-full md:w-64 space-y-xl shrink-0">
+<!-- Search Bar (Injected for discovery flow) -->
+<div class="space-y-base">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Search</h3>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-xl px-md py-sm focus:ring-2 focus:ring-primary-container transition-all placeholder:text-outline" placeholder="Cravings..." type="text"/>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+</div>
+</div>
+<!-- Categories -->
+<div class="space-y-md">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Categories</h3>
+<div class="flex flex-col gap-sm">
+<label class="flex items-center gap-md group cursor-pointer">
+<input checked="" class="w-5 h-5 rounded border-outline text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">All Dishes</span>
+</label>
+<label class="flex items-center gap-md group cursor-pointer">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">Bowls</span>
+</label>
+<label class="flex items-center gap-md group cursor-pointer">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">Sides</span>
+</label>
+<label class="flex items-center gap-md group cursor-pointer">
+<input class="w-5 h-5 rounded border-outline text-primary focus:ring-primary cursor-pointer" type="checkbox"/>
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">Drinks</span>
+</label>
+</div>
+</div>
+<!-- Dietary -->
+<div class="space-y-md">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Dietary</h3>
+<div class="flex flex-wrap gap-sm">
+<button class="px-md py-xs bg-secondary-container text-on-secondary-container rounded-full font-label-md text-label-md hover:brightness-95 transition-all">Vegan</button>
+<button class="px-md py-xs bg-surface-container-highest text-on-surface-variant rounded-full font-label-md text-label-md hover:bg-secondary-container hover:text-on-secondary-container transition-all">GF</button>
+<button class="px-md py-xs bg-surface-container-highest text-on-surface-variant rounded-full font-label-md text-label-md hover:bg-secondary-container hover:text-on-secondary-container transition-all">Organic</button>
+<button class="px-md py-xs bg-surface-container-highest text-on-surface-variant rounded-full font-label-md text-label-md hover:bg-secondary-container hover:text-on-secondary-container transition-all">Nut-Free</button>
+</div>
+</div>
+<!-- Promo Card -->
+<div class="bg-tertiary-container text-on-tertiary-container rounded-xl p-md space-y-sm">
+<p class="font-headline-sm text-headline-sm">Free Delivery</p>
+<p class="font-body-md text-body-md opacity-90">On your first gathering order over $45.</p>
+<button class="w-full bg-surface-container-lowest text-tertiary font-label-md text-label-md py-base rounded-lg hover:shadow-md transition-all">Claim Now</button>
+</div>
+</aside>
+<!-- Food Grid Section -->
+<section class="flex-1">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface">Explore the Menu</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Hand-crafted meals for shared moments.</p>
+</div>
+<div class="hidden lg:flex items-center gap-sm bg-surface-container-low px-md py-sm rounded-xl">
+<span class="font-label-md text-label-md text-on-surface-variant">Sort:</span>
+<select class="bg-transparent border-none focus:ring-0 font-label-md text-label-md text-primary cursor-pointer">
+<option>Popularity</option>
+<option>Newest</option>
+<option>Price: Low to High</option>
+</select>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden soft-shadow hover-lift group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A vibrant, overhead shot of a healthy Mediterranean harvest bowl. The bowl features a base of fluffy quinoa, topped with roasted sweet potatoes, crisp kale, chickpeas, sliced avocado, and a generous drizzle of creamy tahini dressing. The lighting is soft and natural, emphasizing the rich, earthy textures and organic colors of the fresh vegetables. The overall aesthetic is warm and inviting, perfect for a modern healthy food platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOXFNNfeNJfE71QoukPnZIHDRS7-eTqTN9QASUTtmKoalsr8HLrg8QC7AClqvTtUBCyB7bV4gqE-y9tamjaRuSFyCjUe3DwBbNEhmG43bpgNtN_uEC5mvjnG8-YUsm5rdfuqK_3Q35qcO-Nesmy6EuoodBJHOvb65aTFH7j1RxaALfS0g8oxWYJuG06v0HedMgnwI-fyw2LOvt4t9gksJ1xRlxjcdmErEpTDa-LvomIq13VfwG_-57904EdfmsUkYBXT4-s0B0zA"/>
+<div class="absolute top-md right-md bg-white/90 backdrop-blur-md px-sm py-xs rounded-full flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.9</span>
+</div>
+</div>
+<div class="p-md space-y-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Harvest Quinoa Bowl</h3>
+<span class="font-headline-sm text-headline-sm text-primary">$14.50</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Roasted root vegetables, massaged kale, and maple-tahini dressing.</p>
+<div class="pt-sm flex items-center justify-between">
+<span class="text-tertiary-container font-label-sm text-label-sm px-sm py-xs bg-tertiary-fixed rounded-full">Vegan • GF</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-lg py-base rounded-full hover:bg-primary-container transition-colors active:scale-95 duration-150">Add to Cart</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden soft-shadow hover-lift group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A close-up gourmet presentation of a smoked salmon poke bowl set against a clean, light cream background. Bright pink salmon cubes are arranged with vibrant green edamame, pickled ginger, and shredded seaweed over a bed of seasoned rice. The lighting is bright and high-key, highlighting the glossy textures of the fresh seafood. The image captures a clean, premium culinary feel with soft organic shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcOylu9fq1wJAVBbGLncZPzyhFtp0M7e7UZBkkn1-dB2S_7TtC5yweLMFu4Uo-jHr64G1Ly97S09DPLeS1ENpEazQcm0VJgyaCKe0aBFDYlIJy__2KJ7pnyMqhsfDYhIVrs5gwPTz02pGYmlyhBX5dprUtH3bYTRZ943OwxpkmLd028hSCDK7FACmTrrj0gfkMUYctmBZTonrIqxfTMUovbAaC8inV-Ps-0RHRzFhK7SYRNgItQm2WTt5aYEFd1_4D0TiD1yH82A"/>
+<div class="absolute top-md right-md bg-white/90 backdrop-blur-md px-sm py-xs rounded-full flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.7</span>
+</div>
+</div>
+<div class="p-md space-y-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Wild Salmon Poke</h3>
+<span class="font-headline-sm text-headline-sm text-primary">$18.00</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Sustainably sourced salmon, edamame, and house citrus ponzu.</p>
+<div class="pt-sm flex items-center justify-between">
+<span class="text-on-secondary-fixed-variant font-label-sm text-label-sm px-sm py-xs bg-secondary-fixed rounded-full">Organic</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-lg py-base rounded-full hover:bg-primary-container transition-colors active:scale-95 duration-150">Add to Cart</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden soft-shadow hover-lift group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A beautiful, rustic salad dish featuring heirloom tomatoes, fresh mozzarella, and torn basil leaves, seasoned with cracked pepper and a dark balsamic glaze. The composition is artistic and asymmetric, using a soft terracotta-tinted ceramic plate. Warm, late afternoon sunlight creates long, soft shadows, evoking a sense of home-cooked luxury and shared gathering. The color palette is rich with deep reds and fresh greens against neutral backgrounds." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl7Lk23YtxiXPOCGu94MK3RptQaM0BLY5DmSFOH1N2V5F2xa8aYsAN-ynWUSUQ-FIkwYO8gNxTvRDXP9wkFQm4ZS64DUz1yZraG5za0tEU-ZspJf7KZYJdzPpZHf9W9ayj1UqSagXG14jNLj-tDbSOvRreTuNAhPwMfWAE-0IzGOGfCx8k9FzOMiArNVwldIGaS2la-o64BDVLzJzYn9nOt1Mh3rP1X0jnUcQb-ZaqL0xjfEzW_lWYYIhNhVVPmAk_Y0zS40mfwg"/>
+<div class="absolute top-md right-md bg-white/90 backdrop-blur-md px-sm py-xs rounded-full flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.8</span>
+</div>
+</div>
+<div class="p-md space-y-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Heirloom Caprese</h3>
+<span class="font-headline-sm text-headline-sm text-primary">$12.00</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Local farm tomatoes, buffalo mozzarella, and aged balsamic.</p>
+<div class="pt-sm flex items-center justify-between">
+<span class="text-on-tertiary-fixed-variant font-label-sm text-label-sm px-sm py-xs bg-tertiary-fixed rounded-full">Gluten-Free</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-lg py-base rounded-full hover:bg-primary-container transition-colors active:scale-95 duration-150">Add to Cart</button>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden soft-shadow hover-lift group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A high-end presentation of grilled asparagus and roasted carrots drizzled with a vibrant herb-infused oil and toasted seeds. The vegetables are arranged elegantly on a textured cream-colored plate. The lighting is diffused and airy, giving a clean, modern organic aesthetic that emphasizes the natural textures of the ingredients. The background is a soft, warm neutral tone, consistent with a high-end wellness-focused food brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC7O0aS2aAwlWh2eJvCE1YVaHPmeBP9idMyQTYDoMYUQiwCFp_yiNQdI_jGuXTQzgREtOzVXKqM4h3nFFLaY_45WRsPeiLHnInd8JHfQ-Nt1xbcQrA5cs7o3WNS_lywGc9A2RjlFpMUxDAJctigvvda3RZVqmThcEAP7OqbuldZKckNBH3kAf4rVT09RXgQxHYx4A6PQtUKtsqP2RDx9tXwS6Pkl3U76Jk9KNuxqBdRUzFOOC3IdL9JnLaNekuivclee1mrUi_XQ"/>
+<div class="absolute top-md right-md bg-white/90 backdrop-blur-md px-sm py-xs rounded-full flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.6</span>
+</div>
+</div>
+<div class="p-md space-y-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Herb Roasted Sides</h3>
+<span class="font-headline-sm text-headline-sm text-primary">$9.00</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Seasonal garden vegetables roasted with thyme and rosemary oil.</p>
+<div class="pt-sm flex items-center justify-between">
+<span class="text-tertiary-container font-label-sm text-label-sm px-sm py-xs bg-tertiary-fixed rounded-full">Vegan • GF</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-lg py-base rounded-full hover:bg-primary-container transition-colors active:scale-95 duration-150">Add to Cart</button>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden soft-shadow hover-lift group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A lifestyle photo of a refreshing hibiscus iced tea in a tall, condensation-beaded glass. Fresh mint leaves and lemon slices float inside the deep ruby-red liquid. The drink is placed on a wooden outdoor table during a sunny day, with soft dappled light filtering through leaves. The mood is joyful and summery, emphasizing the charm of a refreshing beverage in a shared social setting. The colors are vibrant yet naturally grounded." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9yQ_3MdXuPpkgfzXqo0Y2O1h68KX2nsS03tbJ9MKQF3QcSYVZDsNBUJ2d8mN993U-KLWh9GOw9puXt6F0TCwDpbfwQll6uKAI4SmwWqCwAFASz3E47pF5qLSINSwbCTl8FpdWTC_kaiGmMwQQuLSGv2zgsScOA1uv8q-8fyC5ErCZPhAaKqrDKFZCQTLELJGixF6t-tgJ9nNGjVidhVPA40Dt2vpMQB7p-ixC9bT0maiHLGMX6gGYaa6uvz_eUQzc25hp4HyHEw"/>
+<div class="absolute top-md right-md bg-white/90 backdrop-blur-md px-sm py-xs rounded-full flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.9</span>
+</div>
+</div>
+<div class="p-md space-y-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Hibiscus Mint Sparkler</h3>
+<span class="font-headline-sm text-headline-sm text-primary">$6.50</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Cold-pressed hibiscus flowers, fresh mint, and sparkling spring water.</p>
+<div class="pt-sm flex items-center justify-between">
+<span class="text-tertiary-container font-label-sm text-label-sm px-sm py-xs bg-tertiary-fixed rounded-full">Organic</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-lg py-base rounded-full hover:bg-primary-container transition-colors active:scale-95 duration-150">Add to Cart</button>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden soft-shadow hover-lift group">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A minimalist and artful arrangement of a green goddess salad featuring butter lettuce, thinly sliced radishes, and toasted seeds. The salad is plated on a contemporary matte sage green ceramic dish. The lighting is soft, even, and airy, highlighting the crispness of the vegetables. The visual style is clean, modern, and high-end, focusing on quality ingredients and a serene, organic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLgVVGr8Hmwa136razxfVP0ZZKZs0ihX775E_5vJO_e55VW7wip-L4SDQ9l7qWsiI37_okFFONXaqra1rwcYAsWisFS9I_uaNQSENsqx8Frzx5I7JTyefbvrjZFBcYlh466wiaUUSiIB58SNydKHrltU316wBgtE5b5u1lOokTrqn_8vkDsBqgxxKoor6eiEHoZEtBjZlmDrStGRFci2Y6QmQRXzm50XY0tMvLCkJcTU5cb51ICzFik1JfiXMVSnLRYYcl1gD4vQ"/>
+<div class="absolute top-md right-md bg-white/90 backdrop-blur-md px-sm py-xs rounded-full flex items-center gap-xs shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.5</span>
+</div>
+</div>
+<div class="p-md space-y-sm">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Green Goddess Salad</h3>
+<span class="font-headline-sm text-headline-sm text-primary">$13.00</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Butter lettuce, snap peas, radishes, and creamy avocado dressing.</p>
+<div class="pt-sm flex items-center justify-between">
+<span class="text-tertiary-container font-label-sm text-label-sm px-sm py-xs bg-tertiary-fixed rounded-full">Vegan • GF</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-lg py-base rounded-full hover:bg-primary-container transition-colors active:scale-95 duration-150">Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination/Load More -->
+<div class="mt-xl flex justify-center">
+<button class="flex items-center gap-base font-label-md text-label-md text-primary border-2 border-primary/20 px-xl py-md rounded-full hover:border-primary transition-all group">
+                        Load More Seasonal Specials
+                        <span class="material-symbols-outlined group-hover:translate-y-1 transition-transform" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container py-xl mt-xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop max-w-7xl mx-auto">
+<div class="space-y-md">
+<div class="font-headline-sm text-headline-sm text-primary">Nourish &amp; Gather</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Crafting shared moments through intentional nourishment and sustainable gathering.</p>
+</div>
+<div class="space-y-md">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Company</h4>
+<div class="flex flex-col gap-sm">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-200" href="#">About Us</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-200" href="#">Careers</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-200" href="#">Sustainability</a>
+</div>
+</div>
+<div class="space-y-md">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Support</h4>
+<div class="flex flex-col gap-sm">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-200" href="#">Contact Us</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary hover:underline transition-colors duration-200" href="#">Terms of Service</a>
+</div>
+</div>
+<div class="space-y-md">
+<h4 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Newsletter</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Join our table for weekly recipes and gatherings.</p>
+<div class="flex gap-xs">
+<input class="flex-1 bg-surface border-none rounded-lg px-md py-sm focus:ring-2 focus:ring-primary" placeholder="Email" type="email"/>
+<button class="bg-primary text-on-primary px-md py-sm rounded-lg hover:brightness-110 transition-all">Join</button>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop max-w-7xl mx-auto pt-xl border-t border-outline-variant mt-xl text-center">
+<p class="font-label-md text-label-md text-on-surface-variant">© 2024 Nourish &amp; Gather. Crafted for shared moments.</p>
+</div>
+</footer>
+<!-- FAB (Suppressed on menu page based on context, but adding for interaction if they "Add to Cart") -->
+<div class="fixed bottom-md right-md translate-y-24 opacity-0 transition-all duration-300 z-[100]" id="cart-toast">
+<div class="bg-inverse-surface text-inverse-on-surface px-lg py-md rounded-xl shadow-xl flex items-center gap-md">
+<span class="material-symbols-outlined text-tertiary-fixed" data-icon="check_circle">check_circle</span>
+<span class="font-label-md text-label-md">Added to your gathering!</span>
+</div>
+</div>
+<script>
+        // Micro-interactions for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if(this.innerText.includes('Add to Cart')) {
+                    const toast = document.getElementById('cart-toast');
+                    toast.classList.remove('translate-y-24', 'opacity-0');
+                    toast.classList.add('translate-y-0', 'opacity-100');
+                    
+                    setTimeout(() => {
+                        toast.classList.add('translate-y-24', 'opacity-0');
+                        toast.classList.remove('translate-y-0', 'opacity-100');
+                    }, 2500);
+                }
+            });
+        });
+    </script>
+</body></html>
