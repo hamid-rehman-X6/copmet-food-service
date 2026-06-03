@@ -2,7 +2,7 @@ export const homeHero = {
   title: "Handcrafted meals, delivered with heart.",
   copy: "Bringing the warmth of a shared kitchen to your home. Quality ingredients, chef-prepared recipes, and effortless dining for those you love.",
   image: {
-    src: "/images/home-page/hero-section-img-1.png",
+    src: "/images/home-page/hero-section-img-3.png",
     alt: "A warm overhead dining table with handcrafted dishes, salads, breads, and soft cream linens.",
   },
 };

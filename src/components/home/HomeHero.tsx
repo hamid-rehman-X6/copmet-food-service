@@ -5,16 +5,17 @@ import { Icon } from "@/components/common/Icon";
 
 export function HomeHero() {
   return (
-    <section className="relative min-h-[720px] overflow-hidden">
+    <section className="relative min-h-[640px] overflow-hidden bg-surface-low md:min-h-[720px]">
       <Image
         alt={homeHero.image.alt}
-        className="object-cover"
+        className="object-cover object-center"
         fill
         priority
+        quality={100}
         sizes="100vw"
         src={homeHero.image.src}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/65 to-background/10" />
+      <div className="absolute inset-0 bg-linear-to-r from-background/95 via-background/65 to-background/10" />
       <div className="page-shell relative flex min-h-[720px] items-center py-24">
         <div className="max-w-2xl">
           <h1 className="heading-font mb-6 text-5xl font-bold leading-tight tracking-tight text-primary md:text-6xl">

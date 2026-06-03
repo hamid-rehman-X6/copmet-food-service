@@ -24,7 +24,7 @@ export function FeaturedMeals() {
         {featuredMeals.map((meal) => (
           <article
             className={cn(
-              "group relative overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-soft)]",
+              "group relative overflow-hidden rounded-2xl bg-card shadow-(--shadow-soft)",
               meal.size === "large" && "md:col-span-2 md:row-span-2",
               meal.size === "wide" && "md:col-span-2",
             )}
@@ -37,7 +37,7 @@ export function FeaturedMeals() {
               sizes="(min-width: 768px) 50vw, 100vw"
               src={meal.image.src}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/65 via-black/10 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-5 text-white md:p-7">
               <Chip className="mb-3" tone={meal.size === "large" ? "secondary" : "tertiary"}>
                 {meal.label}
