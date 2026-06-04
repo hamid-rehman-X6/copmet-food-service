@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { brandAssets, brandName } from "@/constants/navigation";
+import { brandName } from "@/constants/navigation";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: brandName,
   description: "Handcrafted meals from Copmet Food Service, delivered with heart.",
-  icons: {
-    icon: brandAssets.favicon,
-    shortcut: brandAssets.favicon,
-    apple: brandAssets.favicon,
-  },
 };
 
 export default function RootLayout({

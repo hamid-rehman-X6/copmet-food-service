@@ -7,7 +7,6 @@ export const brandAssets = {
     src: "/images/logos/cfs-logo.png",
     alt: "Copmet Food Service logo",
   },
-  favicon: "/images/logos/favicon.png",
 };
 
 export const mainNavigation: NavItem[] = [
