@@ -13,7 +13,7 @@ export function MenuCard({ item }: { item: MenuItem }) {
   const quantity = useCartStore((state) => state.items.find((cartItem) => cartItem.id === item.id)?.quantity ?? 0);
 
   return (
-    <article className="hover-lift group overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-soft)]">
+    <article className="hover-lift group flex h-full flex-col overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-soft)]">
       <div className="relative h-64 overflow-hidden">
         <Image
           alt={item.image.alt}
@@ -27,7 +27,7 @@ export function MenuCard({ item }: { item: MenuItem }) {
           <span className="text-sm font-semibold">{item.rating}</span>
         </div>
       </div>
-      <div className="space-y-4 p-6">
+      <div className="flex flex-1 flex-col gap-4 p-6">
         <div className="flex items-start justify-between gap-4">
           <h2 className="heading-font text-2xl font-semibold leading-tight">{item.name}</h2>
           <span className="heading-font whitespace-nowrap text-xl font-semibold text-primary">
@@ -35,10 +35,17 @@ export function MenuCard({ item }: { item: MenuItem }) {
           </span>
         </div>
         <p className="line-clamp-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
-        <div className="flex items-center justify-between gap-4 pt-2">
-          <Chip tone={item.tagTone}>{item.tags.join(" - ")}</Chip>
+        <div className="mt-auto grid grid-cols-[minmax(0,1fr)_8.25rem] items-end gap-3 pt-2">
+          <div className="flex min-w-0 flex-wrap gap-2">
+            {item.tags.map((tag) => (
+              <Chip key={tag} tone={item.tagTone}>
+                {tag}
+              </Chip>
+            ))}
+          </div>
           <Button
-            className="min-w-32 px-6 py-3 leading-tight"
+            aria-label={`Add ${item.name} to cart${quantity > 0 ? `. ${quantity} currently in cart` : ""}`}
+            className="h-11 w-full whitespace-nowrap px-4 py-2"
             onClick={() =>
               addItem({
                 id: item.id,
@@ -50,7 +57,7 @@ export function MenuCard({ item }: { item: MenuItem }) {
             }
             size="sm"
           >
-            {quantity > 0 ? `Add Another (${quantity})` : "Add to Cart"}
+            Add to Cart
           </Button>
         </div>
       </div>
