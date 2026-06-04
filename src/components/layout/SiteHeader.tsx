@@ -7,7 +7,6 @@ import { brandAssets, brandName, mainNavigation } from "@/constants/navigation";
 import { getCartItemCount } from "@/lib/cart";
 import { cn } from "@/lib/utils";
 import { useCartStore } from "@/stores/cart.store";
-import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
 
 type SiteHeaderProps = {
@@ -15,6 +14,12 @@ type SiteHeaderProps = {
   showCartLabel?: boolean;
   loginTone?: "primary" | "amber" | "ghost";
 };
+
+const loginLinkTones = {
+  primary: "bg-primary text-primary-foreground hover:bg-primary-container",
+  amber: "bg-secondary-container text-secondary-container-foreground hover:brightness-95",
+  ghost: "text-primary hover:bg-surface-low",
+} as const;
 
 export function SiteHeader({
   showSearch = false,
@@ -99,9 +104,15 @@ export function SiteHeader({
             ) : null}
           </Link>
 
-          <Button className="hidden sm:inline-flex" size="sm" variant={loginTone}>
+          <Link
+            className={cn(
+              "hidden items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all active:scale-95 sm:inline-flex",
+              loginLinkTones[loginTone],
+            )}
+            href="/login"
+          >
             Login
-          </Button>
+          </Link>
         </div>
       </nav>
     </header>
