@@ -14,7 +14,7 @@ export function FeaturedMeals() {
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.28em] text-secondary">Chef&apos;s Specials</p>
           <h2 className="heading-font text-3xl font-semibold text-foreground">Featured Today</h2>
         </div>
-        <Link className="hidden items-center gap-2 text-sm font-semibold text-primary sm:flex" href="/our-menu">
+        <Link className="hidden items-center gap-2 text-sm font-semibold text-primary sm:flex" href="/menu">
           View Full Menu
           <Icon className="h-4 w-4" name="arrowRight" />
         </Link>

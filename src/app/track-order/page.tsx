@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { ArrivalStatus } from "@/components/tracking/ArrivalStatus";
 import { CourierCard } from "@/components/tracking/CourierCard";
 import { TrackingMap } from "@/components/tracking/TrackingMap";
@@ -5,7 +6,12 @@ import { TrackingSummary } from "@/components/tracking/TrackingSummary";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 
-export default function TrackYourFeastPage() {
+export const metadata: Metadata = {
+  title: "Track Order | Copmet Food Service",
+  description: "Follow the status and delivery progress of your Copmet Food Service order.",
+};
+
+export default function TrackOrderPage() {
   return (
     <>
       <SiteHeader />

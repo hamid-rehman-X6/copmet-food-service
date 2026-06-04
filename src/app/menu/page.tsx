@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { menuItems } from "@/constants/menu.constants";
 import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
@@ -6,7 +7,12 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { MenuCard } from "@/components/menu/MenuCard";
 import { MenuSidebar } from "@/components/menu/MenuSidebar";
 
-export default function OurMenuPage() {
+export const metadata: Metadata = {
+  title: "Menu | Copmet Food Service",
+  description: "Explore handcrafted meals, sides, desserts, and drinks from Copmet Food Service.",
+};
+
+export default function MenuPage() {
   return (
     <>
       <SiteHeader showCartLabel loginTone="ghost" />

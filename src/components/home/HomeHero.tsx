@@ -35,7 +35,7 @@ export function HomeHero() {
             </label>
             <Link
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary-container active:scale-95"
-              href="/our-menu"
+              href="/menu"
             >
               Find Food
               <Icon className="h-4 w-4" name="arrowRight" />

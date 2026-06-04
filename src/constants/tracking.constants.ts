@@ -12,7 +12,7 @@ export const courier: Courier = {
   rating: 4.9,
   orders: "2.4k",
   image: {
-    src: "/images/track-you-feast/alex-img.png",
+    src: "/images/tracking/alex-img.png",
     alt: "Portrait of Alex, the delivery courier.",
   },
 };
@@ -27,6 +27,6 @@ export const trackingOrder: TrackingOrder = {
 };
 
 export const deliveryBike = {
-  src: "/images/track-you-feast/cycle-img.png",
+  src: "/images/tracking/cycle-img.png",
   alt: "Illustrated delivery bicycle with warm terracotta delivery boxes.",
 };

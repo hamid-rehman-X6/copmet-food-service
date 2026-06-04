@@ -38,7 +38,7 @@ export function SiteHeader({
 
         <div className="hidden items-center gap-8 md:flex">
           {mainNavigation.map((item) => {
-            const active = item.href === pathname || (pathname === "/" && item.href === "/#how-it-works");
+            const active = item.href === pathname;
             return (
               <Link
                 className={cn(
@@ -77,7 +77,7 @@ export function SiteHeader({
               "relative inline-flex items-center justify-center gap-2 rounded-full text-primary transition-colors hover:bg-surface-low",
               showCartLabel ? "bg-primary px-5 py-3 text-primary-foreground hover:bg-primary-container" : "h-10 w-10",
             )}
-            href="/secure-checkout"
+            href="/checkout"
           >
             <Icon className="h-5 w-5" name="cart" />
             {showCartLabel ? <span className="text-sm font-semibold">Cart</span> : null}

@@ -8,7 +8,7 @@ export const checkoutItems: CartItem[] = [
     price: 16.5,
     quantity: 1,
     image: {
-      src: "/images/secure-checkout/grain-bowl-img.png",
+      src: "/images/checkout/grain-bowl-img.png",
       alt: "Mediterranean grain bowl with colorful vegetables.",
     },
   },
@@ -19,7 +19,7 @@ export const checkoutItems: CartItem[] = [
     price: 9,
     quantity: 2,
     image: {
-      src: "/images/secure-checkout/dark-torte-img.png",
+      src: "/images/checkout/dark-torte-img.png",
       alt: "Slice of dark chocolate torte with raspberry.",
     },
   },

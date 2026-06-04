@@ -15,7 +15,7 @@ export const menuItems: MenuItem[] = [
     tags: ["Vegan", "GF"],
     tagTone: "tertiary",
     image: {
-      src: "/images/our-menu/harvest-bowl-img.png",
+      src: "/images/menu/harvest-bowl-img.png",
       alt: "Harvest quinoa bowl with avocado, chickpeas, greens, and roasted vegetables.",
     },
   },
@@ -29,7 +29,7 @@ export const menuItems: MenuItem[] = [
     tags: ["Organic"],
     tagTone: "secondary",
     image: {
-      src: "/images/our-menu/wild-salmon-img.png",
+      src: "/images/menu/wild-salmon-img.png",
       alt: "Wild salmon poke bowl with edamame and pickled vegetables.",
     },
   },
@@ -43,7 +43,7 @@ export const menuItems: MenuItem[] = [
     tags: ["Gluten-Free"],
     tagTone: "tertiary",
     image: {
-      src: "/images/our-menu/heirloom-img.png",
+      src: "/images/menu/heirloom-img.png",
       alt: "Heirloom tomato caprese with fresh mozzarella and basil.",
     },
   },
@@ -57,7 +57,7 @@ export const menuItems: MenuItem[] = [
     tags: ["Vegan", "GF"],
     tagTone: "tertiary",
     image: {
-      src: "/images/our-menu/herb-roasted-sides-img.png",
+      src: "/images/menu/herb-roasted-sides-img.png",
       alt: "Roasted asparagus and carrots on a ceramic plate.",
     },
   },
@@ -71,7 +71,7 @@ export const menuItems: MenuItem[] = [
     tags: ["Organic"],
     tagTone: "tertiary",
     image: {
-      src: "/images/our-menu/mint-sparkler-img.png",
+      src: "/images/menu/mint-sparkler-img.png",
       alt: "Ruby hibiscus mint sparkler in a tall glass.",
     },
   },
@@ -85,7 +85,7 @@ export const menuItems: MenuItem[] = [
     tags: ["Vegan", "GF"],
     tagTone: "tertiary",
     image: {
-      src: "/images/our-menu/green-salad-img.png",
+      src: "/images/menu/green-salad-img.png",
       alt: "Green goddess salad plated on a sage ceramic dish.",
     },
   },

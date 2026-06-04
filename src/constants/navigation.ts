@@ -10,16 +10,15 @@ export const brandAssets = {
 };
 
 export const mainNavigation: NavItem[] = [
-  { label: "Menu", href: "/our-menu" },
-  { label: "How it Works", href: "/#how-it-works" },
-  { label: "About", href: "/#community" },
+  { label: "Menu", href: "/menu" },
+  { label: "About", href: "/about" },
 ];
 
 export const footerColumns: FooterColumn[] = [
   {
     title: "Company",
     links: [
-      { label: "About Us", href: "/#community" },
+      { label: "About Us", href: "/about" },
       { label: "Careers", href: "/" },
       { label: "Sustainability", href: "/" },
     ],
@@ -27,7 +26,7 @@ export const footerColumns: FooterColumn[] = [
   {
     title: "Support",
     links: [
-      { label: "Contact Us", href: "/track-your-feast" },
+      { label: "Track Order", href: "/track-order" },
       { label: "Privacy Policy", href: "/" },
       { label: "Terms of Service", href: "/" },
     ],
@@ -35,9 +34,9 @@ export const footerColumns: FooterColumn[] = [
   {
     title: "Explore",
     links: [
-      { label: "Our Menu", href: "/our-menu" },
-      { label: "Secure Checkout", href: "/secure-checkout" },
-      { label: "Track Your Feast", href: "/track-your-feast" },
+      { label: "Menu", href: "/menu" },
+      { label: "Checkout", href: "/checkout" },
+      { label: "Track Order", href: "/track-order" },
     ],
   },
 ];

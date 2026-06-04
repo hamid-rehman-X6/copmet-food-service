@@ -1,10 +1,16 @@
+import type { Metadata } from "next";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 import { OrderSummary } from "@/components/checkout/OrderSummary";
 import { Icon } from "@/components/common/Icon";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 
-export default function SecureCheckoutPage() {
+export const metadata: Metadata = {
+  title: "Checkout | Copmet Food Service",
+  description: "Review your order and provide delivery details.",
+};
+
+export default function CheckoutPage() {
   return (
     <>
       <SiteHeader loginTone="amber" />
