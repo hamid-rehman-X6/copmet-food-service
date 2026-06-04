@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useCartStore } from "@/stores/cart.store";
 import { Button } from "@/components/common/Button";
 import { Chip } from "@/components/common/Chip";
 import { Icon } from "@/components/common/Icon";
@@ -6,6 +9,9 @@ import { formatCurrency } from "@/lib/formatters";
 import type { MenuItem } from "@/types/menu.types";
 
 export function MenuCard({ item }: { item: MenuItem }) {
+  const addItem = useCartStore((state) => state.addItem);
+  const quantity = useCartStore((state) => state.items.find((cartItem) => cartItem.id === item.id)?.quantity ?? 0);
+
   return (
     <article className="hover-lift group overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-soft)]">
       <div className="relative h-64 overflow-hidden">
@@ -31,8 +37,20 @@ export function MenuCard({ item }: { item: MenuItem }) {
         <p className="line-clamp-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
         <div className="flex items-center justify-between gap-4 pt-2">
           <Chip tone={item.tagTone}>{item.tags.join(" - ")}</Chip>
-          <Button className="min-w-32 px-6 py-3 leading-tight" size="sm">
-            Add to Cart
+          <Button
+            className="min-w-32 px-6 py-3 leading-tight"
+            onClick={() =>
+              addItem({
+                id: item.id,
+                name: item.name,
+                detail: [item.category, ...item.tags].join(" - "),
+                price: item.price,
+                image: item.image,
+              })
+            }
+            size="sm"
+          >
+            {quantity > 0 ? `Add Another (${quantity})` : "Add to Cart"}
           </Button>
         </div>
       </div>

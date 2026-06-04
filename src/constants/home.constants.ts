@@ -13,6 +13,7 @@ export const featuredMeals = [
     title: "Rustic Slow-Roasted Beef",
     description: "Feeds a family of four. Hearty, tender, and deeply flavorful.",
     label: "Bestseller",
+    price: 48,
     priceLabel: "$48",
     image: {
       src: "/images/home-page/beaf-steak-img.png",

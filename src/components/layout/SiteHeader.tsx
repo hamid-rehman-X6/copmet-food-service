@@ -4,7 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { brandAssets, brandName, mainNavigation } from "@/constants/navigation";
+import { getCartItemCount } from "@/lib/cart";
 import { cn } from "@/lib/utils";
+import { useCartStore } from "@/stores/cart.store";
 import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
 
@@ -20,6 +22,7 @@ export function SiteHeader({
   loginTone = "primary",
 }: SiteHeaderProps) {
   const pathname = usePathname();
+  const cartItemCount = useCartStore((state) => getCartItemCount(state.items));
 
   return (
     <header className="sticky top-0 z-50 h-20 border-b border-border/50 bg-background/95 shadow-sm backdrop-blur">
@@ -56,19 +59,27 @@ export function SiteHeader({
 
         <div className="flex items-center gap-2 sm:gap-3">
           {showSearch ? (
-            <label className="hidden items-center gap-2 rounded-full border border-border bg-surface-low px-4 py-2 lg:flex">
+            <form
+              action="/menu"
+              className="hidden items-center gap-2 rounded-full border border-border bg-surface-low px-4 py-2 lg:flex"
+            >
               <Icon className="h-4 w-4 text-muted-foreground" name="search" />
               <span className="sr-only">Search menu</span>
               <input
                 className="w-44 bg-transparent text-sm outline-none placeholder:text-border-strong"
+                name="search"
                 placeholder="Find your favorites..."
                 type="search"
               />
-            </label>
+            </form>
           ) : (
-            <Button aria-label="Search" className="h-10 w-10 px-0" variant="ghost">
+            <Link
+              aria-label="Search menu"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full text-primary transition-colors hover:bg-surface-low"
+              href="/menu"
+            >
               <Icon className="h-5 w-5" name="search" />
-            </Button>
+            </Link>
           )}
 
           <Link
@@ -80,10 +91,10 @@ export function SiteHeader({
             href="/checkout"
           >
             <Icon className="h-5 w-5" name="cart" />
-            {showCartLabel ? <span className="text-sm font-semibold">Cart</span> : null}
-            {!showCartLabel ? (
+            {showCartLabel ? <span className="text-sm font-semibold">Cart ({cartItemCount})</span> : null}
+            {!showCartLabel && cartItemCount > 0 ? (
               <span className="absolute -right-0.5 -top-0.5 grid h-4 w-4 place-items-center rounded-full bg-secondary text-[10px] font-bold text-secondary-foreground">
-                2
+                {cartItemCount > 9 ? "9+" : cartItemCount}
               </span>
             ) : null}
           </Link>

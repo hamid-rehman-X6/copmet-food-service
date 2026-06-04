@@ -1,12 +1,15 @@
 import type { ImageAsset } from "./common.types";
 
-export type CartItem = {
+export type CartProduct = {
   id: string;
   name: string;
   detail: string;
   price: number;
-  quantity: number;
   image: ImageAsset;
+};
+
+export type CartItem = CartProduct & {
+  quantity: number;
 };
 
 export type OrderTotals = {

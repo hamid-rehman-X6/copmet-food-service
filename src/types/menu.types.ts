@@ -1,8 +1,10 @@
 import type { BadgeTone, ImageAsset } from "./common.types";
 
-export type MenuCategory = "All Dishes" | "Bowls" | "Sides" | "Drinks";
+export type MenuCategory = "All Dishes" | "Bowls" | "Mains" | "Sides" | "Drinks" | "Desserts";
 
 export type DietaryFilter = "Vegan" | "GF" | "Organic" | "Nut-Free";
+
+export type MenuSort = "popular" | "newest" | "price-asc" | "price-desc" | "rating";
 
 export type MenuItem = {
   id: string;
@@ -10,8 +12,10 @@ export type MenuItem = {
   description: string;
   price: number;
   rating: number;
+  popularity: number;
+  createdAt: string;
   category: Exclude<MenuCategory, "All Dishes">;
-  tags: string[];
+  tags: DietaryFilter[];
   tagTone: BadgeTone;
   image: ImageAsset;
 };

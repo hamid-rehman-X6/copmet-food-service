@@ -1,36 +1,35 @@
-import type { CartItem, FormField, OrderTotals } from "@/types/checkout.types";
+import type { CartItem, FormField } from "@/types/checkout.types";
 
-export const checkoutItems: CartItem[] = [
+export const initialCartItems: CartItem[] = [
   {
-    id: "grain-bowl",
-    name: "Mediterranean Grain Bowl",
-    detail: "Regular Size - Extra Avocado",
-    price: 16.5,
+    id: "harvest-quinoa",
+    name: "Harvest Quinoa Bowl",
+    detail: "Bowls - Vegan - GF",
+    price: 14.5,
     quantity: 1,
     image: {
-      src: "/images/checkout/grain-bowl-img.png",
-      alt: "Mediterranean grain bowl with colorful vegetables.",
+      src: "/images/menu/harvest-bowl-img.png",
+      alt: "Harvest quinoa bowl with avocado, chickpeas, greens, and roasted vegetables.",
     },
   },
   {
-    id: "dark-torte",
-    name: "Artisanal Dark Torte",
-    detail: "Single Slice",
-    price: 9,
+    id: "mint-sparkler",
+    name: "Hibiscus Mint Sparkler",
+    detail: "Drinks - Organic - Nut-Free",
+    price: 6.5,
     quantity: 2,
     image: {
-      src: "/images/checkout/dark-torte-img.png",
-      alt: "Slice of dark chocolate torte with raspberry.",
+      src: "/images/menu/mint-sparkler-img.png",
+      alt: "Ruby hibiscus mint sparkler in a tall glass.",
     },
   },
 ];
 
-export const checkoutTotals: OrderTotals = {
-  subtotal: 34.5,
+export const checkoutConfig = {
   deliveryFee: 4.99,
-  total: 39.49,
-  points: 40,
-};
+  freeDeliveryThreshold: 45,
+  pointsPerDollar: 1,
+} as const;
 
 export const deliveryFields: FormField[] = [
   { id: "firstName", label: "First Name", placeholder: "Enter first name" },

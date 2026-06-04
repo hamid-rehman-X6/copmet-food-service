@@ -1,12 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { featuredMeals } from "@/constants/home.constants";
 import { cn } from "@/lib/utils";
+import { useCartStore } from "@/stores/cart.store";
 import { Button } from "@/components/common/Button";
 import { Chip } from "@/components/common/Chip";
 import { Icon } from "@/components/common/Icon";
 
 export function FeaturedMeals() {
+  const addItem = useCartStore((state) => state.addItem);
+
   return (
     <section className="page-shell py-20">
       <div className="mb-10 flex items-end justify-between gap-6">
@@ -45,7 +50,19 @@ export function FeaturedMeals() {
               <h3 className="heading-font mb-2 text-2xl font-semibold">{meal.title}</h3>
               {meal.size === "large" ? <p className="mb-5 max-w-md text-sm leading-6 opacity-90">{meal.description}</p> : null}
               {meal.size === "large" ? (
-                <Button className="bg-card text-primary hover:bg-surface-low" size="sm">
+                <Button
+                  className="bg-card text-primary hover:bg-surface-low"
+                  onClick={() =>
+                    addItem({
+                      id: meal.id,
+                      name: meal.title,
+                      detail: "Mains - Family Size",
+                      price: meal.price,
+                      image: meal.image,
+                    })
+                  }
+                  size="sm"
+                >
                   Add to Cart - {meal.priceLabel}
                 </Button>
               ) : meal.size === "wide" ? (

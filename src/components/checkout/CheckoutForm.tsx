@@ -1,11 +1,18 @@
+"use client";
+
 import Link from "next/link";
-import { checkoutTotals, deliveryFields } from "@/constants/checkout.constants";
+import { deliveryFields } from "@/constants/checkout.constants";
+import { getOrderTotals } from "@/lib/cart";
 import { formatCurrency } from "@/lib/formatters";
 import { cn } from "@/lib/utils";
+import { useCartStore } from "@/stores/cart.store";
 import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
 
 export function CheckoutForm() {
+  const items = useCartStore((state) => state.items);
+  const totals = getOrderTotals(items);
+
   return (
     <section className="space-y-10">
       <div className="flex items-center gap-5">
@@ -87,8 +94,8 @@ export function CheckoutForm() {
       </div>
 
       <div>
-        <Button className="w-full rounded-full py-5 text-lg" type="submit" variant="amber">
-          Place Order - {formatCurrency(checkoutTotals.total)}
+        <Button className="w-full rounded-full py-5 text-lg" disabled={items.length === 0} type="submit" variant="amber">
+          {items.length === 0 ? "Add Items to Continue" : `Place Order - ${formatCurrency(totals.total)}`}
         </Button>
         <p className="mt-5 text-center text-xs text-muted-foreground">
           By placing your order, you agree to our <Link className="underline" href="/">Terms of Service</Link> and{" "}
