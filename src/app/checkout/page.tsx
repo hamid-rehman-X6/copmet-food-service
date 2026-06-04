@@ -14,11 +14,13 @@ export default function CheckoutPage() {
   return (
     <>
       <SiteHeader loginTone="amber" />
-      <main className="page-shell py-16">
-        <div className="mb-16 flex flex-col justify-between gap-6 md:flex-row md:items-center">
+      <main className="page-shell py-8 sm:py-12 lg:py-16">
+        <div className="mb-10 flex flex-col justify-between gap-5 sm:mb-14 md:flex-row md:items-center lg:mb-16">
           <div>
-            <h1 className="heading-font text-5xl font-bold tracking-tight">Finalize Your Order</h1>
-            <p className="mt-2 text-lg text-muted-foreground">Review your selection and provide delivery details.</p>
+            <h1 className="heading-font text-4xl font-bold tracking-tight sm:text-5xl">Finalize Your Order</h1>
+            <p className="mt-2 text-sm text-muted-foreground sm:text-lg">
+              Review your selection and provide delivery details.
+            </p>
           </div>
           <div className="inline-flex w-fit items-center gap-2 rounded-xl border border-border bg-surface-raised px-5 py-3 text-sm font-semibold">
             <Icon className="h-5 w-5 text-tertiary" name="shield" />
@@ -26,11 +28,11 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        <div className="grid gap-12 lg:grid-cols-12">
-          <section className="order-2 lg:order-1 lg:col-span-5">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <section className="lg:col-span-5">
             <OrderSummary />
           </section>
-          <section className="order-1 lg:order-2 lg:col-span-7">
+          <section className="lg:col-span-7">
             <CheckoutForm />
           </section>
         </div>

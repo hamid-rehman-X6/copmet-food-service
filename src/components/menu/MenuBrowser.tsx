@@ -60,7 +60,7 @@ export function MenuBrowser({ initialSearch = "" }: { initialSearch?: string }) 
   }
 
   return (
-    <div className="flex flex-col gap-10 lg:flex-row">
+    <div className="flex flex-col gap-8 lg:flex-row lg:gap-10">
       <MenuSidebar
         category={category}
         onCategoryChange={(value) => {
@@ -83,10 +83,10 @@ export function MenuBrowser({ initialSearch = "" }: { initialSearch?: string }) 
       />
 
       <section className="min-w-0 flex-1">
-        <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div className="mb-8 flex flex-col justify-between gap-5 sm:mb-10 md:flex-row md:items-end">
           <div>
-            <h1 className="heading-font text-5xl font-bold tracking-tight text-foreground">Explore the Menu</h1>
-            <p className="mt-2 text-lg text-muted-foreground">
+            <h1 className="heading-font text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Explore the Menu</h1>
+            <p className="mt-2 text-sm text-muted-foreground sm:text-lg">
               Showing {visibleItems.length} of {filteredItems.length} handcrafted meals.
             </p>
           </div>
@@ -103,13 +103,13 @@ export function MenuBrowser({ initialSearch = "" }: { initialSearch?: string }) 
         </div>
 
         {visibleItems.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 lg:gap-6 xl:grid-cols-3">
             {visibleItems.map((item) => (
               <MenuCard item={item} key={item.id} />
             ))}
           </div>
         ) : (
-          <div className="rounded-2xl border border-dashed border-border bg-surface-low px-6 py-20 text-center">
+          <div className="rounded-2xl border border-dashed border-border bg-surface-low px-5 py-14 text-center sm:px-6 sm:py-20">
             <h2 className="heading-font text-2xl font-semibold">No dishes found</h2>
             <p className="mt-2 text-sm text-muted-foreground">Try a different search or clear your filters.</p>
             <Button
@@ -128,9 +128,9 @@ export function MenuBrowser({ initialSearch = "" }: { initialSearch?: string }) 
         )}
 
         {hasMoreItems ? (
-          <div className="mt-16 flex justify-center">
+          <div className="mt-10 flex justify-center sm:mt-16">
             <Button
-              className="border-2 border-border px-10 py-4"
+              className="w-full border-2 border-border px-10 py-4 sm:w-auto"
               onClick={() => setVisibleCount((current) => current + PAGE_SIZE)}
               variant="outline"
             >

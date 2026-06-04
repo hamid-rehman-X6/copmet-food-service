@@ -7,7 +7,7 @@ import { Button } from "@/components/common/Button";
 export function SignupForm() {
   return (
     <form className="mt-8 space-y-5" onSubmit={(event) => event.preventDefault()}>
-      <div className="grid gap-5 sm:grid-cols-2">
+      <div className="grid gap-5 min-[480px]:grid-cols-2">
         <AuthField
           autoComplete="given-name"
           icon="user"

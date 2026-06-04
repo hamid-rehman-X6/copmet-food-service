@@ -31,7 +31,7 @@ export function AuthSidebar() {
 
       <div className="relative z-10 max-w-2xl p-10 xl:p-14">
         <p className="mb-5 text-xs font-bold uppercase tracking-[0.28em] text-secondary-container">Welcome to Copmet</p>
-        <h2 className="heading-font text-4xl font-semibold leading-tight xl:text-5xl">
+        <h2 className="heading-font text-3xl font-semibold leading-tight xl:text-5xl">
           Thoughtful meals and dependable service, all in one place.
         </h2>
         <p className="mt-6 max-w-xl text-sm leading-7 text-white/75 xl:text-base">

@@ -19,7 +19,7 @@ export default async function MenuPage({ searchParams }: MenuPageProps) {
   return (
     <>
       <SiteHeader showCartLabel loginTone="ghost" />
-      <main className="page-shell py-10 md:py-12">
+      <main className="page-shell py-8 sm:py-10 md:py-12">
         <MenuBrowser initialSearch={initialSearch} />
       </main>
       <SiteFooter newsletter />

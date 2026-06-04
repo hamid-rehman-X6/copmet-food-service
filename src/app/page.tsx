@@ -21,7 +21,7 @@ export default function HomePage() {
       <SiteFooter />
       <button
         aria-label="Open chat"
-        className="fixed bottom-6 right-6 z-40 grid h-14 w-14 place-items-center rounded-full bg-secondary text-secondary-foreground shadow-(--shadow-lift) transition-transform hover:scale-105"
+        className="fixed bottom-4 right-4 z-40 grid h-12 w-12 place-items-center rounded-full bg-secondary text-secondary-foreground shadow-(--shadow-lift) transition-transform hover:scale-105 sm:bottom-6 sm:right-6 sm:h-14 sm:w-14"
       >
         <Icon className="h-6 w-6" name="message" />
       </button>

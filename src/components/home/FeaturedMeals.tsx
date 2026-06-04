@@ -13,11 +13,11 @@ export function FeaturedMeals() {
   const addItem = useCartStore((state) => state.addItem);
 
   return (
-    <section className="page-shell py-20">
-      <div className="mb-10 flex items-end justify-between gap-6">
+    <section className="page-shell py-14 sm:py-20">
+      <div className="mb-8 flex items-end justify-between gap-6 sm:mb-10">
         <div>
           <p className="mb-2 text-xs font-bold uppercase tracking-[0.28em] text-secondary">Chef&apos;s Specials</p>
-          <h2 className="heading-font text-3xl font-semibold text-foreground">Featured Today</h2>
+          <h2 className="heading-font text-2xl font-semibold text-foreground sm:text-3xl">Featured Today</h2>
         </div>
         <Link className="hidden items-center gap-2 text-sm font-semibold text-primary sm:flex" href="/menu">
           View Full Menu
@@ -25,11 +25,11 @@ export function FeaturedMeals() {
         </Link>
       </div>
 
-      <div className="grid min-h-[680px] grid-cols-1 gap-6 md:min-h-[580px] md:grid-cols-4 md:grid-rows-2">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:min-h-[580px] md:grid-cols-4 md:grid-rows-2 md:gap-6">
         {featuredMeals.map((meal) => (
           <article
             className={cn(
-              "group relative overflow-hidden rounded-2xl bg-card shadow-(--shadow-soft)",
+              "group relative min-h-80 overflow-hidden rounded-2xl bg-card shadow-(--shadow-soft) sm:min-h-72 md:min-h-0",
               meal.size === "large" && "md:col-span-2 md:row-span-2",
               meal.size === "wide" && "md:col-span-2",
             )}
@@ -48,7 +48,9 @@ export function FeaturedMeals() {
                 {meal.label}
               </Chip>
               <h3 className="heading-font mb-2 text-2xl font-semibold">{meal.title}</h3>
-              {meal.size === "large" ? <p className="mb-5 max-w-md text-sm leading-6 opacity-90">{meal.description}</p> : null}
+              {meal.size === "large" ? (
+                <p className="mb-5 max-w-md text-sm leading-6 opacity-90">{meal.description}</p>
+              ) : null}
               {meal.size === "large" ? (
                 <Button
                   className="bg-card text-primary hover:bg-surface-low"

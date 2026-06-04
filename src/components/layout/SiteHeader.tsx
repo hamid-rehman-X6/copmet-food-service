@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { brandAssets, brandName, mainNavigation } from "@/constants/navigation";
 import { getCartItemCount } from "@/lib/cart";
@@ -27,15 +28,16 @@ export function SiteHeader({
   loginTone = "primary",
 }: SiteHeaderProps) {
   const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const cartItemCount = useCartStore((state) => getCartItemCount(state.items));
 
   return (
-    <header className="sticky top-0 z-50 h-20 border-b border-border/50 bg-background/95 shadow-sm backdrop-blur">
+    <header className="sticky top-0 z-50 h-16 border-b border-border/50 bg-background/95 shadow-sm backdrop-blur sm:h-20">
       <nav className="page-shell flex h-full items-center justify-between gap-4">
         <Link className="flex shrink-0 items-center" href="/">
           <Image
             alt={brandAssets.logo.alt}
-            className="h-10 w-auto md:h-12"
+            className="h-8 w-auto sm:h-10 md:h-12"
             height={724}
             priority
             src={brandAssets.logo.src}
@@ -62,7 +64,7 @@ export function SiteHeader({
           })}
         </div>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           {showSearch ? (
             <form
               action="/menu"
@@ -91,14 +93,21 @@ export function SiteHeader({
             aria-label="View cart"
             className={cn(
               "relative inline-flex items-center justify-center gap-2 rounded-full text-primary transition-colors hover:bg-surface-low",
-              showCartLabel ? "bg-primary px-5 py-3 text-primary-foreground hover:bg-primary-container" : "h-10 w-10",
+              showCartLabel
+                ? "h-10 w-10 bg-primary text-primary-foreground hover:bg-primary-container sm:w-auto sm:px-5 sm:py-3"
+                : "h-10 w-10",
             )}
             href="/checkout"
           >
             <Icon className="h-5 w-5" name="cart" />
-            {showCartLabel ? <span className="text-sm font-semibold">Cart ({cartItemCount})</span> : null}
-            {!showCartLabel && cartItemCount > 0 ? (
-              <span className="absolute -right-0.5 -top-0.5 grid h-4 w-4 place-items-center rounded-full bg-secondary text-[10px] font-bold text-secondary-foreground">
+            {showCartLabel ? <span className="hidden text-sm font-semibold sm:inline">Cart ({cartItemCount})</span> : null}
+            {cartItemCount > 0 ? (
+              <span
+                className={cn(
+                  "absolute -right-0.5 -top-0.5 grid h-4 w-4 place-items-center rounded-full bg-secondary text-[10px] font-bold text-secondary-foreground",
+                  showCartLabel && "sm:hidden",
+                )}
+              >
                 {cartItemCount > 9 ? "9+" : cartItemCount}
               </span>
             ) : null}
@@ -113,8 +122,45 @@ export function SiteHeader({
           >
             Login
           </Link>
+
+          <button
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            className="grid h-10 w-10 place-items-center rounded-full text-primary transition-colors hover:bg-surface-low md:hidden"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            type="button"
+          >
+            <Icon className="h-5 w-5" name={mobileMenuOpen ? "x" : "menu"} />
+          </button>
         </div>
       </nav>
+
+      {mobileMenuOpen ? (
+        <div className="absolute inset-x-0 top-full border-b border-border bg-background py-3 shadow-[var(--shadow-soft)] md:hidden">
+          <nav aria-label="Mobile navigation" className="page-shell flex flex-col gap-2">
+            {mainNavigation.map((item) => (
+              <Link
+                className={cn(
+                  "rounded-xl px-4 py-3 text-sm font-semibold text-muted-foreground transition-colors hover:bg-surface-low hover:text-primary",
+                  pathname === item.href && "bg-primary/10 text-primary",
+                )}
+                href={item.href}
+                key={item.label}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <Link
+              className="mt-2 rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-primary-foreground"
+              href="/login"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Login
+            </Link>
+          </nav>
+        </div>
+      ) : null}
     </header>
   );
 }

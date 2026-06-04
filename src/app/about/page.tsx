@@ -17,13 +17,13 @@ export default function AboutPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="page-shell grid items-center gap-12 py-16 lg:grid-cols-2 lg:py-24">
+        <section className="page-shell grid items-center gap-10 py-10 sm:py-16 lg:grid-cols-2 lg:gap-12 lg:py-24">
           <div>
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.28em] text-secondary">Our Story</p>
-            <h1 className="heading-font max-w-xl text-5xl font-bold leading-tight tracking-tight text-primary md:text-6xl">
+            <h1 className="heading-font max-w-xl text-4xl font-bold leading-tight tracking-tight text-primary sm:text-5xl md:text-6xl">
               Good food should bring people closer.
             </h1>
-            <p className="mt-7 max-w-xl text-lg leading-8 text-muted-foreground">
+            <p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground sm:mt-7 sm:text-lg sm:leading-8">
               Copmet Food Service began with a simple idea: make it easier to share a warm, memorable meal. We prepare
               comforting dishes with thoughtful ingredients, then deliver them ready for the moments that matter.
             </p>
@@ -41,11 +41,11 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="bg-muted py-20">
+        <section className="bg-muted py-14 sm:py-20">
           <div className="page-shell">
             <div className="mx-auto mb-12 max-w-2xl text-center">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.28em] text-secondary">What Guides Us</p>
-              <h2 className="heading-font text-4xl font-semibold">Food made for real life</h2>
+              <h2 className="heading-font text-3xl font-semibold sm:text-4xl">Food made for real life</h2>
               <p className="mt-4 leading-7 text-muted-foreground">
                 From the first ingredient to the final delivery, we focus on the details that make a meal feel
                 personal.
@@ -54,7 +54,7 @@ export default function AboutPage() {
 
             <div className="grid gap-6 md:grid-cols-3">
               {aboutValues.map((value) => (
-                <Card className="p-8" key={value.title}>
+                <Card className="p-6 sm:p-8" key={value.title}>
                   <div className="mb-6 grid h-14 w-14 place-items-center rounded-full bg-success-soft text-tertiary">
                     <Icon className="h-7 w-7" name={value.icon} />
                   </div>
@@ -66,11 +66,11 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="page-shell py-20">
+        <section className="page-shell py-14 sm:py-20">
           <div className="grid overflow-hidden rounded-3xl bg-primary text-primary-foreground lg:grid-cols-2">
-            <div className="flex flex-col justify-center p-8 md:p-12 lg:p-16">
+            <div className="flex flex-col justify-center p-6 sm:p-8 md:p-12 lg:p-16">
               <p className="mb-4 text-xs font-bold uppercase tracking-[0.28em] text-secondary-container">Our Promise</p>
-              <h2 className="heading-font text-4xl font-semibold">Comfort, without the compromise.</h2>
+              <h2 className="heading-font text-3xl font-semibold sm:text-4xl">Comfort, without the compromise.</h2>
               <p className="mt-5 max-w-xl leading-7 text-primary-foreground/85">
                 We believe convenience can still feel generous. That means familiar food, careful preparation, and
                 service you can count on from kitchen to doorstep.
@@ -83,7 +83,7 @@ export default function AboutPage() {
                 <Icon className="h-4 w-4" name="arrowRight" />
               </Link>
             </div>
-            <div className="relative min-h-80">
+            <div className="relative min-h-64 sm:min-h-80">
               <Image
                 alt="A selection of handcrafted dishes ready to share."
                 className="object-cover"

@@ -11,13 +11,13 @@ export function SiteFooter({ newsletter = false }: SiteFooterProps) {
   const visibleColumns = newsletter ? footerColumns.slice(0, 2) : footerColumns;
 
   return (
-    <footer className="mt-20 border-t border-border/60 bg-muted py-14">
-      <div className="page-shell grid gap-10 md:grid-cols-4">
+    <footer className="mt-14 border-t border-border/60 bg-muted py-10 sm:mt-20 sm:py-14">
+      <div className="page-shell grid gap-9 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <Link className="mb-4 flex w-fit items-center" href="/">
             <Image
               alt={brandAssets.logo.alt}
-              className="h-12 w-auto"
+              className="h-10 w-auto sm:h-12"
               height={724}
               src={brandAssets.logo.src}
               width={2172}
@@ -48,7 +48,7 @@ export function SiteFooter({ newsletter = false }: SiteFooterProps) {
             <p className="mb-5 text-sm leading-6 text-muted-foreground">
               Join our table for weekly recipes and meal updates.
             </p>
-            <form className="flex gap-2">
+            <form className="flex flex-col gap-2 min-[400px]:flex-row">
               <input
                 className="min-w-0 flex-1 rounded-lg border border-transparent bg-card px-4 py-3 outline-none focus:border-primary"
                 placeholder="Email"
@@ -62,8 +62,8 @@ export function SiteFooter({ newsletter = false }: SiteFooterProps) {
         ) : null}
       </div>
 
-      <div className="page-shell mt-12 border-t border-border/70 pt-8 text-center text-sm text-muted-foreground">
-        © 2024 {brandName}. Crafted for shared moments.
+      <div className="page-shell mt-10 border-t border-border/70 pt-6 text-center text-xs text-muted-foreground sm:mt-12 sm:pt-8 sm:text-sm">
+        &copy; 2026 {brandName}. Crafted for shared moments.
       </div>
     </footer>
   );

@@ -15,8 +15,8 @@ export default function TrackOrderPage() {
   return (
     <>
       <SiteHeader />
-      <main className="page-shell py-16">
-        <div className="grid gap-8 lg:grid-cols-12">
+      <main className="page-shell py-8 sm:py-12 lg:py-16">
+        <div className="grid gap-6 sm:gap-8 lg:grid-cols-12">
           <div className="space-y-8 lg:col-span-7">
             <ArrivalStatus />
             <TrackingMap />

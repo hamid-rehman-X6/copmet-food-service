@@ -17,9 +17,9 @@ export function OrderSummary() {
   const totals = getOrderTotals(items);
 
   return (
-    <Card className="p-6 lg:sticky lg:top-28">
+    <Card className="p-4 sm:p-6 lg:sticky lg:top-28">
       <div className="mb-6 flex items-center justify-between gap-4">
-        <h2 className="heading-font text-2xl font-semibold">Order Summary</h2>
+        <h2 className="heading-font text-xl font-semibold sm:text-2xl">Order Summary</h2>
         {items.length > 0 ? (
           <button className="text-xs font-semibold text-error hover:underline" onClick={clearCart} type="button">
             Remove All
@@ -30,12 +30,12 @@ export function OrderSummary() {
       {items.length > 0 ? (
         <div className="space-y-6">
           {items.map((item) => (
-            <article className="flex gap-4" key={item.id}>
-              <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-lg">
+            <article className="flex gap-3 sm:gap-4" key={item.id}>
+              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg sm:h-24 sm:w-24">
                 <Image alt={item.image.alt} className="object-cover" fill sizes="96px" src={item.image.src} />
               </div>
               <div className="min-w-0 flex-1">
-                <div className="flex items-start justify-between gap-3">
+                <div className="flex flex-col gap-1 min-[400px]:flex-row min-[400px]:items-start min-[400px]:justify-between min-[400px]:gap-3">
                   <h3 className="text-sm font-semibold">{item.name}</h3>
                   <span className="whitespace-nowrap text-sm">{formatCurrency(item.price * item.quantity)}</span>
                 </div>

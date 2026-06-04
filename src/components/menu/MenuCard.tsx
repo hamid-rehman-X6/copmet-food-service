@@ -14,7 +14,7 @@ export function MenuCard({ item }: { item: MenuItem }) {
 
   return (
     <article className="hover-lift group flex h-full flex-col overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-soft)]">
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative h-56 overflow-hidden sm:h-64">
         <Image
           alt={item.image.alt}
           className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -27,15 +27,15 @@ export function MenuCard({ item }: { item: MenuItem }) {
           <span className="text-sm font-semibold">{item.rating}</span>
         </div>
       </div>
-      <div className="flex flex-1 flex-col gap-4 p-6">
+      <div className="flex flex-1 flex-col gap-4 p-5 sm:p-6">
         <div className="flex items-start justify-between gap-4">
-          <h2 className="heading-font text-2xl font-semibold leading-tight">{item.name}</h2>
-          <span className="heading-font whitespace-nowrap text-xl font-semibold text-primary">
+          <h2 className="heading-font text-xl font-semibold leading-tight sm:text-2xl">{item.name}</h2>
+          <span className="heading-font whitespace-nowrap text-lg font-semibold text-primary sm:text-xl">
             {formatCurrency(item.price)}
           </span>
         </div>
         <p className="line-clamp-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
-        <div className="mt-auto grid grid-cols-[minmax(0,1fr)_8.25rem] items-end gap-3 pt-2">
+        <div className="mt-auto grid gap-3 pt-2">
           <div className="flex min-w-0 flex-wrap gap-2">
             {item.tags.map((tag) => (
               <Chip key={tag} tone={item.tagTone}>
