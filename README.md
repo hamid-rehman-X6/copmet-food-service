@@ -1,19 +1,22 @@
 # Copmet Food Service
 
-Web frontend for Copmet Food Service—a [Next.js](https://nextjs.org) app (React, TypeScript, Tailwind CSS). Early-stage; starter UI lives in `src/app`.
+Responsive food-service web application with customer ordering, authentication, and an admin management interface.
 
-## Dev
+## Development
 
 ```bash
 npm install
+npm run db:migrate
 npm run dev
 ```
 
-Open http://localhost:3000 .
+Install and start PostgreSQL locally before running migrations. Copy `.env.example` to `.env.local`, create the database named in `DB_NAME`, and configure PostgreSQL credentials and JWT secrets before running database-backed APIs.
 
-## Scripts
+## Commands
 
-- `npm run dev` — local dev server  
-- `npm run build` — production build  
-- `npm run start` — run production server  
-- `npm run lint` — ESLint  
+- `npm run dev`: start development server
+- `npm run build`: create production build
+- `npm run lint`: run ESLint
+- `npm run db:migrate`: apply pending PostgreSQL migrations
+
+Backend architecture and authentication API documentation are available in [docs/backend.md](docs/backend.md).

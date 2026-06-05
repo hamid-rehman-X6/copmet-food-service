@@ -3,11 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { brandAssets, brandName, mainNavigation } from "@/constants/navigation";
 import { getCartItemCount } from "@/lib/cart";
 import { cn } from "@/lib/utils";
 import { useCartStore } from "@/stores/cart.store";
+import { useAuth } from "@/components/auth/AuthProvider";
 import { Icon } from "@/components/common/Icon";
 
 type SiteHeaderProps = {
@@ -28,8 +29,17 @@ export function SiteHeader({
   loginTone = "primary",
 }: SiteHeaderProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const cartItemCount = useCartStore((state) => getCartItemCount(state.items));
+  const { user, logout } = useAuth();
+
+  async function handleLogout() {
+    await logout();
+    setMobileMenuOpen(false);
+    router.push("/login");
+    router.refresh();
+  }
 
   return (
     <header className="sticky top-0 z-50 h-16 border-b border-border/50 bg-background/95 shadow-sm backdrop-blur sm:h-20">
@@ -113,15 +123,29 @@ export function SiteHeader({
             ) : null}
           </Link>
 
-          <Link
-            className={cn(
-              "hidden items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all active:scale-95 sm:inline-flex",
-              loginLinkTones[loginTone],
-            )}
-            href="/login"
-          >
-            Login
-          </Link>
+          {user ? (
+            <button
+              aria-label={`Sign out ${user.firstName}`}
+              className={cn(
+                "hidden items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all active:scale-95 sm:inline-flex",
+                loginLinkTones[loginTone],
+              )}
+              onClick={handleLogout}
+              type="button"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              className={cn(
+                "hidden items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all active:scale-95 sm:inline-flex",
+                loginLinkTones[loginTone],
+              )}
+              href="/login"
+            >
+              Login
+            </Link>
+          )}
 
           <button
             aria-expanded={mobileMenuOpen}
@@ -151,13 +175,23 @@ export function SiteHeader({
                 {item.label}
               </Link>
             ))}
-            <Link
-              className="mt-2 rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-primary-foreground"
-              href="/login"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Login
-            </Link>
+            {user ? (
+              <button
+                className="mt-2 rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-primary-foreground"
+                onClick={handleLogout}
+                type="button"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                className="mt-2 rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-primary-foreground"
+                href="/login"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Login
+              </Link>
+            )}
           </nav>
         </div>
       ) : null}

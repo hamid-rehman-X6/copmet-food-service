@@ -1,8 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { adminNavigation } from "@/constants/admin.constants";
 import { brandAssets, brandName } from "@/constants/navigation";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/components/auth/AuthProvider";
 import { Icon } from "@/components/common/Icon";
 
 type AdminSidebarProps = {
@@ -12,6 +16,16 @@ type AdminSidebarProps = {
 };
 
 export function AdminSidebar({ pathname, open, onClose }: AdminSidebarProps) {
+  const { logout } = useAuth();
+  const router = useRouter();
+
+  async function handleLogout() {
+    await logout();
+    onClose();
+    router.push("/login");
+    router.refresh();
+  }
+
   return (
     <>
       <button
@@ -67,10 +81,10 @@ export function AdminSidebar({ pathname, open, onClose }: AdminSidebarProps) {
             <Icon className="h-5 w-5" name="helpCircle" />
             Support
           </Link>
-          <Link className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-muted-foreground hover:bg-surface-highest hover:text-primary" href="/" onClick={onClose}>
+          <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-muted-foreground hover:bg-surface-highest hover:text-primary" onClick={handleLogout} type="button">
             <Icon className="h-5 w-5 rotate-180" name="arrowRight" />
-            Back to Website
-          </Link>
+            Log Out
+          </button>
         </div>
 
         <div className="mt-5 flex items-center gap-3 rounded-xl bg-card p-3 shadow-sm">
