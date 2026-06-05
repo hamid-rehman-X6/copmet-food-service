@@ -68,8 +68,8 @@ export function SignupForm() {
       <label className="flex items-start gap-3 text-sm leading-6 text-muted-foreground">
         <input className="mt-1 h-4 w-4 shrink-0 accent-primary" disabled={submitting} name="terms" required type="checkbox" />
         <span>
-          I agree to the <Link className="font-semibold text-primary hover:underline" href="/">Terms of Service</Link>{" "}
-          and <Link className="font-semibold text-primary hover:underline" href="/">Privacy Policy</Link>.
+          I agree to the <Link className="font-semibold text-primary hover:underline" href="/terms">Terms of Service</Link>{" "}
+          and <Link className="font-semibold text-primary hover:underline" href="/privacy">Privacy Policy</Link>.
         </span>
       </label>
 

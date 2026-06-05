@@ -98,8 +98,8 @@ export function CheckoutForm() {
           {items.length === 0 ? "Add Items to Continue" : `Place Order - ${formatCurrency(totals.total)}`}
         </Button>
         <p className="mt-5 text-center text-xs text-muted-foreground">
-          By placing your order, you agree to our <Link className="underline" href="/">Terms of Service</Link> and{" "}
-          <Link className="underline" href="/">Privacy Policy</Link>.
+          By placing your order, you agree to our <Link className="underline" href="/terms">Terms of Service</Link> and{" "}
+          <Link className="underline" href="/privacy">Privacy Policy</Link>.
         </p>
       </div>
     </section>
