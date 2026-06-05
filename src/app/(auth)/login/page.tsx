@@ -18,6 +18,13 @@ export default function LoginPage() {
 
       <LoginForm />
 
+      <p className="mt-6 text-center text-sm text-muted-foreground">
+        Managing Copmet operations?{" "}
+        <Link className="font-semibold text-primary transition-colors hover:text-primary-container" href="/admin/login">
+          Continue to admin access
+        </Link>
+      </p>
+
       <p className="mt-8 text-center text-sm text-muted-foreground">
         New to Copmet?{" "}
         <Link className="font-semibold text-primary transition-colors hover:text-primary-container" href="/signup">
