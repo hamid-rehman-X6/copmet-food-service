@@ -60,13 +60,13 @@ export function AdminLoginForm() {
   }
 
   return (
-    <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+    <form className="mt-7 space-y-5" onSubmit={handleSubmit}>
       <AuthFormAlert message={error} />
       <AuthField autoComplete="email" disabled={submitting} icon="mail" id="admin-email" label="Admin email" name="email" placeholder="admin@example.com" required type="email" />
       <AuthField autoComplete="current-password" disabled={submitting} icon="lock" id="admin-password" label="Admin password" name="password" placeholder="Enter admin password" required type="password" />
 
-      <Button className="w-full rounded-xl py-4 text-base" disabled={submitting} type="submit">
-        {submitting ? "Signing In..." : "Sign In To Admin"}
+      <Button className="w-full rounded-lg py-3.5 text-sm" disabled={submitting} type="submit">
+        {submitting ? "Signing in..." : "Sign in"}
       </Button>
     </form>
   );
