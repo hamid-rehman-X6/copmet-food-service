@@ -40,6 +40,12 @@ export const env = {
   get appUrl() {
     return process.env.APP_URL ?? "http://localhost:3000";
   },
+  get adminEmail() {
+    return required("ADMIN_EMAIL").trim().toLowerCase();
+  },
+  get adminPassword() {
+    return required("ADMIN_PASSWORD");
+  },
   get isProduction() {
     return process.env.NODE_ENV === "production";
   },

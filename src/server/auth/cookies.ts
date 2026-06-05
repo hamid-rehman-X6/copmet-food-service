@@ -16,11 +16,15 @@ const commonCookieOptions = {
   path: "/",
 };
 
-export function setAuthCookies(response: NextResponse, tokens: AuthTokens) {
-  response.cookies.set(authCookies.access, tokens.accessToken, {
+export function setAccessCookie(response: NextResponse, accessToken: string) {
+  response.cookies.set(authCookies.access, accessToken, {
     ...commonCookieOptions,
     maxAge: authTokenTtl.accessSeconds,
   });
+}
+
+export function setAuthCookies(response: NextResponse, tokens: AuthTokens) {
+  setAccessCookie(response, tokens.accessToken);
 
   response.cookies.set(authCookies.refresh, tokens.refreshToken, {
     ...commonCookieOptions,
