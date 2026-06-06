@@ -10,7 +10,7 @@ export const brandAssets = {
 };
 
 export const mainNavigation: NavItem[] = [
-  { label: "Menu", href: "/menu" },
+  { label: "Frozen Menu", href: "/menu" },
   { label: "About", href: "/about" },
 ];
 
@@ -34,7 +34,7 @@ export const footerColumns: FooterColumn[] = [
   {
     title: "Explore",
     links: [
-      { label: "Menu", href: "/menu" },
+      { label: "Frozen Catalog", href: "/menu" },
       { label: "Checkout", href: "/checkout" },
       { label: "Track Order", href: "/track-order" },
     ],

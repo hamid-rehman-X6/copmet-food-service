@@ -20,7 +20,7 @@ export function CheckoutForm() {
           <span className="grid h-8 w-8 place-items-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
             1
           </span>
-          <span className="hidden text-sm font-semibold min-[360px]:inline">Delivery</span>
+          <span className="hidden text-sm font-semibold min-[360px]:inline">Frozen Delivery</span>
         </div>
         <div className="h-px flex-1 bg-border" />
         <div className="flex items-center gap-2 text-muted-foreground">
@@ -30,7 +30,7 @@ export function CheckoutForm() {
       </div>
 
       <div>
-        <h2 className="heading-font mb-5 text-2xl font-semibold sm:mb-6 sm:text-3xl">Delivery Details</h2>
+        <h2 className="heading-font mb-5 text-2xl font-semibold sm:mb-6 sm:text-3xl">Frozen Delivery Details</h2>
         <div className="grid gap-5 md:grid-cols-2">
           {deliveryFields.map((field) => (
             <label className={cn("space-y-2", field.span === "full" && "md:col-span-2")} key={field.id}>
@@ -44,10 +44,10 @@ export function CheckoutForm() {
           ))}
         </div>
         <label className="mt-5 block space-y-2">
-          <span className="text-sm font-semibold text-muted-foreground">Delivery Instructions (Optional)</span>
+          <span className="text-sm font-semibold text-muted-foreground">Frozen Delivery Instructions (Optional)</span>
           <textarea
             className="min-h-24 w-full rounded-lg border border-border bg-surface-low px-4 py-3 outline-none focus:border-primary"
-            placeholder="e.g. Leave by the side door, gate code 1234..."
+            placeholder="e.g. Leave with reception, call on arrival, gate code 1234..."
           />
         </label>
       </div>
@@ -95,7 +95,7 @@ export function CheckoutForm() {
 
       <div>
         <Button className="w-full rounded-full py-4 text-base sm:py-5 sm:text-lg" disabled={items.length === 0} type="submit" variant="amber">
-          {items.length === 0 ? "Add Items to Continue" : `Place Order - ${formatCurrency(totals.total)}`}
+          {items.length === 0 ? "Add Frozen Meals to Continue" : `Place Frozen Order - ${formatCurrency(totals.total)}`}
         </Button>
         <p className="mt-5 text-center text-xs text-muted-foreground">
           By placing your order, you agree to our <Link className="underline" href="/terms">Terms of Service</Link> and{" "}

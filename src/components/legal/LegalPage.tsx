@@ -76,7 +76,7 @@ export function LegalPage({ eyebrow, title, description, lastUpdated, summaries,
             <article className="rounded-2xl border border-border/70 bg-card px-5 py-6 shadow-soft sm:px-8 sm:py-8">
               <p className="border-b border-border pb-6 text-sm leading-7 text-muted-foreground">
                 This page explains the general policy for {brandName}. It is written for clarity and should be reviewed
-                alongside any order-specific notices shown during checkout.
+                alongside any frozen meal storage, heating, and order-specific notices shown during checkout.
               </p>
               <div className="divide-y divide-border">
                 {sections.map((section) => (

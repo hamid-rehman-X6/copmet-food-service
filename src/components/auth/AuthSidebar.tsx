@@ -2,8 +2,8 @@ import Image from "next/image";
 import { Icon } from "@/components/common/Icon";
 
 const servicePoints = [
-  "Thoughtfully prepared seasonal menus",
-  "Reliable ordering and delivery updates",
+  "Small-batch frozen meals for busy weeks",
+  "Reliable cold-packed ordering and delivery updates",
   "Secure checkout and account management",
 ] as const;
 
@@ -11,7 +11,7 @@ export function AuthSidebar() {
   return (
     <aside className="relative hidden min-h-screen overflow-hidden bg-inverse text-inverse-foreground lg:flex lg:flex-col lg:justify-between">
       <Image
-        alt="A thoughtfully prepared meal shared around a warm, formal dining table."
+        alt="A prepared meal shared around a warm dining table."
         className="object-cover"
         fill
         priority
@@ -25,17 +25,17 @@ export function AuthSidebar() {
       <div className="relative z-10 p-10 xl:p-14">
         <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] backdrop-blur">
           <Icon className="h-4 w-4 text-secondary-container" name="shield" />
-          Trusted food service
+          Trusted frozen food service
         </div>
       </div>
 
       <div className="relative z-10 max-w-2xl p-10 xl:p-14">
         <p className="mb-5 text-xs font-bold uppercase tracking-[0.28em] text-secondary-container">Welcome to Copmet</p>
         <h2 className="heading-font text-3xl font-semibold leading-tight xl:text-5xl">
-          Thoughtful meals and dependable service, all in one place.
+          Homemade frozen meals and dependable service, all in one place.
         </h2>
         <p className="mt-6 max-w-xl text-sm leading-7 text-white/75 xl:text-base">
-          Manage your orders, save your favorites, and make every shared meal easier with a secure Copmet account.
+          Manage freezer orders, save favorite trays, and keep busy-week meals easier with a secure Copmet account.
         </p>
 
         <div className="mt-9 grid gap-3">
@@ -51,10 +51,10 @@ export function AuthSidebar() {
 
         <div className="mt-10 rounded-2xl border border-white/15 bg-white/10 p-6 backdrop-blur-md">
           <p className="text-sm italic leading-7 text-white/85">
-            &quot;Copmet makes planning meals feel considered, reliable, and refreshingly simple.&quot;
+            &quot;Copmet makes stocking the freezer feel considered, reliable, and refreshingly simple.&quot;
           </p>
           <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-secondary-container">
-            A service built around your table
+            A service built around your freezer
           </p>
         </div>
       </div>

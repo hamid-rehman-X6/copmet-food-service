@@ -16,12 +16,12 @@ export const legalLastUpdated = "June 5, 2026";
 export const termsSummaries: LegalSummary[] = [
   {
     title: "Clear ordering",
-    description: "Orders should be accurate, paid for, and placed with current delivery details.",
+    description: "Orders should be accurate, paid for, and placed with current frozen-meal delivery details.",
     icon: "receipt",
   },
   {
-    title: "Reliable service",
-    description: "We prepare and deliver meals with care while keeping customers informed.",
+    title: "Reliable cold handling",
+    description: "We prepare, pack, and deliver frozen meals with care while keeping customers informed.",
     icon: "truck",
   },
   {
@@ -53,22 +53,23 @@ export const termsSections: LegalSection[] = [
   {
     title: "Using Copmet Food Service",
     body: [
-      "By using our website, creating an account, or placing an order, you agree to use Copmet Food Service for lawful personal or business meal ordering purposes.",
-      "You are responsible for keeping your account details accurate, including your name, delivery address, phone number, and payment information.",
+      "By using our website, creating an account, or placing an order, you agree to use Copmet Food Service for lawful personal or business frozen meal ordering purposes.",
+      "You are responsible for keeping your account details accurate, including your name, delivery address, phone number, payment information, and any delivery notes needed for frozen meal drop-off.",
     ],
   },
   {
     title: "Orders and payments",
     body: [
-      "Prices, menu availability, delivery windows, and promotions may change based on kitchen capacity, ingredient availability, and service area.",
+      "Prices, freezer-stock availability, delivery windows, and promotions may change based on kitchen capacity, ingredient availability, batch schedules, and service area.",
       "An order is confirmed when the checkout flow is completed and accepted by the service. If an issue prevents fulfillment, we may contact you to adjust, replace, or cancel the order.",
     ],
   },
   {
-    title: "Delivery and customer care",
+    title: "Frozen delivery and customer care",
     body: [
-      "We do our best to meet estimated delivery times, but weather, traffic, address issues, and operational delays may affect arrival.",
-      "Please contact support promptly if an order arrives incomplete, damaged, or meaningfully different from what you selected.",
+      "We do our best to meet estimated delivery times, but weather, traffic, address issues, cold-packing requirements, and operational delays may affect arrival.",
+      "Please move frozen items to your freezer promptly after delivery and follow the warming instructions included with each product.",
+      "Please contact support promptly if an order arrives incomplete, damaged, thawed beyond normal delivery handling, or meaningfully different from what you selected.",
     ],
   },
   {
@@ -90,14 +91,14 @@ export const privacySections: LegalSection[] = [
   {
     title: "Information we collect",
     body: [
-      "We collect information you provide when you create an account, place an order, contact support, or subscribe to updates. This may include your name, email, phone number, delivery address, and order preferences.",
+      "We collect information you provide when you create an account, place an order, contact support, or subscribe to updates. This may include your name, email, phone number, delivery address, freezer meal preferences, and order history.",
       "We may also collect basic technical information, such as browser type, device data, and usage activity, to keep the service reliable and secure.",
     ],
   },
   {
     title: "How we use information",
     body: [
-      "We use personal information to create accounts, process orders, coordinate delivery, provide support, prevent misuse, and improve the customer experience.",
+      "We use personal information to create accounts, process orders, coordinate frozen meal delivery, provide support, prevent misuse, and improve the customer experience.",
       "We may send transactional messages about orders, account security, delivery updates, or important service changes.",
     ],
   },

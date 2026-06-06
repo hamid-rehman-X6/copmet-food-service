@@ -26,7 +26,7 @@ export function CommunitySection() {
         </div>
 
         <div>
-          <h2 className="heading-font mb-6 text-2xl font-semibold sm:mb-8 sm:text-3xl">What our community is saying</h2>
+          <h2 className="heading-font mb-6 text-2xl font-semibold sm:mb-8 sm:text-3xl">What freezer-stocked homes are saying</h2>
           <div className="space-y-5">
             {testimonials.map((testimonial) => (
               <Card

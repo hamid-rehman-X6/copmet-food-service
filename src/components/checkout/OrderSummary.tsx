@@ -19,7 +19,7 @@ export function OrderSummary() {
   return (
     <Card className="p-4 sm:p-6 lg:sticky lg:top-28">
       <div className="mb-6 flex items-center justify-between gap-4">
-        <h2 className="heading-font text-xl font-semibold sm:text-2xl">Order Summary</h2>
+        <h2 className="heading-font text-xl font-semibold sm:text-2xl">Freezer Order Summary</h2>
         {items.length > 0 ? (
           <button className="text-xs font-semibold text-error hover:underline" onClick={clearCart} type="button">
             Remove All
@@ -77,12 +77,12 @@ export function OrderSummary() {
         <div className="rounded-xl bg-surface-low px-5 py-10 text-center">
           <Icon className="mx-auto h-10 w-10 text-border-strong" name="cart" />
           <h3 className="heading-font mt-4 text-xl font-semibold">Your cart is empty</h3>
-          <p className="mt-2 text-sm text-muted-foreground">Add something delicious from the menu.</p>
+          <p className="mt-2 text-sm text-muted-foreground">Add freezer-ready meals from the catalog.</p>
           <Link
             className="mt-5 inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-container"
             href="/menu"
           >
-            Browse Menu
+            Browse Frozen Meals
           </Link>
         </div>
       )}
@@ -93,7 +93,7 @@ export function OrderSummary() {
           <span>{formatCurrency(totals.subtotal)}</span>
         </div>
         <div className="flex justify-between text-sm text-muted-foreground">
-          <span>Delivery Fee</span>
+          <span>Frozen Delivery Fee</span>
           <span>{totals.deliveryFee === 0 && items.length > 0 ? "Free" : formatCurrency(totals.deliveryFee)}</span>
         </div>
         <div className="heading-font flex justify-between pt-2 text-2xl font-semibold">
@@ -106,7 +106,7 @@ export function OrderSummary() {
         <div className="mt-6 flex items-center gap-3 rounded-lg bg-success-soft p-4 text-success-soft-foreground">
           <Icon className="h-5 w-5" name="gift" />
           <span className="text-xs font-semibold">
-            You&apos;re earning {totals.points} Copmet Points with this order!
+            You&apos;re earning {totals.points} Copmet Points with this freezer order!
           </span>
         </div>
       ) : null}

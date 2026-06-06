@@ -16,11 +16,11 @@ export function FeaturedMeals() {
     <section className="page-shell py-14 sm:py-20">
       <div className="mb-8 flex items-end justify-between gap-6 sm:mb-10">
         <div>
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.28em] text-secondary">Chef&apos;s Specials</p>
-          <h2 className="heading-font text-2xl font-semibold text-foreground sm:text-3xl">Featured Today</h2>
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.28em] text-secondary">Freezer Favorites</p>
+          <h2 className="heading-font text-2xl font-semibold text-foreground sm:text-3xl">Featured This Week</h2>
         </div>
         <Link className="hidden items-center gap-2 text-sm font-semibold text-primary sm:flex" href="/menu">
-          View Full Menu
+          View Frozen Catalog
           <Icon className="h-4 w-4" name="arrowRight" />
         </Link>
       </div>
@@ -58,14 +58,14 @@ export function FeaturedMeals() {
                     addItem({
                       id: meal.id,
                       name: meal.title,
-                      detail: "Mains - Family Size",
+                      detail: "Family Pack - Frozen",
                       price: meal.price,
                       image: meal.image,
                     })
                   }
                   size="sm"
                 >
-                  Add to Cart - {meal.priceLabel}
+                  Add Freezer Tray - {meal.priceLabel}
                 </Button>
               ) : meal.size === "wide" ? (
                 <Chip tone="secondary">{meal.priceLabel}</Chip>

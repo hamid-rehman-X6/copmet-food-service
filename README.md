@@ -1,8 +1,8 @@
 # Copmet Food Service
 
-A full-stack food-delivery web application built with **Next.js 16**, **TypeScript**, **Tailwind CSS 4**, and **PostgreSQL**. The platform enables customers to browse a menu, build a cart, place orders, and track deliveries in real time, while an admin panel provides operators with dashboards, order management, menu editing, and customer oversight.
+A full-stack frozen food service web application built with **Next.js 16**, **TypeScript**, **Tailwind CSS 4**, and **PostgreSQL**. The platform enables customers to browse homemade frozen meals, build a freezer cart, place cold-packed delivery orders, and track deliveries in real time, while an admin panel provides operators with dashboards, order management, frozen catalog editing, and customer oversight.
 
-> **Status**: Active development — authentication module is production-ready; menu, checkout, and order-tracking modules are currently using static data and will be wired to the database in upcoming iterations.
+> **Status**: Active development - authentication module is production-ready; frozen menu, checkout, and order-tracking modules are currently using static data and will be wired to the database in upcoming iterations.
 
 ---
 
@@ -34,12 +34,12 @@ A full-stack food-delivery web application built with **Next.js 16**, **TypeScri
 
 - **Customer Authentication** — Signup, login, logout, token refresh, and session management with secure HttpOnly cookie-based JWTs.
 - **Admin Authentication** — Environment-variable-based admin credentials with timing-safe comparison and dedicated admin login flow.
-- **Menu Browsing** — Category filtering, dietary filters (Vegan, GF, Organic, Nut-Free), and multiple sort modes (popular, newest, price, rating).
-- **Shopping Cart** — Client-side cart powered by Zustand with localStorage persistence, quantity controls, and automatic total calculations.
-- **Checkout** — Order summary with delivery fee logic, reward points calculation, and a customer information form.
-- **Order Tracking** — Live delivery status timeline, courier information, order summary breakdown, and an interactive map placeholder.
-- **Admin Dashboard** — Metric cards for revenue, orders, and customers; recent orders table; popular dishes panel.
-- **Admin Management** — Dedicated pages for managing orders, menu items, and customer records with searchable tables.
+- **Frozen Menu Browsing** — Category filtering, dietary filters (Vegan, GF, Organic, Nut-Free), and multiple sort modes (popular, newest, price, rating).
+- **Freezer Cart** — Client-side cart powered by Zustand with localStorage persistence, quantity controls, and automatic total calculations.
+- **Checkout** — Frozen order summary with delivery fee logic, reward points calculation, and a customer information form.
+- **Order Tracking** — Cold-packed delivery status timeline, courier information, order summary breakdown, and an interactive map placeholder.
+- **Admin Dashboard** — Metric cards for revenue, orders, and customers; recent frozen orders table; popular freezer items panel.
+- **Admin Management** — Dedicated pages for managing orders, frozen catalog items, and customer records with searchable tables.
 - **Responsive Design** — Mobile-first layouts with a warm, organic "Modern Organic" design system using Quicksand and Be Vietnam Pro fonts.
 - **Middleware Protection** — Admin routes are guarded by a Next.js middleware proxy that validates JWT tokens before allowing access.
 
@@ -248,23 +248,23 @@ Also includes the `SiteHeader` (with search bar) and `SiteFooter` layout compone
 
 ---
 
-### Menu
+### Frozen Menu
 
 > **Path**: `/menu`
 
-A filterable, sortable menu browsing experience with sidebar controls.
+A filterable, sortable frozen meal browsing experience with sidebar controls.
 
 | Component | Description |
 | --- | --- |
 | `MenuBrowser` | Main container with search, category selection, dietary filters, and sort options |
-| `MenuCard` | Individual dish card displaying image, name, description, price, rating, and dietary tags |
-| `MenuSidebar` | Sidebar panel with category list, filter chips, and sort dropdown |
+| `MenuCard` | Individual frozen meal card displaying image, name, description, price, rating, and dietary tags |
+| `MenuSidebar` | Sidebar panel with freezer categories, filter chips, and sort dropdown |
 
 **Features:**
-- Filter by category: All Dishes, Bowls, Mains, Sides, Drinks, Desserts
+- Filter by category: All Dishes, Family Packs, Mains, Sides, Breakfast, Desserts
 - Filter by dietary tags: Vegan, GF, Organic, Nut-Free
 - Sort by: Popular, Newest, Price (Low–High, High–Low), Rating
-- Add to cart directly from menu cards
+- Add to freezer cart directly from menu cards
 
 ---
 
@@ -272,11 +272,11 @@ A filterable, sortable menu browsing experience with sidebar controls.
 
 > **Path**: `/checkout`
 
-The checkout page combines an order summary with a customer information form.
+The checkout page combines a frozen order summary with a customer information form.
 
 | Component | Description |
 | --- | --- |
-| `OrderSummary` | Displays cart items with quantity controls, subtotal, delivery fee, total, and reward points |
+| `OrderSummary` | Displays freezer cart items with quantity controls, subtotal, delivery fee, total, and reward points |
 | `CheckoutForm` | Customer information form with name, email, phone, and address fields |
 
 **Cart Logic:**
@@ -294,7 +294,7 @@ A real-time order tracking interface with four components:
 
 | Component | Description |
 | --- | --- |
-| `ArrivalStatus` | Estimated arrival time and delivery progress steps (Preparing → On the Way → Delivered) |
+| `ArrivalStatus` | Estimated arrival time and delivery progress steps (Packed Frozen -> Out for Delivery -> In Your Freezer) |
 | `CourierCard` | Courier profile with name, rating, total deliveries, and contact action |
 | `TrackingMap` | Map placeholder for live delivery visualization |
 | `TrackingSummary` | Order ID, item breakdown, and total |
@@ -305,7 +305,7 @@ A real-time order tracking interface with four components:
 
 > **Path**: `/about`
 
-A brand story page that shares the company mission, values, and team information. Content is driven by constants in `about.constants.ts`.
+A brand story page that shares the company mission, freezer-ready values, and team information. Content is driven by constants in `about.constants.ts`.
 
 ---
 
@@ -313,19 +313,19 @@ A brand story page that shares the company mission, values, and team information
 
 > **Path**: `/admin` (middleware-protected)
 
-A full-featured administration interface for managing food service operations.
+A full-featured administration interface for managing frozen food service operations.
 
 **Dashboard** (`/admin`):
 - Metric cards showing total revenue, active orders, customer count, and average order value
 - Recent orders table with status badges
-- Popular dishes panel with images and pricing
+- Popular freezer items panel with images and pricing
 
 **Orders Management** (`/admin/orders`):
 - Searchable orders table with order ID, customer, items, total, date, and status
-- Status badges: Preparing, On the Way, Delivered, Cancelled
+- Status badges: Packing Frozen, Cold Delivery, Delivered, Cancelled
 
-**Menu Management** (`/admin/menu`):
-- Full menu item table with images, names, categories, prices, and status
+**Frozen Catalog** (`/admin/menu`):
+- Full frozen item table with images, names, categories, prices, and status
 - Status indicators: Active, Inactive, Out of Stock, Draft
 
 **Customer Management** (`/admin/customers`):

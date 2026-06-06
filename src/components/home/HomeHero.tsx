@@ -18,9 +18,9 @@ export function HomeHero() {
       <div className="page-shell relative flex min-h-[560px] items-center py-14 sm:min-h-[640px] sm:py-20 md:min-h-[720px] md:py-24">
         <div className="max-w-2xl">
           <h1 className="heading-font mb-5 text-4xl font-bold leading-tight tracking-tight text-primary sm:mb-6 sm:text-5xl md:text-6xl">
-            Handcrafted meals,
+            Homemade frozen meals,
             <br className="hidden min-[380px]:block" />
-            delivered with heart.
+            ready when life gets busy.
           </h1>
           <p className="mb-7 max-w-xl text-sm leading-7 text-muted-foreground sm:mb-10 sm:text-base md:text-lg">
             {homeHero.copy}
@@ -31,7 +31,7 @@ export function HomeHero() {
               <span className="sr-only">Delivery address</span>
               <input
                 className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-border-strong"
-                placeholder="Enter your delivery address"
+                placeholder="Enter your frozen meal delivery address"
                 type="text"
               />
             </label>
@@ -39,7 +39,7 @@ export function HomeHero() {
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary-container active:scale-95"
               href="/menu"
             >
-              Find Food
+              Stock My Freezer
               <Icon className="h-4 w-4" name="arrowRight" />
             </Link>
           </form>

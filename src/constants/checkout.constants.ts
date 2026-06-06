@@ -3,8 +3,8 @@ import type { CartItem, FormField } from "@/types/checkout.types";
 export const initialCartItems: CartItem[] = [
   {
     id: "harvest-quinoa",
-    name: "Harvest Quinoa Bowl",
-    detail: "Bowls - Vegan - GF",
+    name: "Vegetable Quinoa Freezer Bowl",
+    detail: "Mains - Vegan - GF",
     price: 14.5,
     quantity: 1,
     image: {
@@ -14,8 +14,8 @@ export const initialCartItems: CartItem[] = [
   },
   {
     id: "mint-sparkler",
-    name: "Hibiscus Mint Sparkler",
-    detail: "Drinks - Organic - Nut-Free",
+    name: "Mint Lemonade Concentrate",
+    detail: "Sides - Organic - Nut-Free",
     price: 6.5,
     quantity: 2,
     image: {
@@ -34,7 +34,7 @@ export const checkoutConfig = {
 export const deliveryFields: FormField[] = [
   { id: "firstName", label: "First Name", placeholder: "Enter first name" },
   { id: "lastName", label: "Last Name", placeholder: "Enter last name" },
-  { id: "address", label: "Delivery Address", placeholder: "Street address, apartment, suite", span: "full" },
+  { id: "address", label: "Frozen Meal Delivery Address", placeholder: "Street address, apartment, suite", span: "full" },
   { id: "city", label: "City", placeholder: "City" },
   { id: "postalCode", label: "Postal Code", placeholder: "ZIP/Postal code" },
 ];

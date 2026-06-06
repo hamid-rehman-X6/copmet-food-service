@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: brandName,
-  description: "Handcrafted meals from Copmet Food Service, delivered with heart.",
+  description: "Homemade frozen meals from Copmet Food Service, delivered ready for your freezer.",
 };
 
 export default function RootLayout({

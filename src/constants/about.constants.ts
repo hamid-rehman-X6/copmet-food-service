@@ -1,23 +1,23 @@
 export const aboutValues = [
   {
-    title: "Made with care",
-    description: "Every dish is prepared in small batches by cooks who care about flavor, comfort, and consistency.",
+    title: "Cooked in small batches",
+    description: "Every dish is prepared like home food first, then cooled and frozen carefully for dependable flavor.",
     icon: "heart",
   },
   {
-    title: "Quality ingredients",
-    description: "We choose fresh, dependable ingredients and let their natural flavors lead every recipe.",
+    title: "Freezer-ready quality",
+    description: "We choose dependable ingredients, portion thoughtfully, and pack meals for easy storage and reheating.",
     icon: "utensils",
   },
   {
-    title: "Built for togetherness",
-    description: "Our meals make it easier to slow down, gather around the table, and share something meaningful.",
+    title: "Built for busy homes",
+    description: "Our meals help families eat well on packed days without starting from scratch every night.",
     icon: "home",
   },
 ] as const;
 
 export const aboutStats = [
   { value: "Small-batch", label: "Kitchen preparation" },
-  { value: "Seasonal", label: "Menu inspiration" },
-  { value: "Heartfelt", label: "Service, every time" },
+  { value: "Frozen fresh", label: "Packed for storage" },
+  { value: "Heat & serve", label: "Simple home dinners" },
 ] as const;

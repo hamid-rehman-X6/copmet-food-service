@@ -4,8 +4,8 @@ import type { AdminStatusTone } from "@/types/admin.types";
 const statusToneMap: Record<string, AdminStatusTone> = {
   Active: "success",
   Delivered: "success",
-  "On the Way": "success",
-  Preparing: "warning",
+  "Cold Delivery": "success",
+  "Packing Frozen": "warning",
   Draft: "warning",
   Inactive: "neutral",
   "Out of Stock": "danger",

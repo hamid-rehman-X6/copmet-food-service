@@ -8,7 +8,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 
 export const metadata: Metadata = {
   title: "Track Order | Copmet Food Service",
-  description: "Follow the status and delivery progress of your Copmet Food Service order.",
+  description: "Follow the cold-packed delivery progress of your Copmet Food Service frozen order.",
 };
 
 export default function TrackOrderPage() {

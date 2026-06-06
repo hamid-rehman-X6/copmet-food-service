@@ -85,9 +85,9 @@ export function MenuBrowser({ initialSearch = "" }: { initialSearch?: string }) 
       <section className="min-w-0 flex-1">
         <div className="mb-8 flex flex-col justify-between gap-5 sm:mb-10 md:flex-row md:items-end">
           <div>
-            <h1 className="heading-font text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Explore the Menu</h1>
+            <h1 className="heading-font text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Explore Frozen Meals</h1>
             <p className="mt-2 text-sm text-muted-foreground sm:text-lg">
-              Showing {visibleItems.length} of {filteredItems.length} handcrafted meals.
+              Showing {visibleItems.length} of {filteredItems.length} freezer-ready options.
             </p>
           </div>
           <Select
@@ -110,7 +110,7 @@ export function MenuBrowser({ initialSearch = "" }: { initialSearch?: string }) 
           </div>
         ) : (
           <div className="rounded-2xl border border-dashed border-border bg-surface-low px-5 py-14 text-center sm:px-6 sm:py-20">
-            <h2 className="heading-font text-2xl font-semibold">No dishes found</h2>
+            <h2 className="heading-font text-2xl font-semibold">No frozen meals found</h2>
             <p className="mt-2 text-sm text-muted-foreground">Try a different search or clear your filters.</p>
             <Button
               className="mt-6"

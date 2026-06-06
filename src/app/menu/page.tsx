@@ -4,8 +4,8 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { MenuBrowser } from "@/components/menu/MenuBrowser";
 
 export const metadata: Metadata = {
-  title: "Menu | Copmet Food Service",
-  description: "Explore handcrafted meals, sides, desserts, and drinks from Copmet Food Service.",
+  title: "Frozen Menu | Copmet Food Service",
+  description: "Explore homemade frozen meals, family trays, sides, breakfasts, and desserts from Copmet Food Service.",
 };
 
 type MenuPageProps = {

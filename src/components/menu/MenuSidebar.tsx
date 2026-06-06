@@ -33,7 +33,7 @@ export function MenuSidebar({
           <input
             className="w-full rounded-xl border border-transparent bg-surface-low px-5 py-4 pr-12 outline-none focus:border-primary"
             onChange={(event) => onSearchChange(event.target.value)}
-            placeholder="Cravings..."
+            placeholder="Freezer meals..."
             type="search"
             value={search}
           />
@@ -95,10 +95,10 @@ export function MenuSidebar({
       </div>
 
       <div className="hidden rounded-xl bg-tertiary-container p-6 text-tertiary-container-foreground lg:block">
-        <h2 className="heading-font mb-3 text-2xl font-semibold">Free Delivery</h2>
-        <p className="mb-5 text-sm leading-6">On your first Copmet Food Service order over $45.</p>
+        <h2 className="heading-font mb-3 text-2xl font-semibold">Free Frozen Delivery</h2>
+        <p className="mb-5 text-sm leading-6">On your first freezer stock-up order over $45.</p>
         <button className="w-full rounded-lg bg-card px-4 py-3 text-sm font-semibold text-tertiary transition-colors hover:bg-surface-low">
-          Claim Now
+          Stock Up
         </button>
       </div>
     </aside>

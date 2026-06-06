@@ -34,7 +34,7 @@ export default function AuthLayout({ children }: Readonly<{ children: React.Reac
         </div>
 
         <footer className="px-4 py-5 text-center text-xs text-muted-foreground sm:px-8 sm:py-6 lg:px-12">
-          Secure access to your Copmet Food Service account.
+          Secure access to your Copmet frozen meal account.
         </footer>
       </section>
 

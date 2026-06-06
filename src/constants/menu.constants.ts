@@ -1,6 +1,6 @@
 import type { DietaryFilter, MenuCategory, MenuItem, MenuSort } from "@/types/menu.types";
 
-export const menuCategories: MenuCategory[] = ["All Dishes", "Bowls", "Mains", "Sides", "Drinks", "Desserts"];
+export const menuCategories: MenuCategory[] = ["All Dishes", "Family Packs", "Mains", "Sides", "Breakfast", "Desserts"];
 
 export const dietaryFilters: DietaryFilter[] = ["Vegan", "GF", "Organic", "Nut-Free"];
 
@@ -15,13 +15,13 @@ export const menuSortOptions: { label: string; value: MenuSort }[] = [
 export const menuItems: MenuItem[] = [
   {
     id: "harvest-quinoa",
-    name: "Harvest Quinoa Bowl",
-    description: "Roasted root vegetables, massaged kale, and maple-tahini dressing.",
+    name: "Vegetable Quinoa Freezer Bowl",
+    description: "Roasted root vegetables, kale, and maple-tahini dressing packed as a quick heat-and-serve meal.",
     price: 14.5,
     rating: 4.9,
     popularity: 98,
     createdAt: "2026-01-12",
-    category: "Bowls",
+    category: "Mains",
     tags: ["Vegan", "GF"],
     tagTone: "tertiary",
     image: {
@@ -31,13 +31,13 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "wild-salmon",
-    name: "Wild Salmon Poke",
-    description: "Sustainably sourced salmon, edamame, and house citrus ponzu.",
+    name: "Lemon Salmon Meal Pack",
+    description: "Portioned salmon, rice, edamame, and citrus glaze frozen for an easy protein-rich dinner.",
     price: 18,
     rating: 4.7,
     popularity: 93,
     createdAt: "2026-02-08",
-    category: "Bowls",
+    category: "Mains",
     tags: ["Organic", "GF"],
     tagTone: "secondary",
     image: {
@@ -47,8 +47,8 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "heirloom-caprese",
-    name: "Heirloom Caprese",
-    description: "Local farm tomatoes, buffalo mozzarella, and aged balsamic.",
+    name: "Tomato Mozzarella Bake",
+    description: "A comforting freezer bake with tomatoes, mozzarella, herbs, and a balsamic-style finish.",
     price: 12,
     rating: 4.8,
     popularity: 86,
@@ -63,8 +63,8 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "herb-sides",
-    name: "Herb Roasted Vegetables",
-    description: "Seasonal garden vegetables roasted with thyme and rosemary oil.",
+    name: "Herb Roasted Vegetable Pack",
+    description: "Garden vegetables roasted with thyme and rosemary oil, frozen as a ready side.",
     price: 9,
     rating: 4.6,
     popularity: 81,
@@ -79,13 +79,13 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "mint-sparkler",
-    name: "Hibiscus Mint Sparkler",
-    description: "Cold-pressed hibiscus flowers, fresh mint, and sparkling spring water.",
+    name: "Mint Lemonade Concentrate",
+    description: "Frozen hibiscus, mint, and citrus concentrate. Thaw, mix with water, and serve chilled.",
     price: 6.5,
     rating: 4.9,
     popularity: 91,
     createdAt: "2026-03-02",
-    category: "Drinks",
+    category: "Sides",
     tags: ["Organic", "Nut-Free"],
     tagTone: "tertiary",
     image: {
@@ -95,13 +95,13 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "green-goddess",
-    name: "Green Goddess Salad",
-    description: "Butter lettuce, snap peas, radishes, and creamy avocado dressing.",
+    name: "Green Vegetable Breakfast Hash",
+    description: "Greens, peas, and potatoes with a creamy herb sauce for a quick freezer breakfast.",
     price: 13,
     rating: 4.5,
     popularity: 78,
     createdAt: "2025-12-09",
-    category: "Sides",
+    category: "Breakfast",
     tags: ["Vegan", "GF"],
     tagTone: "tertiary",
     image: {
@@ -111,13 +111,13 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "mediterranean-grain",
-    name: "Mediterranean Grain Bowl",
-    description: "Farro, cucumber, chickpeas, olives, herbs, and lemon vinaigrette.",
+    name: "Mediterranean Family Grain Tray",
+    description: "Farro, chickpeas, vegetables, olives, herbs, and lemon sauce in a family-size freezer tray.",
     price: 15.5,
     rating: 4.8,
     popularity: 96,
     createdAt: "2026-04-20",
-    category: "Bowls",
+    category: "Family Packs",
     tags: ["Vegan", "Nut-Free"],
     tagTone: "primary",
     image: {
@@ -127,13 +127,13 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "teriyaki-chicken",
-    name: "Teriyaki Chicken Bowl",
-    description: "Glazed chicken, jasmine rice, edamame, and sesame vegetables.",
+    name: "Teriyaki Chicken Freezer Bowl",
+    description: "Glazed chicken, jasmine rice, edamame, and sesame vegetables portioned for fast reheating.",
     price: 17,
     rating: 4.7,
     popularity: 89,
     createdAt: "2026-01-28",
-    category: "Bowls",
+    category: "Mains",
     tags: ["GF"],
     tagTone: "secondary",
     image: {
@@ -143,13 +143,13 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "slow-roasted-beef",
-    name: "Rustic Slow-Roasted Beef",
-    description: "Tender slow-roasted beef with carrots, herbs, and pan jus.",
+    name: "Rustic Slow-Roasted Beef Tray",
+    description: "Tender slow-roasted beef with carrots, herbs, and pan jus, frozen in a family tray.",
     price: 24,
     rating: 4.9,
     popularity: 99,
     createdAt: "2025-09-22",
-    category: "Mains",
+    category: "Family Packs",
     tags: ["GF", "Nut-Free"],
     tagTone: "primary",
     image: {
@@ -159,24 +159,24 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "lemon-herb-chicken",
-    name: "Lemon Herb Chicken",
-    description: "Roasted chicken with lemon, garden herbs, and seasonal vegetables.",
+    name: "Lemon Herb Chicken Tray",
+    description: "Roasted chicken with lemon, garden herbs, and vegetables, cooked in batches and frozen fresh.",
     price: 21,
     rating: 4.8,
     popularity: 94,
     createdAt: "2026-05-11",
-    category: "Mains",
+    category: "Family Packs",
     tags: ["GF", "Organic", "Nut-Free"],
     tagTone: "secondary",
     image: {
       src: "/images/home-page/beaf-steak-img.png",
-      alt: "Lemon herb roasted chicken with seasonal vegetables.",
+      alt: "Lemon herb roasted chicken with vegetables.",
     },
   },
   {
     id: "mushroom-risotto",
-    name: "Wild Mushroom Risotto",
-    description: "Creamy arborio rice, woodland mushrooms, parmesan, and fresh herbs.",
+    name: "Wild Mushroom Risotto Pack",
+    description: "Creamy arborio rice, mushrooms, parmesan, and herbs packed for a cozy freezer dinner.",
     price: 19,
     rating: 4.7,
     popularity: 88,
@@ -191,13 +191,13 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "vegetable-lasagna",
-    name: "Roasted Vegetable Lasagna",
-    description: "Layers of roasted vegetables, tomato sauce, and dairy-free bechamel.",
+    name: "Roasted Vegetable Lasagna Tray",
+    description: "Layers of roasted vegetables, tomato sauce, and dairy-free bechamel in a freezer-ready tray.",
     price: 18.5,
     rating: 4.6,
     popularity: 82,
     createdAt: "2026-02-19",
-    category: "Mains",
+    category: "Family Packs",
     tags: ["Vegan", "Nut-Free"],
     tagTone: "primary",
     image: {
@@ -207,8 +207,8 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "artisan-sourdough",
-    name: "Artisan Sourdough",
-    description: "Naturally leavened bread baked until crisp, golden, and airy.",
+    name: "Freezer Sourdough Slices",
+    description: "Naturally leavened bread, sliced and packed so you can toast only what you need.",
     price: 8,
     rating: 4.8,
     popularity: 90,
@@ -224,7 +224,7 @@ export const menuItems: MenuItem[] = [
   {
     id: "sweet-potato-wedges",
     name: "Smoky Sweet Potato Wedges",
-    description: "Oven-roasted sweet potatoes with smoked paprika and herb dip.",
+    description: "Oven-roasted sweet potatoes with smoked paprika and herb dip, frozen for quick sides.",
     price: 9.5,
     rating: 4.6,
     popularity: 84,
@@ -239,13 +239,13 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "citrus-ginger-cooler",
-    name: "Citrus Ginger Cooler",
-    description: "Fresh orange, lemon, ginger, and sparkling mineral water.",
+    name: "Citrus Ginger Freezer Cubes",
+    description: "Frozen orange, lemon, and ginger cubes for quick coolers, teas, and mocktails.",
     price: 7,
     rating: 4.7,
     popularity: 80,
     createdAt: "2026-05-20",
-    category: "Drinks",
+    category: "Sides",
     tags: ["Vegan", "GF", "Organic"],
     tagTone: "secondary",
     image: {
@@ -255,13 +255,13 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "berry-kombucha",
-    name: "Wild Berry Kombucha",
-    description: "Small-batch kombucha infused with blackberry, raspberry, and mint.",
+    name: "Berry Breakfast Oat Cups",
+    description: "Berry and oat cups frozen in single portions for quick breakfasts or snacks.",
     price: 7.5,
     rating: 4.5,
     popularity: 75,
     createdAt: "2026-03-14",
-    category: "Drinks",
+    category: "Breakfast",
     tags: ["Vegan", "GF", "Organic"],
     tagTone: "primary",
     image: {
@@ -271,8 +271,8 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "dark-chocolate-torte",
-    name: "Dark Chocolate Torte",
-    description: "Rich flourless chocolate torte finished with raspberries and cream.",
+    name: "Frozen Dark Chocolate Torte",
+    description: "Rich flourless chocolate torte portioned for the freezer and ready after a short thaw.",
     price: 10,
     rating: 4.9,
     popularity: 97,
@@ -287,8 +287,8 @@ export const menuItems: MenuItem[] = [
   },
   {
     id: "berry-oat-crumble",
-    name: "Berry Oat Crumble",
-    description: "Warm seasonal berries beneath a crisp cinnamon oat topping.",
+    name: "Berry Oat Freezer Crumble",
+    description: "Berries beneath a crisp cinnamon oat topping, ready to bake from frozen.",
     price: 9,
     rating: 4.6,
     popularity: 79,

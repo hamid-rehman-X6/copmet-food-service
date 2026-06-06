@@ -9,7 +9,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 
 export const metadata: Metadata = {
   title: "About | Copmet Food Service",
-  description: "Learn how Copmet Food Service makes thoughtful, handcrafted meals for shared moments.",
+  description: "Learn how Copmet Food Service cooks homemade frozen meals for busy homes.",
 };
 
 export default function AboutPage() {
@@ -21,11 +21,11 @@ export default function AboutPage() {
           <div>
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.28em] text-secondary">Our Story</p>
             <h1 className="heading-font max-w-xl text-4xl font-bold leading-tight tracking-tight text-primary sm:text-5xl md:text-6xl">
-              Good food should bring people closer.
+              Good homemade food should be ready when you need it.
             </h1>
             <p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground sm:mt-7 sm:text-lg sm:leading-8">
-              Copmet Food Service began with a simple idea: make it easier to share a warm, memorable meal. We prepare
-              comforting dishes with thoughtful ingredients, then deliver them ready for the moments that matter.
+              Copmet Food Service began with a simple idea: make it easier to eat real homemade food on busy days. We
+              cook comforting dishes in small batches, freeze them with care, and deliver them ready for your freezer.
             </p>
           </div>
 
@@ -45,10 +45,10 @@ export default function AboutPage() {
           <div className="page-shell">
             <div className="mx-auto mb-12 max-w-2xl text-center">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.28em] text-secondary">What Guides Us</p>
-              <h2 className="heading-font text-3xl font-semibold sm:text-4xl">Food made for real life</h2>
+              <h2 className="heading-font text-3xl font-semibold sm:text-4xl">Frozen food made for real life</h2>
               <p className="mt-4 leading-7 text-muted-foreground">
-                From the first ingredient to the final delivery, we focus on the details that make a meal feel
-                personal.
+                From the first ingredient to the final freezer pack, we focus on the details that make a meal feel
+                homemade.
               </p>
             </div>
 
@@ -70,22 +70,22 @@ export default function AboutPage() {
           <div className="grid overflow-hidden rounded-3xl bg-primary text-primary-foreground lg:grid-cols-2">
             <div className="flex flex-col justify-center p-6 sm:p-8 md:p-12 lg:p-16">
               <p className="mb-4 text-xs font-bold uppercase tracking-[0.28em] text-secondary-container">Our Promise</p>
-              <h2 className="heading-font text-3xl font-semibold sm:text-4xl">Comfort, without the compromise.</h2>
+              <h2 className="heading-font text-3xl font-semibold sm:text-4xl">Convenience, without losing comfort.</h2>
               <p className="mt-5 max-w-xl leading-7 text-primary-foreground/85">
-                We believe convenience can still feel generous. That means familiar food, careful preparation, and
-                service you can count on from kitchen to doorstep.
+                We believe frozen meals can still feel generous. That means familiar recipes, careful preparation,
+                freezer-ready packing, and service you can count on from kitchen to doorstep.
               </p>
               <Link
                 className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-card px-7 py-3 text-sm font-semibold text-primary transition-colors hover:bg-surface-low"
                 href="/menu"
               >
-                Explore the Menu
+                Explore Frozen Meals
                 <Icon className="h-4 w-4" name="arrowRight" />
               </Link>
             </div>
             <div className="relative min-h-64 sm:min-h-80">
               <Image
-                alt="A selection of handcrafted dishes ready to share."
+                alt="A selection of prepared dishes ready to share."
                 className="object-cover"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"

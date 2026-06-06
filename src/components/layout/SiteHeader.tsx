@@ -81,17 +81,17 @@ export function SiteHeader({
               className="hidden items-center gap-2 rounded-full border border-border bg-surface-low px-4 py-2 lg:flex"
             >
               <Icon className="h-4 w-4 text-muted-foreground" name="search" />
-              <span className="sr-only">Search menu</span>
+              <span className="sr-only">Search frozen catalog</span>
               <input
                 className="w-44 bg-transparent text-sm outline-none placeholder:text-border-strong"
                 name="search"
-                placeholder="Find your favorites..."
+                placeholder="Find freezer meals..."
                 type="search"
               />
             </form>
           ) : (
             <Link
-              aria-label="Search menu"
+              aria-label="Search frozen catalog"
               className="inline-flex h-10 w-10 items-center justify-center rounded-full text-primary transition-colors hover:bg-surface-low"
               href="/menu"
             >

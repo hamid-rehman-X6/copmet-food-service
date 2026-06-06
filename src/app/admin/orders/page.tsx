@@ -17,20 +17,20 @@ export default function AdminOrdersPage() {
       <AdminPageHeader
         actionIcon="receipt"
         actionLabel="Export Orders"
-        description="Track fulfillment, delivery progress, and order value."
-        eyebrow="Operations"
-        title="Orders"
+        description="Track batch packing, cold delivery progress, and freezer order value."
+        eyebrow="Frozen Operations"
+        title="Freezer Orders"
       />
 
       <AdminMetricGrid metrics={orderMetrics} />
 
-      <AdminTableShell summary="Showing 1 to 5 of 286 orders">
+      <AdminTableShell summary="Showing 1 to 5 of 286 freezer orders">
         <table className="w-full min-w-[860px] text-left">
           <thead className="bg-surface-low text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
             <tr>
               <th className="px-6 py-5">Order</th>
               <th className="px-6 py-5">Customer</th>
-              <th className="px-6 py-5">Items</th>
+              <th className="px-6 py-5">Frozen Items</th>
               <th className="px-6 py-5">Total</th>
               <th className="px-6 py-5">Status</th>
               <th className="px-6 py-5 text-right">Actions</th>

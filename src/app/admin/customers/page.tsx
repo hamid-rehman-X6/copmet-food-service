@@ -17,8 +17,8 @@ export default function AdminCustomersPage() {
       <AdminPageHeader
         actionIcon="plus"
         actionLabel="Add Customer"
-        description="Review customer activity, account status, and lifetime value."
-        eyebrow="Relationships"
+        description="Review freezer order activity, account status, delivery preferences, and lifetime value."
+        eyebrow="Household Relationships"
         title="Customers"
       />
 

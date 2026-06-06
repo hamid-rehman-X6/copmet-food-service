@@ -17,7 +17,7 @@ export default function AdminDashboardPage() {
   return (
     <div className="space-y-8">
       <AdminPageHeader
-        description="Monitor today’s activity, operational health, and customer demand."
+        description="Monitor today's freezer orders, batch activity, cold delivery flow, and customer demand."
         eyebrow="Management Overview"
         title="Dashboard"
       />
@@ -27,10 +27,10 @@ export default function AdminDashboardPage() {
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1.5fr)_minmax(20rem,0.75fr)]">
         <div>
           <div className="mb-4 flex items-center justify-between gap-4">
-            <h2 className="heading-font text-2xl font-semibold">Recent Orders</h2>
+            <h2 className="heading-font text-2xl font-semibold">Recent Freezer Orders</h2>
             <Link className="text-sm font-semibold text-primary hover:underline" href="/admin/orders">View all</Link>
           </div>
-          <AdminTableShell summary="Showing 5 recent orders">
+          <AdminTableShell summary="Showing 5 recent frozen orders">
             <table className="w-full min-w-[720px] text-left">
               <thead className="bg-surface-low text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
                 <tr>
@@ -61,9 +61,9 @@ export default function AdminDashboardPage() {
           <div className="flex items-center justify-between gap-4">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-secondary">Demand</p>
-              <h2 className="heading-font mt-1 text-2xl font-semibold">Popular Dishes</h2>
+              <h2 className="heading-font mt-1 text-2xl font-semibold">Popular Freezer Items</h2>
             </div>
-            <Link aria-label="Manage menu" className="grid h-10 w-10 place-items-center rounded-lg text-primary hover:bg-surface-low" href="/admin/menu">
+            <Link aria-label="Manage frozen catalog" className="grid h-10 w-10 place-items-center rounded-lg text-primary hover:bg-surface-low" href="/admin/menu">
               <Icon className="h-5 w-5" name="arrowRight" />
             </Link>
           </div>

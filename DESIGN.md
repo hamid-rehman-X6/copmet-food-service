@@ -113,60 +113,60 @@ spacing:
 
 ## Brand & Style
 
-The brand personality is rooted in the "Joy of Gathering"—the warm, fuzzy feeling of a shared meal. It is charming, dependable, and deeply human. The target audience includes busy professionals and families who value quality ingredients and a frictionless, delightful ordering experience.
+The brand personality is rooted in homemade food made practical: the relief of having real, comforting meals ready in the freezer. It is charming, dependable, and deeply human. The target audience includes busy professionals and families who value quality ingredients, homestyle cooking, freezer-ready convenience, and a frictionless ordering experience.
 
-The design style is **Modern Organic**. It prioritizes generous whitespace and a soft, approachable aesthetic that avoids the coldness of traditional tech platforms. By utilizing soft shadows and organic curves, the design system creates a digital environment that feels as welcoming as a neighborhood kitchen. High-quality food photography is the hero, framed by a layout that feels airy and unhurried.
+The design style is **Modern Organic**. It prioritizes generous whitespace and a soft, approachable aesthetic that avoids the coldness of traditional tech platforms. Soft shadows and organic curves create a digital environment that feels as welcoming as a neighborhood kitchen while still supporting efficient catalog browsing, checkout, and delivery tracking.
 
 ## Colors
 
-The palette is inspired by natural ingredients and warm interiors. 
+The palette is inspired by natural ingredients, warm kitchens, and dependable freezer storage.
 
-- **Primary (Terracotta):** Used for primary actions and brand moments. It evokes appetite and earthiness.
-- **Secondary (Soft Amber):** Used for highlights, ratings, and promotional tags. It adds a glow of optimism.
-- **Tertiary (Sage Green):** Used for health-conscious indicators, fresh tags, and success states. It balances the warmth with a sense of freshness.
+- **Primary (Terracotta):** Used for primary actions and brand moments. It evokes appetite, warmth, and homestyle comfort.
+- **Secondary (Soft Amber):** Used for highlights, ratings, promotional tags, and batch-drop moments.
+- **Tertiary (Sage Green):** Used for dietary indicators, freezer-ready tags, cold delivery states, and success states.
 - **Neutral (Cream):** The foundation of the design system. It replaces harsh whites to reduce eye strain and provide a cozy, paper-like background.
 - **Text & Accents:** Deep charcoal is used for text to maintain high legibility against the cream background without the jarring contrast of pure black.
 
 ## Typography
 
-This design system utilizes a tiered typographic scale to balance charm with functional clarity. 
+This design system uses a tiered typographic scale to balance charm with functional clarity.
 
-**Quicksand** is reserved for headlines and hero moments. Its rounded terminals mirror the soft shapes used throughout the UI, reinforcing the friendly brand voice. 
+**Quicksand** is reserved for headlines and hero moments. Its rounded terminals mirror the soft shapes used throughout the UI, reinforcing the friendly brand voice.
 
-**Be Vietnam Pro** is used for all functional text, including body copy and labels. Its contemporary grotesque structure ensures high legibility during the browsing and checkout process. To maintain a modern feel, avoid over-using bold weights in body copy; use hierarchy through size and color instead.
+**Be Vietnam Pro** is used for all functional text, including body copy and labels. Its contemporary grotesque structure ensures high legibility during browsing, checkout, and order tracking. Avoid over-using bold weights in body copy; use hierarchy through size and color instead.
 
 ## Layout & Spacing
 
-The design system employs a **12-column fluid grid** for desktop and a **4-column grid** for mobile devices. 
+The design system employs a **12-column fluid grid** for desktop and a **4-column grid** for mobile devices.
 
-- **Generous Margins:** Desktop layouts use a significant side margin (64px) to keep content focused and premium. 
-- **Rhythm:** An 8px linear scale governs all padding and margins. 
-- **Content-First:** Food categories and restaurant listings use a masonry-lite approach or flexible CSS grids to allow varying image aspect ratios, emphasizing the photography.
-- **Safe Areas:** On mobile, critical navigation is anchored to the bottom with ample padding to accommodate thumb-reach zones.
+- **Generous Margins:** Desktop layouts use a significant side margin (64px) to keep content focused and premium.
+- **Rhythm:** An 8px linear scale governs all padding and margins.
+- **Content-First:** Frozen meal categories and catalog listings use flexible CSS grids to support image-led browsing and quick comparison.
+- **Safe Areas:** On mobile, critical navigation and checkout actions keep ample padding to accommodate thumb-reach zones.
 
 ## Elevation & Depth
 
-Hierarchy is established through **Ambient Shadows** and tonal layering. 
+Hierarchy is established through **Ambient Shadows** and tonal layering.
 
-- **Surface Levels:** The base layer is the Neutral Cream. Elevated cards use a pure white background to subtly pop against the cream.
-- **Shadow Profile:** Shadows are extremely soft, using a deep terracotta or warm grey tint rather than pure black. This prevents the "muddy" look and maintains the warm aesthetic.
-- **Interactive Depth:** On hover, cards should lift slightly (increasing shadow spread and decreasing blur) to provide tactile feedback.
-- **Modals:** Use a heavy backdrop blur (20px) with a 20% opacity warm-grey overlay to keep the focus on the ordering task while maintaining the site's environmental context.
+- **Surface Levels:** The base layer is Neutral Cream. Elevated cards use a pure white background to subtly pop against the cream.
+- **Shadow Profile:** Shadows are extremely soft, using a deep terracotta or warm grey tint rather than pure black.
+- **Interactive Depth:** On hover, cards should lift slightly to provide tactile feedback.
+- **Modals:** Use a heavy backdrop blur with a warm-grey overlay to keep focus on the ordering task while maintaining the site's context.
 
 ## Shapes
 
-The shape language is defined by **rounded, organic forms**. 
+The shape language is defined by rounded, organic forms.
 
 - **Base Radius:** A 0.5rem (8px) radius is the standard for small elements like input fields and small buttons.
-- **Large Radius:** For food cards and containers, use a 1rem (16px) radius to emphasize the "soft" brand personality.
-- **Icons:** Use rounded icon sets (e.g., Feather or Phosphor in 'rounded' style) with a consistent 2px stroke weight to match the typography's visual weight. 
-- **Images:** All photography must have rounded corners; sharp edges are strictly prohibited in this design system.
+- **Large Radius:** Food cards and containers use a 1rem (16px) radius to emphasize the soft brand personality.
+- **Icons:** Use rounded icon sets with a consistent 2px stroke weight to match the typography's visual weight.
+- **Images:** Food photography should have rounded corners; sharp edges are avoided in this design system.
 
 ## Components
 
-- **Buttons:** Primary buttons use the Terracotta color with white text and a slightly larger-than-standard padding for a "squishy," touchable appearance. Secondary buttons use a Sage Green outline.
-- **Chips:** Used for food filters (e.g., "Vegan," "Gluten-Free"). These feature a Soft Amber background with dark charcoal text.
-- **Input Fields:** These have a soft cream-colored fill rather than a white fill, with a subtle 1px border that darkens on focus.
-- **Cards:** Food cards are the heart of the system. They feature a full-bleed image at the top, followed by a padded section for titles and price. Use a "Soft" shadow for the card container.
-- **Progress Bars:** Use Sage Green to indicate checkout or delivery progress, providing a calm and reassuring visual cue to the user.
-- **Quantity Pickers:** These are pill-shaped with large touch targets for the '+' and '-' symbols, ensuring ease of use during high-intent moments.
+- **Buttons:** Primary buttons use Terracotta with white text and slightly larger padding for a touchable appearance.
+- **Chips:** Used for frozen food filters and tags such as "Vegan," "Gluten-Free," and "Freezer Ready."
+- **Input Fields:** Inputs use a soft cream fill with a subtle 1px border that darkens on focus.
+- **Cards:** Food cards feature a full-bleed image at the top, followed by a padded section for titles, freezer details, price, and tags.
+- **Progress Bars:** Use Sage Green or Amber to indicate checkout, packing, cold delivery, and delivered states.
+- **Quantity Pickers:** Pill-shaped controls with large touch targets support easy freezer stock-up ordering.

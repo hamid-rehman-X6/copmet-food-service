@@ -25,7 +25,7 @@ export function SiteFooter({ newsletter = false }: SiteFooterProps) {
             <span className="sr-only">{brandName}</span>
           </Link>
           <p className="max-w-xs text-sm leading-6 text-muted-foreground">
-            Crafting shared moments through reliable food service and thoughtful meal delivery.
+            Homemade frozen meals, packed for busy homes and delivered ready for your freezer.
           </p>
         </div>
 
@@ -46,7 +46,7 @@ export function SiteFooter({ newsletter = false }: SiteFooterProps) {
           <div>
             <h2 className="mb-4 text-sm font-bold uppercase tracking-wider text-foreground">Newsletter</h2>
             <p className="mb-5 text-sm leading-6 text-muted-foreground">
-              Join our table for weekly recipes and meal updates.
+              Get frozen batch drops, storage tips, and easy dinner ideas.
             </p>
             <form className="flex flex-col gap-2 min-[400px]:flex-row">
               <input
@@ -63,7 +63,7 @@ export function SiteFooter({ newsletter = false }: SiteFooterProps) {
       </div>
 
       <div className="page-shell mt-10 border-t border-border/70 pt-6 text-center text-xs text-muted-foreground sm:mt-12 sm:pt-8 sm:text-sm">
-        &copy; 2026 {brandName}. Crafted for shared moments.
+        &copy; 2026 {brandName}. Cooked for comfort, frozen for real life.
       </div>
     </footer>
   );

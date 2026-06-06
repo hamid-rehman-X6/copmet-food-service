@@ -9,17 +9,17 @@ import { AdminTableShell } from "@/components/admin/AdminTableShell";
 import { Icon } from "@/components/common/Icon";
 
 export const metadata: Metadata = {
-  title: "Menu Management",
+  title: "Frozen Catalog",
 };
 
 export default function AdminMenuPage() {
   return (
     <div className="space-y-8">
       <AdminPageHeader
-        actionLabel="Add New Dish"
-        description="Curate seasonal offerings, pricing, and dish availability."
-        eyebrow="Catalog"
-        title="Menu Management"
+        actionLabel="Add Frozen Item"
+        description="Curate freezer-ready meals, batch availability, pricing, and stock status."
+        eyebrow="Frozen Catalog"
+        title="Frozen Catalog"
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
@@ -27,20 +27,20 @@ export default function AdminMenuPage() {
           <AdminMetricCard key={metric.label} metric={metric} />
         ))}
         <article className="rounded-2xl border border-border/60 bg-card p-5 shadow-[var(--shadow-soft)] sm:col-span-2 sm:p-6 xl:col-span-1">
-          <p className="text-sm font-medium text-muted-foreground">Popular Categories</p>
+          <p className="text-sm font-medium text-muted-foreground">Popular Freezer Categories</p>
           <div className="mt-5 flex flex-wrap gap-2">
-            <span className="rounded-full bg-secondary-container/60 px-3 py-1.5 text-xs font-semibold text-secondary-container-foreground">Main Course</span>
-            <span className="rounded-full bg-success-soft px-3 py-1.5 text-xs font-semibold text-success-soft-foreground">Bowls</span>
-            <span className="rounded-full bg-surface-highest px-3 py-1.5 text-xs font-semibold text-muted-foreground">+4 More</span>
+            <span className="rounded-full bg-secondary-container/60 px-3 py-1.5 text-xs font-semibold text-secondary-container-foreground">Family Packs</span>
+            <span className="rounded-full bg-success-soft px-3 py-1.5 text-xs font-semibold text-success-soft-foreground">Mains</span>
+            <span className="rounded-full bg-surface-highest px-3 py-1.5 text-xs font-semibold text-muted-foreground">+3 More</span>
           </div>
         </article>
       </div>
 
-      <AdminTableShell summary="Showing 1 to 5 of 48 dishes">
+      <AdminTableShell summary="Showing 1 to 5 of 48 frozen items">
         <table className="w-full min-w-[900px] text-left">
           <thead className="bg-surface-low text-xs font-bold uppercase tracking-[0.14em] text-muted-foreground">
             <tr>
-              <th className="px-6 py-5">Dish Name</th>
+              <th className="px-6 py-5">Frozen Item</th>
               <th className="px-6 py-5">Category</th>
               <th className="px-6 py-5">Price</th>
               <th className="px-6 py-5">Status</th>

@@ -3,7 +3,6 @@ import { FeaturedMeals } from "@/components/home/FeaturedMeals";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { NewsletterCta } from "@/components/home/NewsletterCta";
-import { Icon } from "@/components/common/Icon";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 

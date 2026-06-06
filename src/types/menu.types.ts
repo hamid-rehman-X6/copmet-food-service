@@ -1,6 +1,6 @@
 import type { BadgeTone, ImageAsset } from "./common.types";
 
-export type MenuCategory = "All Dishes" | "Bowls" | "Mains" | "Sides" | "Drinks" | "Desserts";
+export type MenuCategory = "All Dishes" | "Family Packs" | "Mains" | "Sides" | "Breakfast" | "Desserts";
 
 export type DietaryFilter = "Vegan" | "GF" | "Organic" | "Nut-Free";
 

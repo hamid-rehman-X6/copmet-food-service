@@ -1,18 +1,18 @@
 export const homeHero = {
-  title: "Handcrafted meals, delivered with heart.",
-  copy: "Bringing the warmth of a shared kitchen to your home. Quality ingredients, chef-prepared recipes, and effortless dining for those you love.",
+  title: "Homemade frozen meals, ready when life gets busy.",
+  copy: "Stock your freezer with small-batch comfort food made for real homes. We cook, freeze, and deliver family favorites so dinner is simple whenever you need it.",
   image: {
     src: "/images/home-page/hero-section-img-3.png",
-    alt: "A warm overhead dining table with handcrafted dishes, salads, breads, and soft cream linens.",
+    alt: "A warm overhead dining table with prepared dishes, salads, breads, and soft cream linens.",
   },
 };
 
 export const featuredMeals = [
   {
     id: "beef",
-    title: "Rustic Slow-Roasted Beef",
-    description: "Feeds a family of four. Hearty, tender, and deeply flavorful.",
-    label: "Bestseller",
+    title: "Slow-Roasted Beef Freezer Tray",
+    description: "A hearty family-size tray, frozen fresh and ready to heat for an easy comfort dinner.",
+    label: "Family Pack",
     price: 48,
     priceLabel: "$48",
     image: {
@@ -23,10 +23,10 @@ export const featuredMeals = [
   },
   {
     id: "harvest",
-    title: "Seasonal Harvest Bowl",
-    description: "Roasted sweet potatoes, chickpeas, kale, and tahini.",
+    title: "Vegetable Freezer Bowl",
+    description: "Roasted sweet potatoes, chickpeas, kale, and tahini, packed for quick freezer-to-table meals.",
     label: "Vegan",
-    priceLabel: "Gluten-Free",
+    priceLabel: "Freezer Ready",
     image: {
       src: "/images/home-page/harvest-bowl-img.png",
       alt: "Harvest bowl with greens, chickpeas, and roasted sweet potatoes.",
@@ -35,8 +35,8 @@ export const featuredMeals = [
   },
   {
     id: "bread",
-    title: "Artisan Sourdough",
-    description: "Naturally leavened and baked until golden.",
+    title: "Freezer Sourdough Loaf",
+    description: "Par-baked, sliced, and ready to warm straight from your freezer.",
     label: "Side Dish",
     priceLabel: "$8",
     image: {
@@ -47,8 +47,8 @@ export const featuredMeals = [
   },
   {
     id: "cake",
-    title: "Dark Chocolate Torte",
-    description: "A rich finish with raspberries and cream.",
+    title: "Frozen Chocolate Torte",
+    description: "A rich dessert to keep on hand for family nights and last-minute guests.",
     label: "Dessert",
     priceLabel: "$9",
     image: {
@@ -61,20 +61,20 @@ export const featuredMeals = [
 
 export const howItWorksSteps = [
   {
-    title: "Choose Your Feast",
-    description: "Select from our seasonal menu of family-style meals and artisan sides.",
+    title: "Choose Your Freezer Stock",
+    description: "Pick family trays, single portions, sides, and desserts made for easy storage.",
     icon: "book",
     highlighted: false,
   },
   {
-    title: "We Cook with Care",
-    description: "Our chefs prepare each dish using locally sourced, premium ingredients.",
+    title: "We Cook, Cool, and Freeze",
+    description: "Our kitchen prepares each batch with homestyle care, then freezes it to preserve flavor.",
     icon: "chef",
     highlighted: true,
   },
   {
-    title: "Delivered to You",
-    description: "Arrives chilled with simple warming instructions for the perfect meal.",
+    title: "You Heat and Serve",
+    description: "Your order arrives frozen with clear warming instructions for stress-free meals.",
     icon: "truck",
     highlighted: false,
   },
@@ -84,13 +84,13 @@ export const testimonials = [
   {
     name: "Mark Thompson",
     time: "2 days ago",
-    quote: "The roast chicken was incredible. It tasted exactly like what my grandmother used to make. We're hooked!",
+    quote: "The frozen trays taste like someone cooked for us at home. We keep two in the freezer every week now.",
     accent: "primary",
   },
   {
     name: "Elena Gomez",
     time: "1 week ago",
-    quote: "Effortless ordering and the packaging was so eco-friendly. Perfect for our small dinner parties.",
+    quote: "The portions are generous, the heating directions are clear, and weeknight dinners feel calm again.",
     accent: "secondary",
   },
 ] as const;
@@ -100,6 +100,6 @@ export const communitySpotlight = {
     src: "/images/home-page/community-img.png",
     alt: "A family sharing dinner around a warm table.",
   },
-  quote: "Finally, a meal delivery that actually feels like a homemade dinner. The quality is unmatched.",
-  author: "Sarah J., Busy Mom & Architect",
+  quote: "Finally, frozen food that still feels homemade. It saves time without tasting like a shortcut.",
+  author: "Sarah J., Busy Mom and Architect",
 };

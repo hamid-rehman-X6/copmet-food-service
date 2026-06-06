@@ -15,7 +15,7 @@ export function ArrivalStatus() {
     <Card className="overflow-hidden border border-surface-raised p-5 sm:p-8 md:p-12">
       <div className="mb-10 flex items-center justify-between gap-4 sm:mb-14">
         <div>
-          <p className="mb-2 text-sm font-bold uppercase tracking-[0.22em] text-muted-foreground">Estimated arrival</p>
+          <p className="mb-2 text-sm font-bold uppercase tracking-[0.22em] text-muted-foreground">Estimated frozen delivery</p>
           <h1 className="heading-font text-4xl font-bold text-primary sm:text-6xl">{trackingOrder.arrival}</h1>
         </div>
         <div className="relative h-20 w-20 shrink-0 animate-[float_3s_ease-in-out_infinite] sm:h-32 sm:w-32">

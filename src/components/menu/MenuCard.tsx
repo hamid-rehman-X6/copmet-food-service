@@ -44,7 +44,7 @@ export function MenuCard({ item }: { item: MenuItem }) {
             ))}
           </div>
           <Button
-            aria-label={`Add ${item.name} to cart${quantity > 0 ? `. ${quantity} currently in cart` : ""}`}
+            aria-label={`Add ${item.name} to freezer cart${quantity > 0 ? `. ${quantity} currently in cart` : ""}`}
             className="h-11 w-full whitespace-nowrap px-4 py-2"
             onClick={() =>
               addItem({
@@ -57,7 +57,7 @@ export function MenuCard({ item }: { item: MenuItem }) {
             }
             size="sm"
           >
-            Add to Cart
+            Add to Freezer Cart
           </Button>
         </div>
       </div>

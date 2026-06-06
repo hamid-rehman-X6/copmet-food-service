@@ -13,10 +13,10 @@ export function HowItWorks() {
     <section className="bg-muted py-14 sm:py-20" id="how-it-works">
       <div className="page-shell">
         <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-16">
-          <h2 className="heading-font mb-4 text-2xl font-semibold text-foreground sm:text-3xl">From our kitchen to yours</h2>
+          <h2 className="heading-font mb-4 text-2xl font-semibold text-foreground sm:text-3xl">From our kitchen to your freezer</h2>
           <p className="text-sm leading-6 text-muted-foreground md:text-base">
-            We handle the shopping, prep, and slow-cooking, so you can focus on what matters most: the people around
-            your table.
+            We handle the shopping, prep, cooking, and freezing, so you can keep real homemade meals ready for busy
+            days.
           </p>
         </div>
         <div className="relative grid gap-10 sm:grid-cols-3">

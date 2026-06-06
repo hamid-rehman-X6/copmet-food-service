@@ -44,5 +44,5 @@ export type AdminOrder = {
   items: number;
   total: number;
   placed: string;
-  status: "Preparing" | "On the Way" | "Delivered" | "Cancelled";
+  status: "Packing Frozen" | "Cold Delivery" | "Delivered" | "Cancelled";
 };

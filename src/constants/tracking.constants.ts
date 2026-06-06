@@ -1,14 +1,14 @@
 import type { Courier, TrackingOrder, TrackingStep } from "@/types/tracking.types";
 
 export const trackingSteps: TrackingStep[] = [
-  { label: "Preparing", icon: "utensils", state: "complete" },
-  { label: "On the Way", icon: "bike", state: "active" },
-  { label: "Delivered", icon: "check", state: "pending" },
+  { label: "Packed Frozen", icon: "utensils", state: "complete" },
+  { label: "Out for Delivery", icon: "bike", state: "active" },
+  { label: "In Your Freezer", icon: "check", state: "pending" },
 ];
 
 export const courier: Courier = {
   name: "Alex",
-  status: "Alex is on the way",
+  status: "Alex is bringing your frozen order",
   rating: 4.9,
   orders: "2.4k",
   image: {
@@ -18,15 +18,15 @@ export const courier: Courier = {
 };
 
 export const trackingOrder: TrackingOrder = {
-  id: "#NG-82910",
+  id: "#CFS-82910",
   arrival: "15 mins",
   items: [
-    { name: "Wild Mushroom Risotto", price: 24 },
-    { name: "Honey Glazed Carrots", price: 12 },
+    { name: "Wild Mushroom Risotto Pack", price: 24 },
+    { name: "Herb Roasted Vegetable Pack", price: 12 },
   ],
 };
 
 export const deliveryBike = {
   src: "/images/tracking/cycle-img.png",
-  alt: "Illustrated delivery bicycle with warm terracotta delivery boxes.",
+  alt: "Illustrated delivery bicycle with terracotta frozen meal delivery boxes.",
 };
