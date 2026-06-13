@@ -11,6 +11,8 @@ type UserRow = QueryResultRow & {
   role: UserRole;
   is_active: boolean;
   created_at: Date;
+  // Populated via LEFT JOIN on user_avatars; null when the user has no avatar.
+  avatar_updated_at: Date | null;
 };
 
 export type RefreshSessionRow = QueryResultRow & {
@@ -37,15 +39,24 @@ export function toAuthUser(row: UserRow): AuthUser {
     email: row.email,
     role: row.role,
     createdAt: row.created_at.toISOString(),
+    avatarUpdatedAt: row.avatar_updated_at ? row.avatar_updated_at.toISOString() : null,
   };
 }
+
+// Shared column list. Avatars live in a separate table, so a LEFT JOIN exposes
+// the avatar timestamp without ever loading the image bytes.
+const USER_COLUMNS = `
+  u.id, u.first_name, u.last_name, u.email, u.password_hash, u.role, u.is_active, u.created_at,
+  a.updated_at AS avatar_updated_at
+`;
 
 export async function findUserByEmail(email: string, executor?: PoolClient) {
   const result = await execute<UserRow>(
     executor,
-    `SELECT id, first_name, last_name, email, password_hash, role, is_active, created_at
-     FROM users
-     WHERE email = $1
+    `SELECT ${USER_COLUMNS}
+     FROM users u
+     LEFT JOIN user_avatars a ON a.user_id = u.id
+     WHERE u.email = $1
      LIMIT 1`,
     [email],
   );
@@ -56,9 +67,10 @@ export async function findUserByEmail(email: string, executor?: PoolClient) {
 export async function findUserById(id: string, executor?: PoolClient) {
   const result = await execute<UserRow>(
     executor,
-    `SELECT id, first_name, last_name, email, password_hash, role, is_active, created_at
-     FROM users
-     WHERE id = $1
+    `SELECT ${USER_COLUMNS}
+     FROM users u
+     LEFT JOIN user_avatars a ON a.user_id = u.id
+     WHERE u.id = $1
      LIMIT 1`,
     [id],
   );
@@ -74,7 +86,8 @@ export async function createUser(
     executor,
     `INSERT INTO users (first_name, last_name, email, password_hash, terms_accepted_at)
      VALUES ($1, $2, $3, $4, NOW())
-     RETURNING id, first_name, last_name, email, password_hash, role, is_active, created_at`,
+     RETURNING id, first_name, last_name, email, password_hash, role, is_active, created_at,
+       NULL::timestamptz AS avatar_updated_at`,
     [input.firstName, input.lastName, input.email, input.passwordHash],
   );
 

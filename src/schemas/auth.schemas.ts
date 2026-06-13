@@ -1,12 +1,21 @@
 import { z } from "zod";
 
-const email = z.string().trim().email("Enter a valid email address.").max(254).transform((value) => value.toLowerCase());
-const password = z
+// Exported so other modules (e.g. profile updates) validate identically.
+export const emailSchema = z
+  .string()
+  .trim()
+  .email("Enter a valid email address.")
+  .max(254)
+  .transform((value) => value.toLowerCase());
+export const passwordSchema = z
   .string()
   .min(8, "Password must contain at least 8 characters.")
   .max(72, "Password cannot exceed 72 characters.")
   .regex(/[A-Za-z]/, "Password must contain at least one letter.")
   .regex(/[0-9]/, "Password must contain at least one number.");
+
+const email = emailSchema;
+const password = passwordSchema;
 
 export const signupSchema = z
   .object({

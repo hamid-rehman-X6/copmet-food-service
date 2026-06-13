@@ -5,6 +5,7 @@ export type IconName =
   | "arrowRight"
   | "book"
   | "bell"
+  | "camera"
   | "card"
   | "cart"
   | "check"
@@ -12,6 +13,7 @@ export type IconName =
   | "chevronDown"
   | "edit"
   | "gift"
+  | "logout"
   | "helpCircle"
   | "heart"
   | "home"
@@ -41,6 +43,7 @@ const paths: Record<IconName, string> = {
   arrowLeft: "M19 12H5M11 18l-6-6 6-6",
   arrowRight: "M5 12h14M13 6l6 6-6 6",
   bell: "M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4",
+  camera: "M3 8h3.5l1.7-2h7.6l1.7 2H21v12H3zM12 17.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z",
   book: "M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5V5.5ZM4 5.5v16",
   card: "M3 6h18v12H3zM3 10h18M16 15h3",
   cart: "M3 4h2l2.2 10.5a2 2 0 0 0 2 1.5h7.7a2 2 0 0 0 1.9-1.4L21 8H6M10 20h.01M18 20h.01",
@@ -53,6 +56,7 @@ const paths: Record<IconName, string> = {
   heart: "M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z",
   home: "M4 11 12 4l8 7v9h-5v-6H9v6H4z",
   location: "M12 21s7-5.3 7-12a7 7 0 1 0-14 0c0 6.7 7 12 7 12Zm0-8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z",
+  logout: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9",
   lock: "M5 10h14v11H5zM8 10V7a4 4 0 0 1 8 0v3M12 14v3",
   mail: "M3 5h18v14H3zM3 7l9 7 9-7",
   menu: "M4 7h16M4 12h16M4 17h16",

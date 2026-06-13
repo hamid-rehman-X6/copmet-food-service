@@ -41,7 +41,11 @@ export function LoginForm() {
         { retryOnUnauthorized: false },
       );
       setUser(response.data.user);
-      router.push(response.data.user.role === "ADMIN" ? "/admin" : "/menu");
+      // Honour a safe, internal `?next=` redirect (e.g. from the profile guard);
+      // admins always land on the admin dashboard.
+      const nextParam = new URLSearchParams(window.location.search).get("next");
+      const safeNext = nextParam && nextParam.startsWith("/") && !nextParam.startsWith("//") ? nextParam : null;
+      router.push(response.data.user.role === "ADMIN" ? "/admin" : safeNext ?? "/menu");
       router.refresh();
     } catch (requestError) {
       setError(requestError instanceof ApiClientError ? requestError.message : "Unable to sign in right now.");

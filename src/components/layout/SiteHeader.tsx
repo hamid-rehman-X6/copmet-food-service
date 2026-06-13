@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { useCartStore } from "@/stores/cart.store";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { Icon } from "@/components/common/Icon";
+import { ProfileMenu } from "@/components/layout/ProfileMenu";
 
 type SiteHeaderProps = {
   showSearch?: boolean;
@@ -124,17 +125,9 @@ export function SiteHeader({
           </Link>
 
           {user ? (
-            <button
-              aria-label={`Sign out ${user.firstName}`}
-              className={cn(
-                "hidden items-center justify-center rounded-full px-4 py-2 text-sm font-semibold transition-all active:scale-95 sm:inline-flex",
-                loginLinkTones[loginTone],
-              )}
-              onClick={handleLogout}
-              type="button"
-            >
-              Logout
-            </button>
+            <div className="hidden sm:block">
+              <ProfileMenu onLogout={handleLogout} user={user} />
+            </div>
           ) : (
             <Link
               className={cn(
@@ -176,13 +169,27 @@ export function SiteHeader({
               </Link>
             ))}
             {user ? (
-              <button
-                className="mt-2 rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-primary-foreground"
-                onClick={handleLogout}
-                type="button"
-              >
-                Logout
-              </button>
+              <>
+                <Link
+                  className={cn(
+                    "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-muted-foreground transition-colors hover:bg-surface-low hover:text-primary",
+                    pathname === "/profile" && "bg-primary/10 text-primary",
+                  )}
+                  href="/profile"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Icon className="h-5 w-5" name="user" />
+                  Profile
+                </Link>
+                <button
+                  className="mt-1 flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-primary-foreground"
+                  onClick={handleLogout}
+                  type="button"
+                >
+                  <Icon className="h-5 w-5" name="logout" />
+                  Logout
+                </button>
+              </>
             ) : (
               <Link
                 className="mt-2 rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-primary-foreground"
