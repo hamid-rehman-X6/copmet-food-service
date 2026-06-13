@@ -6,6 +6,8 @@ type AdminPageHeaderProps = {
   description: string;
   actionLabel?: string;
   actionIcon?: IconName;
+  /** Click handler for the header action button (e.g. open a create modal). */
+  onAction?: () => void;
 };
 
 export function AdminPageHeader({
@@ -14,6 +16,7 @@ export function AdminPageHeader({
   description,
   actionLabel,
   actionIcon = "plus",
+  onAction,
 }: AdminPageHeaderProps) {
   return (
     <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
@@ -25,6 +28,7 @@ export function AdminPageHeader({
       {actionLabel ? (
         <button
           className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary-container sm:w-auto"
+          onClick={onAction}
           type="button"
         >
           <Icon className="h-5 w-5" name={actionIcon} />
