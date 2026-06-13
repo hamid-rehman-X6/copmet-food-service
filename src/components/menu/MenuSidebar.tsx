@@ -1,20 +1,27 @@
-import { dietaryFilters, menuCategories } from "@/constants/menu.constants";
+"use client";
+
+import { dietaryFilters } from "@/constants/menu.constants";
 import { cn } from "@/lib/utils";
+import { useCurrency } from "@/components/providers/CurrencyProvider";
 import { Icon } from "@/components/common/Icon";
-import type { DietaryFilter, MenuCategory } from "@/types/menu.types";
+
+// A category option uses an empty slug to represent "All Dishes".
+export type CategoryOption = { label: string; slug: string };
 
 type MenuSidebarProps = {
   search: string;
-  category: MenuCategory;
-  selectedDietary: DietaryFilter[];
+  categories: CategoryOption[];
+  category: string;
+  selectedDietary: string[];
   onSearchChange: (value: string) => void;
-  onCategoryChange: (value: MenuCategory) => void;
-  onDietaryToggle: (value: DietaryFilter) => void;
+  onCategoryChange: (value: string) => void;
+  onDietaryToggle: (value: string) => void;
   onClearFilters: () => void;
 };
 
 export function MenuSidebar({
   search,
+  categories,
   category,
   selectedDietary,
   onSearchChange,
@@ -22,7 +29,8 @@ export function MenuSidebar({
   onDietaryToggle,
   onClearFilters,
 }: MenuSidebarProps) {
-  const hasFilters = search.length > 0 || category !== "All Dishes" || selectedDietary.length > 0;
+  const { settings, format } = useCurrency();
+  const hasFilters = search.length > 0 || category !== "" || selectedDietary.length > 0;
 
   return (
     <aside className="space-y-8 rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-soft)] sm:p-6 lg:w-64 lg:shrink-0 lg:space-y-12 lg:border-0 lg:bg-transparent lg:p-0 lg:shadow-none">
@@ -44,26 +52,26 @@ export function MenuSidebar({
       <div>
         <h2 className="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-foreground">Categories</h2>
         <div className="flex flex-wrap gap-2 lg:flex-col lg:gap-4">
-          {menuCategories.map((option) => (
+          {categories.map((option) => (
             <button
-              aria-pressed={category === option}
+              aria-pressed={category === option.slug}
               className={cn(
                 "flex items-center gap-2 rounded-full bg-surface-low px-3 py-2 text-left text-sm transition-colors hover:text-primary lg:gap-4 lg:bg-transparent lg:px-0 lg:py-0",
-                category === option && "bg-primary/10 font-semibold text-primary lg:bg-transparent",
+                category === option.slug && "bg-primary/10 font-semibold text-primary lg:bg-transparent",
               )}
-              key={option}
-              onClick={() => onCategoryChange(option)}
+              key={option.slug || "all"}
+              onClick={() => onCategoryChange(option.slug)}
               type="button"
             >
               <span
                 className={cn(
                   "grid h-5 w-5 place-items-center rounded-full border border-border",
-                  category === option && "border-primary",
+                  category === option.slug && "border-primary",
                 )}
               >
-                {category === option ? <span className="h-2.5 w-2.5 rounded-full bg-primary" /> : null}
+                {category === option.slug ? <span className="h-2.5 w-2.5 rounded-full bg-primary" /> : null}
               </span>
-              {option}
+              {option.label}
             </button>
           ))}
         </div>
@@ -96,7 +104,9 @@ export function MenuSidebar({
 
       <div className="hidden rounded-xl bg-tertiary-container p-6 text-tertiary-container-foreground lg:block">
         <h2 className="heading-font mb-3 text-2xl font-semibold">Free Frozen Delivery</h2>
-        <p className="mb-5 text-sm leading-6">On your first freezer stock-up order over $45.</p>
+        <p className="mb-5 text-sm leading-6">
+          On your first freezer stock-up order over {format(settings.freeDeliveryThreshold)}.
+        </p>
         <button className="w-full rounded-lg bg-card px-4 py-3 text-sm font-semibold text-tertiary transition-colors hover:bg-surface-low">
           Stock Up
         </button>
