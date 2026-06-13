@@ -280,6 +280,36 @@ export async function deleteProduct(id: string): Promise<boolean> {
   return (result.rowCount ?? 0) > 0;
 }
 
+// --- Order support --------------------------------------------------------
+
+export type OrderableProduct = {
+  id: string;
+  name: string;
+  price: number;
+  imageUrl: string;
+  status: ProductStatus;
+};
+
+/** Fetch the pricing/snapshot data needed to build an order from product ids. */
+export async function findProductsForOrder(ids: string[]): Promise<OrderableProduct[]> {
+  if (ids.length === 0) {
+    return [];
+  }
+
+  const result = await query<QueryResultRow & { id: string; name: string; price: string; image_url: string; status: ProductStatus }>(
+    `SELECT id, name, price, image_url, status FROM products WHERE id = ANY($1::uuid[])`,
+    [ids],
+  );
+
+  return result.rows.map((row) => ({
+    id: row.id,
+    name: row.name,
+    price: Number(row.price),
+    imageUrl: row.image_url,
+    status: row.status,
+  }));
+}
+
 // --- Categories -----------------------------------------------------------
 
 export async function listCategories(): Promise<Category[]> {

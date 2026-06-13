@@ -3,18 +3,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getOrderTotals } from "@/lib/cart";
-import { formatCurrency } from "@/lib/formatters";
 import { useCartStore } from "@/stores/cart.store";
+import { useCurrency } from "@/components/providers/CurrencyProvider";
 import { Card } from "@/components/common/Card";
 import { Icon } from "@/components/common/Icon";
 
 export function OrderSummary() {
+  const { settings, format } = useCurrency();
   const items = useCartStore((state) => state.items);
   const increaseQuantity = useCartStore((state) => state.increaseQuantity);
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
   const removeItem = useCartStore((state) => state.removeItem);
   const clearCart = useCartStore((state) => state.clearCart);
-  const totals = getOrderTotals(items);
+  const totals = getOrderTotals(items, settings);
 
   return (
     <Card className="p-4 sm:p-6 lg:sticky lg:top-28">
@@ -37,7 +38,7 @@ export function OrderSummary() {
               <div className="min-w-0 flex-1">
                 <div className="flex flex-col gap-1 min-[400px]:flex-row min-[400px]:items-start min-[400px]:justify-between min-[400px]:gap-3">
                   <h3 className="text-sm font-semibold">{item.name}</h3>
-                  <span className="whitespace-nowrap text-sm">{formatCurrency(item.price * item.quantity)}</span>
+                  <span className="whitespace-nowrap text-sm">{format(item.price * item.quantity)}</span>
                 </div>
                 <p className="mb-3 line-clamp-1 text-xs text-muted-foreground">{item.detail}</p>
                 <div className="flex flex-wrap items-center gap-3">
@@ -90,15 +91,15 @@ export function OrderSummary() {
       <div className="mt-8 space-y-3 border-t border-border pt-8">
         <div className="flex justify-between text-sm text-muted-foreground">
           <span>Subtotal</span>
-          <span>{formatCurrency(totals.subtotal)}</span>
+          <span>{format(totals.subtotal)}</span>
         </div>
         <div className="flex justify-between text-sm text-muted-foreground">
           <span>Frozen Delivery Fee</span>
-          <span>{totals.deliveryFee === 0 && items.length > 0 ? "Free" : formatCurrency(totals.deliveryFee)}</span>
+          <span>{totals.deliveryFee === 0 && items.length > 0 ? "Free" : format(totals.deliveryFee)}</span>
         </div>
         <div className="heading-font flex justify-between pt-2 text-2xl font-semibold">
           <span>Total</span>
-          <span>{formatCurrency(totals.total)}</span>
+          <span>{format(totals.total)}</span>
         </div>
       </div>
 

@@ -1,7 +1,11 @@
+"use client";
+
 import { trackingOrder } from "@/constants/tracking.constants";
-import { formatCurrency } from "@/lib/formatters";
+import { useCurrency } from "@/components/providers/CurrencyProvider";
 
 export function TrackingSummary() {
+  const { format } = useCurrency();
+
   return (
     <>
       <section className="rounded-2xl bg-muted p-5 sm:p-8 md:p-12">
@@ -10,7 +14,7 @@ export function TrackingSummary() {
           {trackingOrder.items.map((item) => (
             <div className="flex justify-between gap-4 text-sm sm:text-lg" key={item.name}>
               <span>{item.name}</span>
-              <span className="font-bold">{formatCurrency(item.price)}</span>
+              <span className="font-bold">{format(item.price)}</span>
             </div>
           ))}
         </div>
