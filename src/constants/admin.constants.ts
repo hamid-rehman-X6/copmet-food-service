@@ -7,4 +7,5 @@ export const adminNavigation: AdminNavItem[] = [
   { label: "Frozen Catalog", href: "/admin/menu", icon: "utensils" },
   { label: "Customers", href: "/admin/customers", icon: "users" },
   { label: "Orders", href: "/admin/orders", icon: "receipt" },
+  { label: "Settings", href: "/admin/settings", icon: "settings" },
 ];
