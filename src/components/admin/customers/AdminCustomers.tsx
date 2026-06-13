@@ -49,16 +49,23 @@ export function AdminCustomers() {
   const [activeCustomerId, setActiveCustomerId] = useState<string | null>(null);
   const requestRef = useRef(0);
 
-  // Debounce search.
+  // Debounce search. Guard against the no-op on mount (trimmed value already
+  // equals `search`): without this, loading would be set true with no matching
+  // fetch to clear it, leaving the table stuck on the loading row.
   useEffect(() => {
+    const trimmed = searchInput.trim();
+    if (trimmed === search) {
+      return;
+    }
+
     const timeout = setTimeout(() => {
       setLoading(true);
-      setSearch(searchInput.trim());
+      setSearch(trimmed);
       setPage(1);
     }, 350);
 
     return () => clearTimeout(timeout);
-  }, [searchInput]);
+  }, [searchInput, search]);
 
   // Fetch customers (setState only in async callbacks).
   useEffect(() => {
@@ -87,6 +94,7 @@ export function AdminCustomers() {
   }, [page, search, status]);
 
   const summary = meta ? `Showing ${customers.length} of ${meta.totalItems} customers` : "Loading customers...";
+  const hasFilters = Boolean(search || status);
 
   return (
     <div className="space-y-8">
@@ -140,8 +148,18 @@ export function AdminCustomers() {
               </tr>
             ) : customers.length === 0 ? (
               <tr>
-                <td className="px-6 py-12 text-center text-sm text-muted-foreground" colSpan={6}>
-                  No customers match these filters.
+                <td className="px-6 py-16" colSpan={6}>
+                  <div className="flex flex-col items-center gap-3 text-center">
+                    <Icon className="h-10 w-10 text-border-strong" name="users" />
+                    <p className="text-sm font-semibold text-foreground">
+                      {hasFilters ? "No customers match these filters." : "No customers have signed up yet."}
+                    </p>
+                    <p className="max-w-sm text-xs text-muted-foreground">
+                      {hasFilters
+                        ? "Try a different search or status filter."
+                        : "New accounts will appear here as soon as customers register."}
+                    </p>
+                  </div>
                 </td>
               </tr>
             ) : (

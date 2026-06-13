@@ -39,16 +39,23 @@ export function AdminOrders() {
   const requestRef = useRef(0);
   const refetch = () => setRefreshKey((key) => key + 1);
 
-  // Debounce search.
+  // Debounce search. Guard against the no-op on mount (trimmed value already
+  // equals `search`): without this, loading would be set true with no matching
+  // fetch to clear it, leaving the table stuck on the loading row.
   useEffect(() => {
+    const trimmed = searchInput.trim();
+    if (trimmed === search) {
+      return;
+    }
+
     const timeout = setTimeout(() => {
       setLoading(true);
-      setSearch(searchInput.trim());
+      setSearch(trimmed);
       setPage(1);
     }, 350);
 
     return () => clearTimeout(timeout);
-  }, [searchInput]);
+  }, [searchInput, search]);
 
   // Fetch orders on filter/page/refresh change (setState only in callbacks).
   useEffect(() => {
@@ -77,6 +84,7 @@ export function AdminOrders() {
   }, [page, search, status, refreshKey]);
 
   const summary = meta ? `Showing ${orders.length} of ${meta.totalItems} freezer orders` : "Loading orders...";
+  const hasFilters = Boolean(search || status);
 
   return (
     <div className="space-y-8">
@@ -133,8 +141,18 @@ export function AdminOrders() {
               </tr>
             ) : orders.length === 0 ? (
               <tr>
-                <td className="px-6 py-12 text-center text-sm text-muted-foreground" colSpan={6}>
-                  No orders match these filters.
+                <td className="px-6 py-16" colSpan={6}>
+                  <div className="flex flex-col items-center gap-3 text-center">
+                    <Icon className="h-10 w-10 text-border-strong" name="receipt" />
+                    <p className="text-sm font-semibold text-foreground">
+                      {hasFilters ? "No orders match these filters." : "No freezer orders have been placed yet."}
+                    </p>
+                    <p className="max-w-sm text-xs text-muted-foreground">
+                      {hasFilters
+                        ? "Try a different search or status filter."
+                        : "Orders will show up here as soon as customers check out."}
+                    </p>
+                  </div>
                 </td>
               </tr>
             ) : (
