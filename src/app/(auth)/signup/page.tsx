@@ -7,7 +7,20 @@ export const metadata: Metadata = {
   description: "Create your Copmet Food Service account for faster frozen meal ordering and delivery updates.",
 };
 
-export default function SignupPage() {
+// Preserve a safe internal `?next=` value so switching back to login keeps the
+// post-auth destination intact.
+function safeNext(value: string | string[] | undefined) {
+  return typeof value === "string" && value.startsWith("/") && !value.startsWith("//") ? value : null;
+}
+
+export default async function SignupPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ next?: string | string[] }>;
+}) {
+  const next = safeNext((await searchParams).next);
+  const loginHref = next ? `/login?next=${encodeURIComponent(next)}` : "/login";
+
   return (
     <div>
       <p className="mb-4 text-xs font-bold uppercase tracking-[0.24em] text-secondary">Join Copmet</p>
@@ -20,7 +33,7 @@ export default function SignupPage() {
 
       <p className="mt-8 text-center text-sm text-muted-foreground">
         Already have an account?{" "}
-        <Link className="font-semibold text-primary transition-colors hover:text-primary-container" href="/login">
+        <Link className="font-semibold text-primary transition-colors hover:text-primary-container" href={loginHref}>
           Sign in
         </Link>
       </p>

@@ -7,7 +7,20 @@ export const metadata: Metadata = {
   description: "Sign in to manage your Copmet Food Service frozen meal orders.",
 };
 
-export default function LoginPage() {
+// Keep a safe internal `?next=` value so switching to signup preserves the
+// post-login destination (e.g. returning to checkout after adding to cart).
+function safeNext(value: string | string[] | undefined) {
+  return typeof value === "string" && value.startsWith("/") && !value.startsWith("//") ? value : null;
+}
+
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ next?: string | string[] }>;
+}) {
+  const next = safeNext((await searchParams).next);
+  const signupHref = next ? `/signup?next=${encodeURIComponent(next)}` : "/signup";
+
   return (
     <div>
       <p className="mb-4 text-xs font-bold uppercase tracking-[0.24em] text-secondary">Account access</p>
@@ -27,7 +40,7 @@ export default function LoginPage() {
 
       <p className="mt-8 text-center text-sm text-muted-foreground">
         New to Copmet?{" "}
-        <Link className="font-semibold text-primary transition-colors hover:text-primary-container" href="/signup">
+        <Link className="font-semibold text-primary transition-colors hover:text-primary-container" href={signupHref}>
           Create an account
         </Link>
       </p>
