@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useAddToCart } from "@/hooks/useAddToCart";
 import { useCartStore } from "@/stores/cart.store";
 import { useCurrency } from "@/components/providers/CurrencyProvider";
 import { Button } from "@/components/common/Button";
@@ -21,7 +22,7 @@ const categoryTones: Record<string, BadgeTone> = {
 
 export function MenuCard({ product }: { product: PublicProduct }) {
   const { format } = useCurrency();
-  const addItem = useCartStore((state) => state.addItem);
+  const addToCart = useAddToCart();
   const quantity = useCartStore((state) => state.items.find((cartItem) => cartItem.id === product.id)?.quantity ?? 0);
   const tone = categoryTones[product.categorySlug] ?? "tertiary";
 
@@ -60,7 +61,7 @@ export function MenuCard({ product }: { product: PublicProduct }) {
             aria-label={`Add ${product.name} to freezer cart${quantity > 0 ? `. ${quantity} currently in cart` : ""}`}
             className="h-11 w-full whitespace-nowrap px-4 py-2"
             onClick={() =>
-              addItem({
+              addToCart({
                 id: product.id,
                 name: product.name,
                 detail: [product.category, ...product.tags].join(" - "),
