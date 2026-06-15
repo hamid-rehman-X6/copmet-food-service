@@ -45,16 +45,23 @@ export function MenuBrowser({ initialSearch = "" }: { initialSearch?: string }) 
       .catch(() => undefined);
   }, []);
 
-  // Debounce the search field.
+  // Debounce the search field. Skip the no-op on mount (trimmed value already
+  // equals `search`): otherwise loading would be flipped true with no matching
+  // fetch to clear it, making the products vanish behind the skeleton again.
   useEffect(() => {
+    const trimmed = searchInput.trim();
+    if (trimmed === search) {
+      return;
+    }
+
     const timeout = setTimeout(() => {
       setLoading(true);
-      setSearch(searchInput.trim());
+      setSearch(trimmed);
       setPage(1);
     }, 350);
 
     return () => clearTimeout(timeout);
-  }, [searchInput]);
+  }, [searchInput, search]);
 
   // Fetch products on any filter/page change. Page 1 replaces the list; higher
   // pages append (the "Load More" pattern). setState runs only in callbacks.
