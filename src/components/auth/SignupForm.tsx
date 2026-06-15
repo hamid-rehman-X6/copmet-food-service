@@ -45,7 +45,10 @@ export function SignupForm() {
         { retryOnUnauthorized: false },
       );
       setUser(response.data.user);
-      router.push("/menu");
+      // Honour a safe, internal `?next=` redirect (e.g. when signing up mid-checkout).
+      const nextParam = new URLSearchParams(window.location.search).get("next");
+      const safeNext = nextParam && nextParam.startsWith("/") && !nextParam.startsWith("//") ? nextParam : null;
+      router.push(safeNext ?? "/menu");
       router.refresh();
     } catch (requestError) {
       setError(requestError instanceof ApiClientError ? requestError.message : "Unable to create your account right now.");
