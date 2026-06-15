@@ -3,14 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { featuredMeals } from "@/constants/home.constants";
+import { useAddToCart } from "@/hooks/useAddToCart";
 import { cn } from "@/lib/utils";
-import { useCartStore } from "@/stores/cart.store";
 import { Button } from "@/components/common/Button";
 import { Chip } from "@/components/common/Chip";
 import { Icon } from "@/components/common/Icon";
 
 export function FeaturedMeals() {
-  const addItem = useCartStore((state) => state.addItem);
+  const addToCart = useAddToCart();
 
   return (
     <section className="page-shell py-14 sm:py-20">
@@ -55,7 +55,7 @@ export function FeaturedMeals() {
                 <Button
                   className="bg-card text-primary hover:bg-surface-low"
                   onClick={() =>
-                    addItem({
+                    addToCart({
                       id: meal.id,
                       name: meal.title,
                       detail: "Family Pack - Frozen",
