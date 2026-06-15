@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import { CheckoutForm } from "@/components/checkout/CheckoutForm";
-import { OrderSummary } from "@/components/checkout/OrderSummary";
+import { CheckoutView } from "@/components/checkout/CheckoutView";
 import { Icon } from "@/components/common/Icon";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
@@ -28,14 +27,8 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <section className="lg:col-span-5">
-            <OrderSummary />
-          </section>
-          <section className="lg:col-span-7">
-            <CheckoutForm />
-          </section>
-        </div>
+        {/* Protected: guests are redirected to login (and returned here after). */}
+        <CheckoutView />
       </main>
       <SiteFooter />
     </>
