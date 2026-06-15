@@ -7,6 +7,7 @@ import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
 import { Select } from "@/components/common/Select";
 import { MenuCard } from "@/components/menu/MenuCard";
+import { MenuCardSkeleton } from "@/components/menu/MenuCardSkeleton";
 import { MenuSidebar, type CategoryOption } from "@/components/menu/MenuSidebar";
 import type { Category, PublicProduct } from "@/types/catalog.types";
 import type { Paginated } from "@/types/common.types";
@@ -155,8 +156,10 @@ export function MenuBrowser({ initialSearch = "" }: { initialSearch?: string }) 
         ) : null}
 
         {loading ? (
-          <div className="rounded-2xl border border-dashed border-border bg-surface-low px-5 py-14 text-center sm:px-6 sm:py-20">
-            <p className="text-sm text-muted-foreground">Loading frozen meals...</p>
+          <div className="grid gap-5 sm:grid-cols-2 lg:gap-6 xl:grid-cols-3">
+            {Array.from({ length: PAGE_SIZE }).map((_, index) => (
+              <MenuCardSkeleton key={index} />
+            ))}
           </div>
         ) : items.length > 0 ? (
           <div className="grid gap-5 sm:grid-cols-2 lg:gap-6 xl:grid-cols-3">
