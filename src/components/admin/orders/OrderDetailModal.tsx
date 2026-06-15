@@ -8,6 +8,7 @@ import { orderStatusLabels, orderStatusOptions, orderStatusTones } from "@/const
 import { useCurrency } from "@/components/providers/CurrencyProvider";
 import { AdminModal } from "@/components/admin/AdminModal";
 import { AdminStatusBadge } from "@/components/admin/AdminStatusBadge";
+import { OrderDetailSkeleton } from "@/components/admin/orders/OrderDetailSkeleton";
 import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
 import type { OrderDetail, OrderStatus } from "@/types/order.types";
@@ -81,7 +82,7 @@ export function OrderDetailModal({ orderId, onClose, onUpdated }: OrderDetailMod
       title={order ? order.reference : "Order"}
     >
       {loading ? (
-        <p className="py-10 text-center text-sm text-muted-foreground">Loading order...</p>
+        <OrderDetailSkeleton />
       ) : !order ? (
         <p className="py-10 text-center text-sm text-error">{error ?? "Order not found."}</p>
       ) : (

@@ -7,6 +7,7 @@ import { orderStatusLabels, orderStatusTones } from "@/constants/order.constants
 import { useCurrency } from "@/components/providers/CurrencyProvider";
 import { AdminModal } from "@/components/admin/AdminModal";
 import { AdminStatusBadge } from "@/components/admin/AdminStatusBadge";
+import { CustomerDetailSkeleton } from "@/components/admin/customers/CustomerDetailSkeleton";
 import type { AdminCustomerDetail } from "@/types/customer.types";
 
 type CustomerDetailModalProps = {
@@ -56,7 +57,7 @@ export function CustomerDetailModal({ customerId, onClose }: CustomerDetailModal
       title={customer ? customer.name : "Customer"}
     >
       {loading ? (
-        <p className="py-10 text-center text-sm text-muted-foreground">Loading customer...</p>
+        <CustomerDetailSkeleton />
       ) : !customer ? (
         <p className="py-10 text-center text-sm text-error">{error ?? "Customer not found."}</p>
       ) : (
