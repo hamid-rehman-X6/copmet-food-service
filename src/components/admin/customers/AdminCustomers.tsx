@@ -9,6 +9,8 @@ import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminPagination } from "@/components/admin/AdminPagination";
 import { AdminStatusBadge } from "@/components/admin/AdminStatusBadge";
 import { AdminTableShell } from "@/components/admin/AdminTableShell";
+import { AdminTableSkeleton } from "@/components/admin/AdminTableSkeleton";
+import { Skeleton } from "@/components/common/Skeleton";
 import { CustomerDetailModal } from "@/components/admin/customers/CustomerDetailModal";
 import { Icon } from "@/components/common/Icon";
 import type { AdminCustomerSummary } from "@/types/customer.types";
@@ -93,7 +95,11 @@ export function AdminCustomers() {
       });
   }, [page, search, status]);
 
-  const summary = meta ? `Showing ${customers.length} of ${meta.totalItems} customers` : "Loading customers...";
+  const summary = loading ? (
+    <Skeleton className="h-4 w-40" />
+  ) : meta ? (
+    `Showing ${customers.length} of ${meta.totalItems} customers`
+  ) : null;
   const hasFilters = Boolean(search || status);
 
   return (
@@ -141,11 +147,7 @@ export function AdminCustomers() {
           </thead>
           <tbody className="divide-y divide-border/60">
             {loading ? (
-              <tr>
-                <td className="px-6 py-12 text-center text-sm text-muted-foreground" colSpan={6}>
-                  Loading customers...
-                </td>
-              </tr>
+              <AdminTableSkeleton columns={["media", "text", "text", "text", "badge", "actions"]} rows={PAGE_SIZE} />
             ) : customers.length === 0 ? (
               <tr>
                 <td className="px-6 py-16" colSpan={6}>
