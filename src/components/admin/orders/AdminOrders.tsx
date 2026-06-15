@@ -11,6 +11,8 @@ import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminPagination } from "@/components/admin/AdminPagination";
 import { AdminStatusBadge } from "@/components/admin/AdminStatusBadge";
 import { AdminTableShell } from "@/components/admin/AdminTableShell";
+import { AdminTableSkeleton } from "@/components/admin/AdminTableSkeleton";
+import { Skeleton } from "@/components/common/Skeleton";
 import { OrderDetailModal } from "@/components/admin/orders/OrderDetailModal";
 import { Icon } from "@/components/common/Icon";
 import type { OrderSummary } from "@/types/order.types";
@@ -83,7 +85,11 @@ export function AdminOrders() {
       });
   }, [page, search, status, refreshKey]);
 
-  const summary = meta ? `Showing ${orders.length} of ${meta.totalItems} freezer orders` : "Loading orders...";
+  const summary = loading ? (
+    <Skeleton className="h-4 w-48" />
+  ) : meta ? (
+    `Showing ${orders.length} of ${meta.totalItems} freezer orders`
+  ) : null;
   const hasFilters = Boolean(search || status);
 
   return (
@@ -134,11 +140,7 @@ export function AdminOrders() {
           </thead>
           <tbody className="divide-y divide-border/60">
             {loading ? (
-              <tr>
-                <td className="px-6 py-12 text-center text-sm text-muted-foreground" colSpan={6}>
-                  Loading orders...
-                </td>
-              </tr>
+              <AdminTableSkeleton columns={["stack", "stack", "text", "text", "badge", "actions"]} rows={PAGE_SIZE} />
             ) : orders.length === 0 ? (
               <tr>
                 <td className="px-6 py-16" colSpan={6}>

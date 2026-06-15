@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/common/Skeleton";
 
 // Describes how each column's placeholder should look so one component can
 // stand in for any admin table while preserving its column rhythm.
-export type SkeletonColumn = "media" | "text" | "badge" | "actions";
+export type SkeletonColumn = "media" | "stack" | "text" | "badge" | "actions";
 
 type AdminTableSkeletonProps = {
   columns: SkeletonColumn[];
@@ -20,6 +20,14 @@ function SkeletonCell({ kind }: { kind: SkeletonColumn }) {
             <Skeleton className="h-3.5 w-36" />
             <Skeleton className="h-3 w-24" />
           </div>
+        </div>
+      );
+    case "stack":
+      // Two-line text cell (e.g. a reference with a timestamp beneath it).
+      return (
+        <div className="space-y-2">
+          <Skeleton className="h-3.5 w-28" />
+          <Skeleton className="h-3 w-20" />
         </div>
       );
     case "badge":
