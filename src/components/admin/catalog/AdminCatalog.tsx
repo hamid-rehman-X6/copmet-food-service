@@ -10,6 +10,8 @@ import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminPagination } from "@/components/admin/AdminPagination";
 import { AdminStatusBadge } from "@/components/admin/AdminStatusBadge";
 import { AdminTableShell } from "@/components/admin/AdminTableShell";
+import { AdminTableSkeleton } from "@/components/admin/AdminTableSkeleton";
+import { Skeleton } from "@/components/common/Skeleton";
 import { ConfirmDialog } from "@/components/admin/ConfirmDialog";
 import { ProductFormModal } from "@/components/admin/catalog/ProductFormModal";
 import { Icon } from "@/components/common/Icon";
@@ -137,9 +139,11 @@ export function AdminCatalog() {
     ...categories.map((item) => ({ label: item.name, value: item.slug })),
   ];
 
-  const summary = meta
-    ? `Showing ${products.length} of ${meta.totalItems} frozen items`
-    : "Loading frozen items...";
+  const summary = loading ? (
+    <Skeleton className="h-4 w-44" />
+  ) : meta ? (
+    `Showing ${products.length} of ${meta.totalItems} frozen items`
+  ) : null;
 
   return (
     <div className="space-y-8">
@@ -207,11 +211,7 @@ export function AdminCatalog() {
           </thead>
           <tbody className="divide-y divide-border/60">
             {loading ? (
-              <tr>
-                <td className="px-6 py-12 text-center text-sm text-muted-foreground" colSpan={5}>
-                  Loading frozen items...
-                </td>
-              </tr>
+              <AdminTableSkeleton columns={["media", "text", "text", "badge", "actions"]} rows={PAGE_SIZE} />
             ) : products.length === 0 ? (
               <tr>
                 <td className="px-6 py-12 text-center text-sm text-muted-foreground" colSpan={5}>
