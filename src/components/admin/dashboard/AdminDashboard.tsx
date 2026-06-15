@@ -11,6 +11,7 @@ import { AdminMetricGrid } from "@/components/admin/AdminMetricGrid";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminStatusBadge } from "@/components/admin/AdminStatusBadge";
 import { AdminTableShell } from "@/components/admin/AdminTableShell";
+import { AdminDashboardSkeleton } from "@/components/admin/dashboard/AdminDashboardSkeleton";
 import { Icon } from "@/components/common/Icon";
 import type { AdminMetric } from "@/types/admin.types";
 import type { DashboardData } from "@/types/dashboard.types";
@@ -69,9 +70,7 @@ export function AdminDashboard() {
       ) : null}
 
       {loading ? (
-        <p className="rounded-2xl border border-dashed border-border bg-surface-low px-6 py-16 text-center text-sm text-muted-foreground">
-          Loading dashboard...
-        </p>
+        <AdminDashboardSkeleton />
       ) : data ? (
         <>
           <AdminMetricGrid metrics={metrics} />
