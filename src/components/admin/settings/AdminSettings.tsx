@@ -6,6 +6,7 @@ import { apiRequest, ApiClientError } from "@/lib/api-client";
 import { formatMoney } from "@/lib/money";
 import { currencyPresets } from "@/constants/settings.constants";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { SettingsSkeleton } from "@/components/admin/settings/SettingsSkeleton";
 import { AuthFormAlert } from "@/components/auth/AuthFormAlert";
 import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
@@ -111,9 +112,7 @@ export function AdminSettings() {
       />
 
       {loading ? (
-        <p className="rounded-2xl border border-dashed border-border bg-surface-low px-6 py-16 text-center text-sm text-muted-foreground">
-          Loading settings...
-        </p>
+        <SettingsSkeleton />
       ) : form ? (
         <div className="max-w-2xl space-y-6 rounded-2xl border border-border/60 bg-card p-5 shadow-[var(--shadow-soft)] sm:p-7">
           <AuthFormAlert message={error} />
