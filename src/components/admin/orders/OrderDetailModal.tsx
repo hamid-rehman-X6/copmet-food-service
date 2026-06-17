@@ -10,6 +10,7 @@ import { AdminModal } from "@/components/admin/AdminModal";
 import { AdminStatusBadge } from "@/components/admin/AdminStatusBadge";
 import { OrderDetailSkeleton } from "@/components/admin/orders/OrderDetailSkeleton";
 import { Button } from "@/components/common/Button";
+import { Select } from "@/components/common/Select";
 import { Icon } from "@/components/common/Icon";
 import type { OrderDetail, OrderStatus } from "@/types/order.types";
 
@@ -96,17 +97,14 @@ export function OrderDetailModal({ orderId, onClose, onUpdated }: OrderDetailMod
               <AdminStatusBadge status={orderStatusLabels[order.status]} tone={orderStatusTones[order.status]} />
             </div>
             <div className="flex items-center gap-2">
-              <select
-                className="rounded-lg border border-border bg-card px-3 py-2 text-sm font-semibold text-primary outline-none"
-                onChange={(event) => setStatus(event.target.value as OrderStatus)}
+              <Select
+                className="min-w-44"
+                hideLabel
+                label="Order status"
+                onChange={(value) => setStatus(value as OrderStatus)}
+                options={orderStatusOptions}
                 value={status}
-              >
-                {orderStatusOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
+              />
               <Button disabled={saving || status === order.status} onClick={saveStatus} size="sm">
                 {saving ? "Saving..." : "Update"}
               </Button>

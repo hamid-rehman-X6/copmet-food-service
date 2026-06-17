@@ -177,18 +177,20 @@ export function AdminOrders() {
                   <td className="px-6 py-5">
                     <AdminStatusBadge status={orderStatusLabels[order.status]} tone={orderStatusTones[order.status]} />
                   </td>
-                  <td className="px-6 py-5 text-right">
-                    <button
-                      aria-label={`View ${order.reference}`}
-                      className="grid h-10 w-10 place-items-center rounded-lg text-muted-foreground transition-colors hover:bg-surface-highest hover:text-primary"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        setActiveOrderId(order.id);
-                      }}
-                      type="button"
-                    >
-                      <Icon className="h-5 w-5" name="arrowRight" />
-                    </button>
+                  <td className="px-6 py-5">
+                    <div className="flex justify-end">
+                      <button
+                        aria-label={`View ${order.reference}`}
+                        className="grid h-10 w-10 place-items-center rounded-lg text-muted-foreground transition-colors hover:bg-surface-highest hover:text-primary"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          setActiveOrderId(order.id);
+                        }}
+                        type="button"
+                      >
+                        <Icon className="h-5 w-5" name="arrowRight" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))

@@ -15,9 +15,11 @@ type SelectProps = {
   options: SelectOption[];
   onChange: (value: string) => void;
   className?: string;
+  /** Hide the inline "label:" prefix (e.g. when a separate field label exists). */
+  hideLabel?: boolean;
 };
 
-export function Select({ label, value, options, onChange, className }: SelectProps) {
+export function Select({ label, value, options, onChange, className, hideLabel = false }: SelectProps) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const listboxId = useId();
@@ -51,11 +53,12 @@ export function Select({ label, value, options, onChange, className }: SelectPro
         aria-controls={listboxId}
         aria-expanded={open}
         aria-haspopup="listbox"
+        aria-label={hideLabel ? label : undefined}
         className="flex w-full items-center gap-3 rounded-xl border border-border bg-surface-low px-5 py-3 text-left text-sm font-semibold text-primary transition-colors hover:border-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         onClick={() => setOpen((current) => !current)}
         type="button"
       >
-        <span className="text-muted-foreground">{label}:</span>
+        {hideLabel ? null : <span className="text-muted-foreground">{label}:</span>}
         <span className="min-w-0 flex-1 truncate">{selectedOption?.label}</span>
         <Icon className={cn("h-4 w-4 transition-transform", open && "rotate-180")} name="chevronDown" />
       </button>

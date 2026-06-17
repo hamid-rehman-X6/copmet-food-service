@@ -188,18 +188,20 @@ export function AdminCustomers() {
                   <td className="px-6 py-5">
                     <AdminStatusBadge status={customer.isActive ? "Active" : "Inactive"} tone={customer.isActive ? "success" : "neutral"} />
                   </td>
-                  <td className="px-6 py-5 text-right">
-                    <button
-                      aria-label={`View ${customer.name}`}
-                      className="grid h-10 w-10 place-items-center rounded-lg text-muted-foreground transition-colors hover:bg-surface-highest hover:text-primary"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        setActiveCustomerId(customer.id);
-                      }}
-                      type="button"
-                    >
-                      <Icon className="h-5 w-5" name="arrowRight" />
-                    </button>
+                  <td className="px-6 py-5">
+                    <div className="flex justify-end">
+                      <button
+                        aria-label={`View ${customer.name}`}
+                        className="grid h-10 w-10 place-items-center rounded-lg text-muted-foreground transition-colors hover:bg-surface-highest hover:text-primary"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          setActiveCustomerId(customer.id);
+                        }}
+                        type="button"
+                      >
+                        <Icon className="h-5 w-5" name="arrowRight" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))

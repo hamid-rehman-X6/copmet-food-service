@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Icon } from "@/components/common/Icon";
+import { Select } from "@/components/common/Select";
 
 // Shared filter controls reused across admin list pages (catalog, customers,
 // orders) so search inputs and dropdown filters look and behave consistently.
@@ -36,6 +37,8 @@ export function AdminSearchField({
   );
 }
 
+// Uses the app's themed Select (same as the menu sort control) so the dropdown
+// matches the design in both light and dark themes.
 export function AdminSelectFilter({
   label,
   value,
@@ -47,20 +50,5 @@ export function AdminSelectFilter({
   onChange: (value: string) => void;
   options: { label: string; value: string }[];
 }) {
-  return (
-    <label className="flex items-center gap-2 rounded-xl border border-border bg-card px-3 py-2.5 text-sm">
-      <span className="whitespace-nowrap font-semibold text-muted-foreground">{label}</span>
-      <select
-        className="min-w-0 bg-transparent font-semibold text-primary outline-none"
-        onChange={(event) => onChange(event.target.value)}
-        value={value}
-      >
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </label>
-  );
+  return <Select className="w-full sm:w-auto sm:min-w-44" label={label} onChange={onChange} options={options} value={value} />;
 }

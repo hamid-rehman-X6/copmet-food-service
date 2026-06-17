@@ -76,7 +76,7 @@ export default function AboutPage() {
                 freezer-ready packing, and service you can count on from kitchen to doorstep.
               </p>
               <Link
-                className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-card px-7 py-3 text-sm font-semibold text-primary transition-colors hover:bg-surface-low"
+                className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-card px-7 py-3 text-sm font-semibold text-primary transition-colors hover:bg-surface-raised"
                 href="/menu"
               >
                 Explore Frozen Meals

@@ -10,6 +10,7 @@ import { SettingsSkeleton } from "@/components/admin/settings/SettingsSkeleton";
 import { AuthFormAlert } from "@/components/auth/AuthFormAlert";
 import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
+import { Select } from "@/components/common/Select";
 import type { PublicSettings } from "@/types/settings.types";
 
 const inputClass =
@@ -125,14 +126,16 @@ export function AdminSettings() {
 
           <div className="space-y-1.5">
             <span className={labelTextClass}>Currency</span>
-            <select className={inputClass} onChange={(event) => selectPreset(event.target.value)} value={isPreset ? form.currencyCode : ""}>
-              {!isPreset ? <option value="">{form.currencyCode} (custom)</option> : null}
-              {currencyPresets.map((preset) => (
-                <option key={preset.code} value={preset.code}>
-                  {preset.label}
-                </option>
-              ))}
-            </select>
+            <Select
+              hideLabel
+              label="Currency"
+              onChange={selectPreset}
+              options={[
+                ...(isPreset ? [] : [{ label: `${form.currencyCode} (custom)`, value: "" }]),
+                ...currencyPresets.map((preset) => ({ label: preset.label, value: preset.code })),
+              ]}
+              value={isPreset ? form.currencyCode : ""}
+            />
             <p className="text-xs text-muted-foreground">
               Sample price preview: <span className="font-semibold text-foreground">{preview}</span>
             </p>

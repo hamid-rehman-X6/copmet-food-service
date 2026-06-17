@@ -124,10 +124,10 @@ export function SiteHeader({
           <button
             aria-label="View cart"
             className={cn(
-              "relative inline-flex items-center justify-center gap-2 rounded-full text-primary transition-colors hover:bg-surface-low",
+              "relative inline-flex items-center justify-center gap-2 rounded-full transition-colors",
               showCartLabel
                 ? "h-10 w-10 bg-primary text-primary-foreground hover:bg-primary-container sm:w-auto sm:px-5 sm:py-3"
-                : "h-10 w-10",
+                : "h-10 w-10 text-primary hover:bg-surface-low",
             )}
             onClick={() => setCartOpen(true)}
             type="button"

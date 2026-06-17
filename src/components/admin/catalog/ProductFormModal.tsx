@@ -8,6 +8,7 @@ import { dietaryTagOptions, productStatusOptions } from "@/constants/catalog.con
 import { AdminModal } from "@/components/admin/AdminModal";
 import { AuthFormAlert } from "@/components/auth/AuthFormAlert";
 import { Button } from "@/components/common/Button";
+import { Select } from "@/components/common/Select";
 import type { AdminProduct, Category } from "@/types/catalog.types";
 
 type ProductFormModalProps = {
@@ -154,27 +155,26 @@ export function ProductFormModal({ product, categories, onClose, onSaved }: Prod
         </label>
 
         <div className="grid gap-5 sm:grid-cols-2">
-          <label className={labelClass}>
+          <div className={labelClass}>
             <span className={labelTextClass}>Category</span>
-            <select className={inputClass} onChange={(event) => update("categoryId", event.target.value)} value={form.categoryId}>
-              {categories.length === 0 ? <option value="">No categories</option> : null}
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className={labelClass}>
+            <Select
+              hideLabel
+              label="Category"
+              onChange={(value) => update("categoryId", value)}
+              options={categories.map((category) => ({ label: category.name, value: category.id }))}
+              value={form.categoryId}
+            />
+          </div>
+          <div className={labelClass}>
             <span className={labelTextClass}>Status</span>
-            <select className={inputClass} onChange={(event) => update("status", event.target.value as FormState["status"])} value={form.status}>
-              {productStatusOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </label>
+            <Select
+              hideLabel
+              label="Status"
+              onChange={(value) => update("status", value as FormState["status"])}
+              options={productStatusOptions}
+              value={form.status}
+            />
+          </div>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-3">
