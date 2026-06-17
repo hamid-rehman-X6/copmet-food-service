@@ -46,6 +46,22 @@ export function ProfileSkeleton() {
 
       <section className={`${cardClass} space-y-5`}>
         <div className="space-y-2">
+          <Skeleton className="h-6 w-40" />
+          <Skeleton className="h-3.5 w-64" />
+        </div>
+        <FieldSkeleton />
+        <FieldSkeleton />
+        <div className="grid gap-5 sm:grid-cols-2">
+          <FieldSkeleton />
+          <FieldSkeleton />
+        </div>
+        <div className="flex justify-end">
+          <Skeleton className="h-11 w-44 rounded-full" />
+        </div>
+      </section>
+
+      <section className={`${cardClass} space-y-5`}>
+        <div className="space-y-2">
           <Skeleton className="h-6 w-32" />
           <Skeleton className="h-3.5 w-72" />
         </div>

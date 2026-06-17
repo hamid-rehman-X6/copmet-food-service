@@ -3,6 +3,7 @@
 import { useAuth } from "@/components/auth/AuthProvider";
 import { RequireAuth } from "@/components/auth/RequireAuth";
 import { AvatarCard } from "@/components/profile/AvatarCard";
+import { DeliveryDetailsForm } from "@/components/profile/DeliveryDetailsForm";
 import { PasswordForm } from "@/components/profile/PasswordForm";
 import { ProfileDetailsForm } from "@/components/profile/ProfileDetailsForm";
 import { ProfileSkeleton } from "@/components/profile/ProfileSkeleton";
@@ -20,6 +21,7 @@ function ProfileContent() {
     <div className="space-y-6">
       <AvatarCard user={user} />
       <ProfileDetailsForm user={user} />
+      <DeliveryDetailsForm />
       <PasswordForm />
     </div>
   );
