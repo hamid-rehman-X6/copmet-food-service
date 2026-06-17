@@ -1,6 +1,8 @@
+import type { QueryResultRow } from "pg";
 import { query } from "@/server/db/pool";
 import { findUserById, toAuthUser } from "@/server/auth/auth.repository";
 import type { AuthUser } from "@/types/auth.types";
+import type { DeliveryDefaults } from "@/types/profile.types";
 
 // --- Profile details ------------------------------------------------------
 
@@ -80,4 +82,58 @@ export async function getAvatar(userId: string): Promise<{ mimeType: string; dat
 export async function deleteAvatar(userId: string): Promise<boolean> {
   const result = await query("DELETE FROM user_avatars WHERE user_id = $1", [userId]);
   return (result.rowCount ?? 0) > 0;
+}
+
+// --- Delivery defaults ----------------------------------------------------
+
+type DeliveryDefaultsRow = QueryResultRow & {
+  default_phone: string | null;
+  default_address: string | null;
+  default_city: string | null;
+  default_postal_code: string | null;
+  default_instructions: string | null;
+};
+
+function toDeliveryDefaults(row: DeliveryDefaultsRow): DeliveryDefaults {
+  return {
+    phone: row.default_phone,
+    address: row.default_address,
+    city: row.default_city,
+    postalCode: row.default_postal_code,
+    instructions: row.default_instructions,
+  };
+}
+
+const EMPTY_DELIVERY_DEFAULTS: DeliveryDefaults = {
+  phone: null,
+  address: null,
+  city: null,
+  postalCode: null,
+  instructions: null,
+};
+
+export async function getDeliveryDefaults(userId: string): Promise<DeliveryDefaults> {
+  const result = await query<DeliveryDefaultsRow>(
+    `SELECT default_phone, default_address, default_city, default_postal_code, default_instructions
+     FROM users WHERE id = $1 LIMIT 1`,
+    [userId],
+  );
+
+  return result.rows[0] ? toDeliveryDefaults(result.rows[0]) : EMPTY_DELIVERY_DEFAULTS;
+}
+
+export async function updateDeliveryDefaults(
+  userId: string,
+  input: DeliveryDefaults,
+): Promise<DeliveryDefaults | null> {
+  const result = await query<DeliveryDefaultsRow>(
+    `UPDATE users SET
+       default_phone = $2, default_address = $3, default_city = $4,
+       default_postal_code = $5, default_instructions = $6, updated_at = NOW()
+     WHERE id = $1
+     RETURNING default_phone, default_address, default_city, default_postal_code, default_instructions`,
+    [userId, input.phone, input.address, input.city, input.postalCode, input.instructions],
+  );
+
+  return result.rows[0] ? toDeliveryDefaults(result.rows[0]) : null;
 }
