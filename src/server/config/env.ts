@@ -46,6 +46,13 @@ export const env = {
   get adminPassword() {
     return required("ADMIN_PASSWORD");
   },
+  // Optional: the admin WhatsApp number that placed orders are sent to. Stored
+  // as digits in international format (e.g. 923001234567). Returns null when not
+  // configured, in which case the WhatsApp hand-off is simply skipped.
+  get adminWhatsapp() {
+    const value = process.env.ADMIN_WHATSAPP?.replace(/[^0-9]/g, "");
+    return value && value.length > 0 ? value : null;
+  },
   get isProduction() {
     return process.env.NODE_ENV === "production";
   },
