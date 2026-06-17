@@ -8,6 +8,7 @@ import { brandAssets, brandName, mainNavigation } from "@/constants/navigation";
 import { getCartItemCount } from "@/lib/cart";
 import { cn } from "@/lib/utils";
 import { useCartStore } from "@/stores/cart.store";
+import { useFavoritesStore } from "@/stores/favorites.store";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { Icon } from "@/components/common/Icon";
@@ -35,6 +36,7 @@ export function SiteHeader({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const cartItemCount = useCartStore((state) => getCartItemCount(state.items));
+  const favoritesCount = useFavoritesStore((state) => state.items.length);
   const { user, logout } = useAuth();
 
   async function handleLogout() {
@@ -102,6 +104,19 @@ export function SiteHeader({
               <Icon className="h-5 w-5" name="search" />
             </Link>
           )}
+
+          <Link
+            aria-label="View favorites"
+            className="relative inline-flex h-10 w-10 items-center justify-center rounded-full text-primary transition-colors hover:bg-surface-low"
+            href="/favorites"
+          >
+            <Icon className="h-5 w-5" name="heart" />
+            {favoritesCount > 0 ? (
+              <span className="absolute -right-0.5 -top-0.5 grid h-4 w-4 place-items-center rounded-full bg-secondary text-[10px] font-bold text-secondary-foreground">
+                {favoritesCount > 9 ? "9+" : favoritesCount}
+              </span>
+            ) : null}
+          </Link>
 
           <button
             aria-label="View cart"
