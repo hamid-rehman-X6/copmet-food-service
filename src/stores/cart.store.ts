@@ -2,7 +2,6 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { initialCartItems } from "@/constants/checkout.constants";
 import type { CartItem, CartProduct } from "@/types/checkout.types";
 
 type CartStore = {
@@ -17,7 +16,8 @@ type CartStore = {
 export const useCartStore = create<CartStore>()(
   persist(
     (set) => ({
-      items: initialCartItems,
+      // New carts start empty; items the customer adds persist to localStorage.
+      items: [],
       addItem: (product) =>
         set((state) => {
           const existingItem = state.items.find((item) => item.id === product.id);
