@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { brandName } from "@/constants/navigation";
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import { CurrencyProvider } from "@/components/providers/CurrencyProvider";
+import { ToastProvider } from "@/components/providers/ToastProvider";
 import { getSettings } from "@/server/settings/settings.service";
 import type { PublicSettings } from "@/types/settings.types";
 import "./globals.css";
@@ -30,9 +31,11 @@ export default async function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="min-h-full">
-        <CurrencyProvider settings={settings}>
-          <AuthProvider>{children}</AuthProvider>
-        </CurrencyProvider>
+        <ToastProvider>
+          <CurrencyProvider settings={settings}>
+            <AuthProvider>{children}</AuthProvider>
+          </CurrencyProvider>
+        </ToastProvider>
       </body>
     </html>
   );
