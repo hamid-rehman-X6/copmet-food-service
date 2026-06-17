@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getOrderTotals } from "@/lib/cart";
 import { useCartStore } from "@/stores/cart.store";
 import { useCurrency } from "@/components/providers/CurrencyProvider";
+import { FreeDeliveryNudge } from "@/components/cart/FreeDeliveryNudge";
 import { Card } from "@/components/common/Card";
 import { Icon } from "@/components/common/Icon";
 
@@ -104,11 +105,14 @@ export function OrderSummary() {
       </div>
 
       {items.length > 0 ? (
-        <div className="mt-6 flex items-center gap-3 rounded-lg bg-success-soft p-4 text-success-soft-foreground">
-          <Icon className="h-5 w-5" name="gift" />
-          <span className="text-xs font-semibold">
-            You&apos;re earning {totals.points} Copmet Points with this freezer order!
-          </span>
+        <div className="mt-6 space-y-4">
+          <FreeDeliveryNudge subtotal={totals.subtotal} />
+          <div className="flex items-center gap-3 rounded-lg bg-success-soft p-4 text-success-soft-foreground">
+            <Icon className="h-5 w-5" name="gift" />
+            <span className="text-xs font-semibold">
+              You&apos;re earning {totals.points} Copmet Points with this freezer order!
+            </span>
+          </div>
         </div>
       ) : null}
     </Card>

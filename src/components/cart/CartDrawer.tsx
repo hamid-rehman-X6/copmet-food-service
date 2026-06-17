@@ -6,6 +6,7 @@ import Link from "next/link";
 import { getOrderTotals } from "@/lib/cart";
 import { useCartStore } from "@/stores/cart.store";
 import { useCurrency } from "@/components/providers/CurrencyProvider";
+import { FreeDeliveryNudge } from "@/components/cart/FreeDeliveryNudge";
 import { Icon } from "@/components/common/Icon";
 
 type CartDrawerProps = {
@@ -129,6 +130,9 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
             </div>
 
             <div className="border-t border-border/60 px-5 py-5">
+              <div className="mb-4">
+                <FreeDeliveryNudge subtotal={totals.subtotal} />
+              </div>
               <div className="mb-4 flex items-center justify-between">
                 <span className="text-sm text-muted-foreground">Subtotal</span>
                 <span className="heading-font text-xl font-bold">{format(totals.subtotal)}</span>
