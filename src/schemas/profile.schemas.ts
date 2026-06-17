@@ -26,5 +26,16 @@ export const changePasswordSchema = z
     path: ["newPassword"],
   });
 
+// Saved default delivery details. All fields are optional so a customer can
+// store as much or as little as they like; blank fields clear the saved value.
+export const deliveryDefaultsSchema = z.object({
+  phone: z.string().trim().max(40).optional(),
+  address: z.string().trim().max(500).optional(),
+  city: z.string().trim().max(120).optional(),
+  postalCode: z.string().trim().max(20).optional(),
+  instructions: z.string().trim().max(500).optional(),
+});
+
 export type UpdateProfileInput = z.infer<typeof updateProfileSchema>;
 export type ChangePasswordInput = z.infer<typeof changePasswordSchema>;
+export type DeliveryDefaultsInput = z.infer<typeof deliveryDefaultsSchema>;

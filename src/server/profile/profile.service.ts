@@ -6,13 +6,16 @@ import {
   deleteAvatar,
   emailTakenByAnotherUser,
   getAvatar,
+  getDeliveryDefaults,
   getUserPasswordHash,
+  updateDeliveryDefaults,
   updateUserPassword,
   updateUserProfile,
   upsertAvatar,
 } from "@/server/profile/profile.repository";
-import type { ChangePasswordInput, UpdateProfileInput } from "@/schemas/profile.schemas";
+import type { ChangePasswordInput, DeliveryDefaultsInput, UpdateProfileInput } from "@/schemas/profile.schemas";
 import type { AuthUser } from "@/types/auth.types";
+import type { DeliveryDefaults } from "@/types/profile.types";
 
 // The admin account is environment-based and has no database row, so it cannot
 // edit a profile. Guard every mutating operation against it.
@@ -70,4 +73,47 @@ export async function removeAvatar(userId: string): Promise<void> {
 
 export async function getAvatarForServing(userId: string) {
   return getAvatar(userId);
+}
+
+const EMPTY_DELIVERY_DEFAULTS: DeliveryDefaults = {
+  phone: null,
+  address: null,
+  city: null,
+  postalCode: null,
+  instructions: null,
+};
+
+// Treat blank input as "cleared" so saving an empty field removes the value.
+function normalize(value: string | undefined): string | null {
+  return value && value.trim().length > 0 ? value.trim() : null;
+}
+
+export async function getDeliveryDefaultsService(userId: string): Promise<DeliveryDefaults> {
+  // The env admin has no DB row; return empty defaults instead of querying.
+  if (userId === envAdminUserId) {
+    return EMPTY_DELIVERY_DEFAULTS;
+  }
+
+  return getDeliveryDefaults(userId);
+}
+
+export async function saveDeliveryDefaults(
+  userId: string,
+  input: DeliveryDefaultsInput,
+): Promise<DeliveryDefaults> {
+  assertDatabaseUser(userId);
+
+  const saved = await updateDeliveryDefaults(userId, {
+    phone: normalize(input.phone),
+    address: normalize(input.address),
+    city: normalize(input.city),
+    postalCode: normalize(input.postalCode),
+    instructions: normalize(input.instructions),
+  });
+
+  if (!saved) {
+    throw errors.notFound("Your account could not be found.");
+  }
+
+  return saved;
 }
