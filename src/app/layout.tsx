@@ -30,7 +30,7 @@ export default async function RootLayout({
   const settings = await getSettings().catch(() => fallbackSettings);
 
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <head>
         {/* Set the theme class before paint to avoid a light/dark flash. */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />

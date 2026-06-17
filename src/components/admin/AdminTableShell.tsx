@@ -16,7 +16,7 @@ export function AdminTableShell({ children, summary, footer }: AdminTableShellPr
       <div className="overflow-x-auto">{children}</div>
       {summary || footer ? (
         <div className="flex flex-col gap-4 border-t border-border/60 bg-surface-low px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          {summary ? <p className="text-xs text-muted-foreground sm:text-sm">{summary}</p> : <span />}
+          {summary ? <div className="text-xs text-muted-foreground sm:text-sm">{summary}</div> : <span />}
           {footer}
         </div>
       ) : null}
