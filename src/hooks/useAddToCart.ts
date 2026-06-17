@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/auth/AuthProvider";
+import { useToast } from "@/components/providers/ToastProvider";
 import { useCartStore } from "@/stores/cart.store";
 import type { CartProduct } from "@/types/checkout.types";
 
@@ -13,16 +14,20 @@ import type { CartProduct } from "@/types/checkout.types";
 export function useAddToCart() {
   const { user, loading } = useAuth();
   const addItem = useCartStore((state) => state.addItem);
+  const { toast } = useToast();
   const router = useRouter();
 
   return useCallback(
-    (product: CartProduct) => {
-      addItem(product);
+    (product: CartProduct, quantity = 1) => {
+      addItem(product, quantity);
 
       if (!loading && !user) {
         router.push("/login?next=/checkout");
+        return;
       }
+
+      toast(`${product.name} added to cart`);
     },
-    [user, loading, addItem, router],
+    [user, loading, addItem, toast, router],
   );
 }
