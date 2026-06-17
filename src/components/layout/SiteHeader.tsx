@@ -13,6 +13,7 @@ import { useAuth } from "@/components/auth/AuthProvider";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { Icon } from "@/components/common/Icon";
 import { ProfileMenu } from "@/components/layout/ProfileMenu";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 type SiteHeaderProps = {
   showSearch?: boolean;
@@ -104,6 +105,8 @@ export function SiteHeader({
               <Icon className="h-5 w-5" name="search" />
             </Link>
           )}
+
+          <ThemeToggle />
 
           <Link
             aria-label="View favorites"
