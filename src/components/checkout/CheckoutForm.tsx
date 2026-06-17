@@ -39,6 +39,7 @@ export function CheckoutForm() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [placedOrder, setPlacedOrder] = useState<OrderDetail | null>(null);
+  const [whatsappUrl, setWhatsappUrl] = useState<string | null>(null);
 
   function update(key: keyof typeof form, value: string) {
     setForm((current) => ({ ...current, [key]: value }));
@@ -73,12 +74,19 @@ export function CheckoutForm() {
     setSubmitting(true);
 
     try {
-      const response = await apiRequest<{ order: OrderDetail }>("/api/v1/orders", {
+      const response = await apiRequest<{ order: OrderDetail; whatsappUrl: string | null }>("/api/v1/orders", {
         method: "POST",
         body: JSON.stringify(parsed.data),
       });
       clearCart();
       setPlacedOrder(response.data.order);
+      setWhatsappUrl(response.data.whatsappUrl);
+
+      // Best-effort hand-off to the admin's WhatsApp with the full order. The
+      // confirmation screen also shows a button in case the browser blocks this.
+      if (response.data.whatsappUrl) {
+        window.open(response.data.whatsappUrl, "_blank", "noopener,noreferrer");
+      }
     } catch (requestError) {
       setError(requestError instanceof ApiClientError ? requestError.message : "Unable to place your order right now.");
     } finally {
@@ -99,6 +107,24 @@ export function CheckoutForm() {
           <span className="font-semibold text-foreground">{placedOrder.reference}</span> is being prepared.
         </p>
         <p className="heading-font mt-4 text-3xl font-bold text-primary">{format(placedOrder.total)}</p>
+
+        {whatsappUrl ? (
+          <>
+            <p className="mx-auto mt-6 max-w-sm text-sm text-muted-foreground">
+              Tap below to send your order details to us on WhatsApp and confirm your delivery.
+            </p>
+            <a
+              className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-tertiary px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              href={whatsappUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Icon className="h-5 w-5" name="message" />
+              Send Order on WhatsApp
+            </a>
+          </>
+        ) : null}
+
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <Link
             className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-container"
@@ -127,7 +153,7 @@ export function CheckoutForm() {
         <div className="h-px flex-1 bg-border" />
         <div className="flex items-center gap-2 text-muted-foreground">
           <span className="grid h-8 w-8 place-items-center rounded-full border border-border text-sm">2</span>
-          <span className="hidden text-sm font-semibold min-[360px]:inline">Payment</span>
+          <span className="hidden text-sm font-semibold min-[360px]:inline">Confirm Order</span>
         </div>
       </div>
 
@@ -185,32 +211,22 @@ export function CheckoutForm() {
         </label>
       </div>
 
-      <div className="border-t border-border pt-10">
-        <h2 className="heading-font mb-5 text-2xl font-semibold sm:mb-6 sm:text-3xl">Payment Method</h2>
-        <div className="grid gap-5 md:grid-cols-2">
-          <label className="relative flex cursor-pointer items-center gap-3 rounded-xl border-2 border-primary bg-primary/5 p-4 sm:gap-4 sm:p-5">
-            <input checked className="sr-only" name="payment" readOnly type="radio" />
-            <Icon className="h-5 w-5 text-primary" name="card" />
-            <span className="text-sm font-semibold">Cash / Card on Delivery</span>
-            <Icon className="ml-auto h-5 w-5 text-primary" name="check" />
-          </label>
-          <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-border bg-muted p-4 text-muted-foreground sm:gap-4 sm:p-5">
-            <input className="sr-only" name="payment" type="radio" />
-            <Icon className="h-5 w-5" name="wallet" />
-            <span className="text-sm font-semibold">Digital Wallet</span>
-          </label>
-        </div>
-        <p className="mt-4 text-xs text-muted-foreground">Online card payment is coming soon. Orders are confirmed on delivery for now.</p>
-      </div>
-
       <div>
         <Button className={cn("w-full rounded-full py-4 text-base sm:py-5 sm:text-lg")} disabled={items.length === 0 || submitting} type="submit" variant="amber">
-          {submitting
-            ? "Placing Order..."
-            : items.length === 0
-              ? "Add Frozen Meals to Continue"
-              : `Place Frozen Order - ${format(totals.total)}`}
+          {submitting ? (
+            "Placing Order..."
+          ) : items.length === 0 ? (
+            "Add Frozen Meals to Continue"
+          ) : (
+            <>
+              <Icon className="h-5 w-5" name="message" />
+              Place Order on WhatsApp - {format(totals.total)}
+            </>
+          )}
         </Button>
+        <p className="mt-3 text-center text-xs text-muted-foreground">
+          We&apos;ll open WhatsApp so you can send your order details to us and confirm delivery.
+        </p>
         <p className="mt-5 text-center text-xs text-muted-foreground">
           By placing your order, you agree to our <Link className="underline" href="/terms">Terms of Service</Link> and{" "}
           <Link className="underline" href="/privacy">Privacy Policy</Link>.
