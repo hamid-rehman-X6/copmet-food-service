@@ -9,6 +9,7 @@ import { getCartItemCount } from "@/lib/cart";
 import { cn } from "@/lib/utils";
 import { useCartStore } from "@/stores/cart.store";
 import { useAuth } from "@/components/auth/AuthProvider";
+import { CartDrawer } from "@/components/cart/CartDrawer";
 import { Icon } from "@/components/common/Icon";
 import { ProfileMenu } from "@/components/layout/ProfileMenu";
 
@@ -32,6 +33,7 @@ export function SiteHeader({
   const pathname = usePathname();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const cartItemCount = useCartStore((state) => getCartItemCount(state.items));
   const { user, logout } = useAuth();
 
@@ -43,6 +45,7 @@ export function SiteHeader({
   }
 
   return (
+    <>
     <header className="sticky top-0 z-50 h-16 border-b border-border/50 bg-background/95 shadow-sm backdrop-blur sm:h-20">
       <nav className="page-shell flex h-full items-center justify-between gap-4">
         <Link className="flex shrink-0 items-center" href="/">
@@ -100,7 +103,7 @@ export function SiteHeader({
             </Link>
           )}
 
-          <Link
+          <button
             aria-label="View cart"
             className={cn(
               "relative inline-flex items-center justify-center gap-2 rounded-full text-primary transition-colors hover:bg-surface-low",
@@ -108,7 +111,8 @@ export function SiteHeader({
                 ? "h-10 w-10 bg-primary text-primary-foreground hover:bg-primary-container sm:w-auto sm:px-5 sm:py-3"
                 : "h-10 w-10",
             )}
-            href="/checkout"
+            onClick={() => setCartOpen(true)}
+            type="button"
           >
             <Icon className="h-5 w-5" name="cart" />
             {showCartLabel ? <span className="hidden text-sm font-semibold sm:inline">Cart ({cartItemCount})</span> : null}
@@ -122,7 +126,7 @@ export function SiteHeader({
                 {cartItemCount > 9 ? "9+" : cartItemCount}
               </span>
             ) : null}
-          </Link>
+          </button>
 
           {user ? (
             <div className="hidden sm:block">
@@ -214,5 +218,8 @@ export function SiteHeader({
         </div>
       ) : null}
     </header>
+
+    <CartDrawer onClose={() => setCartOpen(false)} open={cartOpen} />
+    </>
   );
 }
