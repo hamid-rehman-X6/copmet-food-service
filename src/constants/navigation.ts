@@ -32,14 +32,6 @@ export const footerColumns: FooterColumn[] = [
   {
     title: "Support",
     links: [
-      {
-        label: "Track Order",
-        href: "/track-order",
-        comingSoon: {
-          title: "Order tracking is coming soon",
-          message: "Live frozen-order tracking is almost ready. For now, our team will share delivery updates after checkout.",
-        },
-      },
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Service", href: "/terms" },
     ],
@@ -49,14 +41,6 @@ export const footerColumns: FooterColumn[] = [
     links: [
       { label: "Frozen Catalog", href: "/menu" },
       { label: "Checkout", href: "/checkout" },
-      {
-        label: "Track Order",
-        href: "/track-order",
-        comingSoon: {
-          title: "Order tracking is coming soon",
-          message: "Live frozen-order tracking is almost ready. For now, our team will share delivery updates after checkout.",
-        },
-      },
     ],
   },
 ];
