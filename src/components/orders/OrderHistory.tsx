@@ -10,6 +10,7 @@ import { useCurrency } from "@/components/providers/CurrencyProvider";
 import { AdminPagination } from "@/components/admin/AdminPagination";
 import { AdminStatusBadge } from "@/components/admin/AdminStatusBadge";
 import { Icon } from "@/components/common/Icon";
+import { CustomerOrderModal } from "@/components/orders/CustomerOrderModal";
 import { OrderHistorySkeleton } from "@/components/orders/OrderHistorySkeleton";
 import type { OrderSummary } from "@/types/order.types";
 import type { Paginated } from "@/types/common.types";
@@ -26,6 +27,7 @@ function OrderHistoryList() {
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [activeOrderId, setActiveOrderId] = useState<string | null>(null);
   const requestRef = useRef(0);
 
   useEffect(() => {
@@ -100,7 +102,17 @@ function OrderHistoryList() {
             <p className="text-sm text-muted-foreground">
               {order.itemCount} {order.itemCount === 1 ? "item" : "items"}
             </p>
-            <p className="heading-font text-lg font-bold text-primary">{format(order.total)}</p>
+            <div className="flex items-center gap-4">
+              <p className="heading-font text-lg font-bold text-primary">{format(order.total)}</p>
+              <button
+                className="inline-flex items-center gap-1 text-sm font-semibold text-primary transition-colors hover:text-primary-container"
+                onClick={() => setActiveOrderId(order.id)}
+                type="button"
+              >
+                View details
+                <Icon className="h-4 w-4" name="arrowRight" />
+              </button>
+            </div>
           </div>
         </article>
       ))}
@@ -115,6 +127,10 @@ function OrderHistoryList() {
             }}
           />
         </div>
+      ) : null}
+
+      {activeOrderId ? (
+        <CustomerOrderModal key={activeOrderId} onClose={() => setActiveOrderId(null)} orderId={activeOrderId} />
       ) : null}
     </div>
   );
