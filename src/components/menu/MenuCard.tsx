@@ -3,8 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useAddToCart } from "@/hooks/useAddToCart";
+import { cn } from "@/lib/utils";
 import { useCartStore } from "@/stores/cart.store";
+import { useFavoritesStore } from "@/stores/favorites.store";
 import { useCurrency } from "@/components/providers/CurrencyProvider";
+import { useToast } from "@/components/providers/ToastProvider";
 import { Button } from "@/components/common/Button";
 import { Chip } from "@/components/common/Chip";
 import { Icon } from "@/components/common/Icon";
@@ -30,6 +33,10 @@ export function MenuCard({ product }: { product: PublicProduct }) {
   // Quantity the customer wants to add in one go (resets after adding).
   const [qty, setQty] = useState(1);
 
+  const { toast } = useToast();
+  const toggleFavorite = useFavoritesStore((state) => state.toggle);
+  const isFavorite = useFavoritesStore((state) => state.items.some((item) => item.id === product.id));
+
   return (
     <article className="hover-lift group flex h-full flex-col overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-soft)]">
       <div className="relative h-56 overflow-hidden sm:h-64">
@@ -44,6 +51,18 @@ export function MenuCard({ product }: { product: PublicProduct }) {
           <Icon className="h-4 w-4 fill-secondary text-secondary" name="star" />
           <span className="text-sm font-semibold">{product.rating}</span>
         </div>
+        <button
+          aria-label={isFavorite ? `Remove ${product.name} from favorites` : `Save ${product.name} to favorites`}
+          aria-pressed={isFavorite}
+          className="absolute left-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-card/90 shadow-sm backdrop-blur transition-colors hover:bg-card"
+          onClick={() => {
+            toggleFavorite(product);
+            toast(isFavorite ? `${product.name} removed from favorites` : `${product.name} saved to favorites`);
+          }}
+          type="button"
+        >
+          <Icon className={cn("h-5 w-5", isFavorite ? "fill-error text-error" : "text-muted-foreground")} name="heart" />
+        </button>
       </div>
       <div className="flex flex-1 flex-col gap-4 p-5 sm:p-6">
         <div className="flex items-start justify-between gap-4">
