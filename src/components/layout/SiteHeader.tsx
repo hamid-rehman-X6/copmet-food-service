@@ -181,6 +181,17 @@ export function SiteHeader({
                   <Icon className="h-5 w-5" name="user" />
                   Profile
                 </Link>
+                <Link
+                  className={cn(
+                    "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold text-muted-foreground transition-colors hover:bg-surface-low hover:text-primary",
+                    pathname === "/orders" && "bg-primary/10 text-primary",
+                  )}
+                  href="/orders"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Icon className="h-5 w-5" name="receipt" />
+                  My Orders
+                </Link>
                 <button
                   className="mt-1 flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-primary-foreground"
                   onClick={handleLogout}

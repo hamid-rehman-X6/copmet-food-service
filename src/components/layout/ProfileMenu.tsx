@@ -93,6 +93,16 @@ export function ProfileMenu({ user, onLogout }: ProfileMenuProps) {
             Profile
           </Link>
 
+          <Link
+            className="flex items-center gap-3 px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-surface-low"
+            href="/orders"
+            onClick={() => setOpen(false)}
+            role="menuitem"
+          >
+            <Icon className="h-5 w-5 text-muted-foreground" name="receipt" />
+            My Orders
+          </Link>
+
           <button
             className={cn(
               "flex w-full items-center gap-3 border-t border-border/60 px-4 py-3 text-left text-sm font-semibold text-error transition-colors hover:bg-error/5",
