@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { placeOrderSchema } from "@/schemas/order.schemas";
@@ -14,6 +14,7 @@ import { AuthFormAlert } from "@/components/auth/AuthFormAlert";
 import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
 import type { OrderDetail } from "@/types/order.types";
+import type { DeliveryDefaults } from "@/types/profile.types";
 
 const initialForm = {
   firstName: "",
@@ -35,11 +36,42 @@ export function CheckoutForm() {
   const clearCart = useCartStore((state) => state.clearCart);
   const totals = getOrderTotals(items, settings);
 
-  const [form, setForm] = useState(initialForm);
+  // Seed the contact name from the signed-in account; delivery fields are filled
+  // from saved defaults below.
+  const [form, setForm] = useState(() => ({
+    ...initialForm,
+    firstName: user?.firstName ?? "",
+    lastName: user?.lastName ?? "",
+  }));
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [placedOrder, setPlacedOrder] = useState<OrderDetail | null>(null);
   const [whatsappUrl, setWhatsappUrl] = useState<string | null>(null);
+
+  // Pre-fill the delivery fields from the customer's saved defaults. Only empty
+  // fields are filled, so anything the customer has already typed is preserved.
+  useEffect(() => {
+    let active = true;
+
+    apiRequest<{ delivery: DeliveryDefaults }>("/api/v1/profile/delivery")
+      .then((response) => {
+        if (!active) return;
+        const { delivery } = response.data;
+        setForm((current) => ({
+          ...current,
+          phone: current.phone || (delivery.phone ?? ""),
+          address: current.address || (delivery.address ?? ""),
+          city: current.city || (delivery.city ?? ""),
+          postalCode: current.postalCode || (delivery.postalCode ?? ""),
+          instructions: current.instructions || (delivery.instructions ?? ""),
+        }));
+      })
+      .catch(() => undefined);
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   function update(key: keyof typeof form, value: string) {
     setForm((current) => ({ ...current, [key]: value }));
