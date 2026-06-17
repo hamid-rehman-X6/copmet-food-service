@@ -39,14 +39,44 @@
 }
 
 .dark {
-  --background: #1c1c18;
+  --background: #161512;
   --foreground: #f4f0ea;
-  --surface: #31302d;
-  --surface-low: #252420;
-  --surface-card: #31302d;
-  --muted: #252420;
-  --muted-foreground: #e6e2dc;
-  --border: #56423c;
+  --primary: #e07a52;
+  --primary-foreground: #2a0f06;
+  --primary-container: #c25a37;
+  --secondary: #f0b44e;
+  --secondary-foreground: #2a1c00;
+  --secondary-container: #5c3f00;
+  --secondary-container-foreground: #ffdfa6;
+  --tertiary: #9ccb98;
+  --tertiary-foreground: #10240f;
+  --tertiary-container: #2f4a2e;
+  --tertiary-container-foreground: #e7ffe2;
+  --success-soft: #244024;
+  --success-soft-foreground: #cdebc7;
+  --muted: #211f1c;
+  --muted-foreground: #c9c2ba;
+  --surface: #1f1e1a;
+  --surface-low: #211f1c;
+  --surface-card: #26241f;
+  --surface-raised: #2c2a25;
+  --surface-highest: #34312b;
+  --border: #43403a;
+  --border-strong: #8a817a;
+  --error: #ff5449;
+  --inverse: #f4f0ea;
+  --inverse-foreground: #1c1c18;
+  --shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.5);
+  --shadow-lift: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+}
+
+/* Hint native UI (form controls, scrollbars) to match the active theme. */
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
 }
 
 @theme inline {

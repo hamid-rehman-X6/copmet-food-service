@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { brandName } from "@/constants/navigation";
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import { CurrencyProvider } from "@/components/providers/CurrencyProvider";
+import { ThemeProvider, themeInitScript } from "@/components/providers/ThemeProvider";
 import { ToastProvider } from "@/components/providers/ToastProvider";
 import { getSettings } from "@/server/settings/settings.service";
 import type { PublicSettings } from "@/types/settings.types";
@@ -30,12 +31,18 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className="h-full antialiased">
+      <head>
+        {/* Set the theme class before paint to avoid a light/dark flash. */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="min-h-full">
-        <ToastProvider>
-          <CurrencyProvider settings={settings}>
-            <AuthProvider>{children}</AuthProvider>
-          </CurrencyProvider>
-        </ToastProvider>
+        <ThemeProvider>
+          <ToastProvider>
+            <CurrencyProvider settings={settings}>
+              <AuthProvider>{children}</AuthProvider>
+            </CurrencyProvider>
+          </ToastProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
