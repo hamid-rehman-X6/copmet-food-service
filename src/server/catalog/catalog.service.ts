@@ -6,6 +6,7 @@ import {
   createProduct,
   deleteProduct,
   findAdminProductById,
+  findPublicProductBySlug,
   listAdminProducts,
   listCategories,
   listPublicProducts,
@@ -54,6 +55,28 @@ export async function getAdminProductService(id: string): Promise<AdminProduct> 
   }
 
   return product;
+}
+
+// Public product detail by slug. Returns null (not a thrown error) when missing
+// so the page can render the global notFound() screen instead of an API error.
+export async function getPublicProductBySlugService(slug: string): Promise<PublicProduct | null> {
+  return findPublicProductBySlug(slug);
+}
+
+// A small set of products from the same category to suggest on the detail page.
+// Fetches one extra so the current product can be excluded without coming up short.
+export async function listRelatedProductsService(
+  categorySlug: string,
+  excludeId: string,
+  limit = 3,
+): Promise<PublicProduct[]> {
+  const { items } = await listPublicProductsService({
+    filters: { categorySlug },
+    sort: "popular",
+    pagination: { page: 1, pageSize: limit + 1, limit: limit + 1, offset: 0 },
+  });
+
+  return items.filter((product) => product.id !== excludeId).slice(0, limit);
 }
 
 // Generate a unique slug from the name, appending a numeric suffix on collision

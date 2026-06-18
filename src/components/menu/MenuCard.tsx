@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useAddToCart } from "@/hooks/useAddToCart";
 import { cn } from "@/lib/utils";
 import { useCartStore } from "@/stores/cart.store";
@@ -47,7 +48,9 @@ export function MenuCard({ product }: { product: PublicProduct }) {
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
           src={product.image.src}
         />
-        <div className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-card/90 px-3 py-1 shadow-sm backdrop-blur">
+        {/* Stretched link over the image; badges/buttons sit above it. */}
+        <Link aria-label={`View ${product.name}`} className="absolute inset-0" href={`/menu/${product.slug}`} />
+        <div className="pointer-events-none absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-card/90 px-3 py-1 shadow-sm backdrop-blur">
           <Icon className="h-4 w-4 fill-secondary text-secondary" name="star" />
           <span className="text-sm font-semibold">{product.rating}</span>
         </div>
@@ -66,7 +69,11 @@ export function MenuCard({ product }: { product: PublicProduct }) {
       </div>
       <div className="flex flex-1 flex-col gap-4 p-5 sm:p-6">
         <div className="flex items-start justify-between gap-4">
-          <h2 className="heading-font text-xl font-semibold leading-tight sm:text-2xl">{product.name}</h2>
+          <h2 className="heading-font text-xl font-semibold leading-tight sm:text-2xl">
+            <Link className="transition-colors hover:text-primary" href={`/menu/${product.slug}`}>
+              {product.name}
+            </Link>
+          </h2>
           <span className="heading-font whitespace-nowrap text-lg font-semibold text-primary sm:text-xl">
             {format(product.price)}
           </span>
