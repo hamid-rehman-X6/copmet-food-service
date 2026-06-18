@@ -4,6 +4,7 @@ import Link from "next/link";
 import { aboutStats, aboutValues } from "@/constants/about.constants";
 import { Card } from "@/components/common/Card";
 import { Icon } from "@/components/common/Icon";
+import { Reveal } from "@/components/common/Reveal";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 
@@ -18,7 +19,7 @@ export default function AboutPage() {
       <SiteHeader />
       <main>
         <section className="page-shell grid items-center gap-10 py-10 sm:py-16 lg:grid-cols-2 lg:gap-12 lg:py-24">
-          <div>
+          <div className="animate-fade-in-up">
             <p className="mb-4 text-xs font-bold uppercase tracking-[0.28em] text-secondary">Our Story</p>
             <h1 className="heading-font max-w-xl text-4xl font-bold leading-tight tracking-tight text-primary sm:text-5xl md:text-6xl">
               Good homemade food should be ready when you need it.
@@ -41,6 +42,7 @@ export default function AboutPage() {
           </div>
         </section>
 
+        <Reveal>
         <section className="bg-muted py-14 sm:py-20">
           <div className="page-shell">
             <div className="mx-auto mb-12 max-w-2xl text-center">
@@ -65,7 +67,9 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+        </Reveal>
 
+        <Reveal>
         <section className="page-shell py-14 sm:py-20">
           <div className="grid overflow-hidden rounded-3xl bg-primary text-primary-foreground lg:grid-cols-2">
             <div className="flex flex-col justify-center p-6 sm:p-8 md:p-12 lg:p-16">
@@ -103,6 +107,7 @@ export default function AboutPage() {
             ))}
           </div>
         </section>
+        </Reveal>
       </main>
       <SiteFooter />
     </>

@@ -36,7 +36,7 @@ export function ToastProvider({ children }: Readonly<{ children: React.ReactNode
         {toasts.map((item) => (
           <div
             className={cn(
-              "pointer-events-auto flex items-center gap-3 rounded-xl border bg-card px-4 py-3 text-sm font-semibold shadow-[var(--shadow-lift)]",
+              "animate-toast-in pointer-events-auto flex items-center gap-3 rounded-xl border bg-card px-4 py-3 text-sm font-semibold shadow-[var(--shadow-lift)]",
               item.tone === "error" ? "border-error/30 text-error" : "border-border text-foreground",
             )}
             key={item.id}

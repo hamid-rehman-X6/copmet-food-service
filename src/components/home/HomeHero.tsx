@@ -16,7 +16,7 @@ export function HomeHero() {
       />
       <div className="absolute inset-0 bg-linear-to-r from-background/95 via-background/80 to-background/25 sm:via-background/65 sm:to-background/10" />
       <div className="page-shell relative flex min-h-[560px] items-center py-14 sm:min-h-[640px] sm:py-20 md:min-h-[720px] md:py-24">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl animate-fade-in-up">
           <h1 className="heading-font mb-5 text-4xl font-bold leading-tight tracking-tight text-primary sm:mb-6 sm:text-5xl md:text-6xl">
             Homemade frozen meals,
             <br className="hidden min-[380px]:block" />

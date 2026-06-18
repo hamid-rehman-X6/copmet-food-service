@@ -5,6 +5,7 @@ import { HowItWorks } from "@/components/home/HowItWorks";
 import { NewsletterCta } from "@/components/home/NewsletterCta";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { Reveal } from "@/components/common/Reveal";
 
 export default function HomePage() {
   return (
@@ -12,10 +13,18 @@ export default function HomePage() {
       <SiteHeader showSearch />
       <main>
         <HomeHero />
-        <FeaturedMeals />
-        <HowItWorks />
-        <CommunitySection />
-        <NewsletterCta />
+        <Reveal>
+          <FeaturedMeals />
+        </Reveal>
+        <Reveal>
+          <HowItWorks />
+        </Reveal>
+        <Reveal>
+          <CommunitySection />
+        </Reveal>
+        <Reveal>
+          <NewsletterCta />
+        </Reveal>
       </main>
       <SiteFooter />
 

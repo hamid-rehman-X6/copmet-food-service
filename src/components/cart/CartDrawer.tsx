@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getOrderTotals } from "@/lib/cart";
+import { cn } from "@/lib/utils";
 import { useCartStore } from "@/stores/cart.store";
 import { useCurrency } from "@/components/providers/CurrencyProvider";
 import { FreeDeliveryNudge } from "@/components/cart/FreeDeliveryNudge";
@@ -45,17 +46,32 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
     };
   }, [open, onClose]);
 
-  if (!open) {
-    return null;
-  }
-
+  // Always mounted so the panel can animate both in and out. When closed it is
+  // off-screen, transparent, non-interactive (pointer-events-none), and removed
+  // from the a11y/focus order (aria-hidden + inert).
   return (
-    <div className="fixed inset-0 z-[90]">
-      <button aria-label="Close cart" className="absolute inset-0 bg-inverse/40 backdrop-blur-sm" onClick={onClose} type="button" />
+    <div
+      aria-hidden={!open}
+      className={cn("fixed inset-0 z-[90]", open ? "pointer-events-auto" : "pointer-events-none")}
+      inert={!open}
+    >
+      <button
+        aria-label="Close cart"
+        className={cn(
+          "absolute inset-0 bg-inverse/40 backdrop-blur-sm transition-opacity duration-300 ease-out motion-reduce:transition-none",
+          open ? "opacity-100" : "opacity-0",
+        )}
+        onClick={onClose}
+        tabIndex={open ? 0 : -1}
+        type="button"
+      />
 
       <aside
         aria-label="Shopping cart"
-        className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-card shadow-[var(--shadow-lift)]"
+        className={cn(
+          "absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-card shadow-[var(--shadow-lift)] transition-transform duration-300 ease-out motion-reduce:transition-none",
+          open ? "translate-x-0" : "translate-x-full",
+        )}
       >
         <div className="flex items-center justify-between gap-4 border-b border-border/60 px-5 py-4">
           <h2 className="heading-font text-xl font-semibold">Your Cart</h2>

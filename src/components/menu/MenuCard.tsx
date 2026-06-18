@@ -39,7 +39,7 @@ export function MenuCard({ product }: { product: PublicProduct }) {
   const isFavorite = useFavoritesStore((state) => state.items.some((item) => item.id === product.id));
 
   return (
-    <article className="hover-lift group flex h-full flex-col overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-soft)]">
+    <article className="hover-lift animate-fade-in group flex h-full flex-col overflow-hidden rounded-2xl bg-card shadow-[var(--shadow-soft)]">
       <div className="relative h-56 overflow-hidden sm:h-64">
         <Image
           alt={product.image.alt}

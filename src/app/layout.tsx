@@ -34,6 +34,11 @@ export default async function RootLayout({
       <head>
         {/* Set the theme class before paint to avoid a light/dark flash. */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {/* Without JS the scroll-reveal class never flips, so reveal content
+            up-front to avoid permanently hidden sections. */}
+        <noscript>
+          <style>{".reveal{opacity:1;transform:none;}"}</style>
+        </noscript>
       </head>
       <body className="min-h-full">
         <ThemeProvider>

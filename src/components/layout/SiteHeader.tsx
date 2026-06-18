@@ -175,7 +175,7 @@ export function SiteHeader({
       </nav>
 
       {mobileMenuOpen ? (
-        <div className="absolute inset-x-0 top-full border-b border-border bg-background py-3 shadow-[var(--shadow-soft)] md:hidden">
+        <div className="animate-fade-in absolute inset-x-0 top-full border-b border-border bg-background py-3 shadow-[var(--shadow-soft)] md:hidden">
           <nav aria-label="Mobile navigation" className="page-shell flex flex-col gap-2">
             {mainNavigation.map((item) => (
               <Link
