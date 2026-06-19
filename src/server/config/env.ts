@@ -20,8 +20,21 @@ function secret(name: string) {
   return value;
 }
 
+// Either a single connection string (production: Neon pooled URL) or the
+// discrete connection fields (local development).
+export type DatabaseConfig =
+  | { url: string }
+  | { host: string; port: number; name: string; user: string; password: string; ssl: boolean };
+
 export const env = {
-  get database() {
+  // Prefer DATABASE_URL when present (e.g. the Neon pooled connection string on
+  // Vercel); otherwise fall back to the discrete DB_* vars used locally.
+  get database(): DatabaseConfig {
+    const url = process.env.DATABASE_URL?.trim();
+    if (url) {
+      return { url };
+    }
+
     return {
       host: required("DB_HOST"),
       port: Number(required("DB_PORT")),

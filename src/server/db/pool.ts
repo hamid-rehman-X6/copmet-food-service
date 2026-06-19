@@ -7,17 +7,30 @@ function getPool() {
   if (!pool) {
     const database = env.database;
 
-    pool = new Pool({
-      host: database.host,
-      port: database.port,
-      database: database.name,
-      user: database.user,
-      password: database.password,
-      max: 10,
-      idleTimeoutMillis: 30_000,
-      connectionTimeoutMillis: 5_000,
-      ssl: database.ssl ? { rejectUnauthorized: false } : undefined,
-    });
+    pool =
+      "url" in database
+        ? new Pool({
+            connectionString: database.url,
+            // Managed Postgres (Neon, etc.) requires TLS. rejectUnauthorized is
+            // false because the provider's cert chain isn't pinned here.
+            ssl: { rejectUnauthorized: false },
+            // Small per-instance cap: on serverless many instances run at once
+            // behind Neon's pooler, so a large max would exhaust connections.
+            max: 5,
+            idleTimeoutMillis: 30_000,
+            connectionTimeoutMillis: 10_000,
+          })
+        : new Pool({
+            host: database.host,
+            port: database.port,
+            database: database.name,
+            user: database.user,
+            password: database.password,
+            max: 10,
+            idleTimeoutMillis: 30_000,
+            connectionTimeoutMillis: 5_000,
+            ssl: database.ssl ? { rejectUnauthorized: false } : undefined,
+          });
   }
 
   return pool;
