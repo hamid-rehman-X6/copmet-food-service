@@ -2,7 +2,7 @@
 
 A full-stack frozen food service web application built with **Next.js 16**, **TypeScript**, **Tailwind CSS 4**, and **PostgreSQL**. The platform enables customers to browse homemade frozen meals, build a freezer cart, place cold-packed delivery orders, and track deliveries in real time, while an admin panel provides operators with dashboards, order management, frozen catalog editing, and customer oversight.
 
-> **Status**: Active development - authentication module is production-ready; frozen menu, checkout, and order-tracking modules are currently using static data and will be wired to the database in upcoming iterations.
+> **Status**: Active development. Authentication, the frozen menu and catalog, product detail pages, checkout (WhatsApp order hand-off), customer accounts (profile, orders, favorites), and the admin panel are all wired to PostgreSQL. The app is deployable to Vercel with a managed Postgres such as Neon — see [Deploy to Production](#deploy-to-production-vercel--neon).
 
 ---
 
@@ -14,14 +14,14 @@ A full-stack frozen food service web application built with **Next.js 16**, **Ty
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Environment Variables](#environment-variables)
-  - [Installation](#installation)
+  - [Run Locally](#run-locally)
+  - [Deploy to Production (Vercel + Neon)](#deploy-to-production-vercel--neon)
 - [Available Scripts](#available-scripts)
 - [Modules](#modules)
   - [Authentication](#authentication)
   - [Home Page](#home-page)
   - [Menu](#menu)
   - [Checkout & Cart](#checkout--cart)
-  - [Order Tracking](#order-tracking)
   - [About Page](#about-page)
   - [Admin Panel](#admin-panel)
 - [API Reference](#api-reference)
@@ -36,8 +36,9 @@ A full-stack frozen food service web application built with **Next.js 16**, **Ty
 - **Admin Authentication** — Environment-variable-based admin credentials with timing-safe comparison and dedicated admin login flow.
 - **Frozen Menu Browsing** — Category filtering, dietary filters (Vegan, GF, Organic, Nut-Free), and multiple sort modes (popular, newest, price, rating).
 - **Freezer Cart** — Client-side cart powered by Zustand with localStorage persistence, quantity controls, and automatic total calculations.
-- **Checkout** — Frozen order summary with delivery fee logic, reward points calculation, and a customer information form.
-- **Order Tracking** — Cold-packed delivery status timeline, courier information, order summary breakdown, and an interactive map placeholder.
+- **Checkout** — Frozen order summary with delivery fee logic and a customer information form; orders are handed off to the operator's WhatsApp with the full order details.
+- **Customer Accounts** — Profile management, avatar upload, saved delivery details, order history with reorder, and a favorites list.
+- **Product Detail Pages** — Dedicated `/menu/[slug]` pages with related items, plus a light/dark theme toggle across the storefront.
 - **Admin Dashboard** — Metric cards for revenue, orders, and customers; recent frozen orders table; popular freezer items panel.
 - **Admin Management** — Dedicated pages for managing orders, frozen catalog items, and customer records with searchable tables.
 - **Responsive Design** — Mobile-first layouts with a warm, organic "Modern Organic" design system using Quicksand and Be Vietnam Pro fonts.
@@ -69,7 +70,13 @@ A full-stack frozen food service web application built with **Next.js 16**, **Ty
 copmet-food-service/
 ├── database/
 │   └── migrations/              # Sequentially numbered SQL migration files
-│       └── 001_auth.sql         # Users, refresh_sessions, and schema_migrations tables
+│       ├── 001_auth.sql                    # Users, refresh_sessions, schema_migrations
+│       ├── 002_settings.sql                # Store settings (currency, delivery pricing)
+│       ├── 003_catalog.sql                 # Categories and products
+│       ├── 004_orders.sql                  # Orders and order_items
+│       ├── 005_seed_catalog.sql            # Seed categories + products
+│       ├── 006_user_avatars.sql            # Profile avatars (stored as BYTEA)
+│       └── 007_user_delivery_defaults.sql  # Saved delivery details
 ├── docs/
 │   └── backend.md               # Backend architecture and API documentation
 ├── public/
@@ -99,8 +106,7 @@ copmet-food-service/
 │   │   │   │   └── signup/      # POST — Customer registration
 │   │   │   └── health/          # GET  — Health check
 │   │   ├── checkout/            # Checkout page
-│   │   ├── menu/                # Menu browsing page
-│   │   └── track-order/         # Order tracking page
+│   │   └── menu/                # Menu listing + /menu/[slug] detail pages
 │   ├── components/              # React UI components
 │   │   ├── admin/               # Admin panel components
 │   │   ├── auth/                # Authentication components
@@ -108,8 +114,7 @@ copmet-food-service/
 │   │   ├── common/              # Shared/reusable components
 │   │   ├── home/                # Home page sections
 │   │   ├── layout/              # Header and footer
-│   │   ├── menu/                # Menu browsing components
-│   │   └── tracking/            # Order tracking components
+│   │   └── menu/                # Menu browsing + product detail components
 │   ├── constants/               # Static data and configuration constants
 │   ├── lib/                     # Client-side utilities
 │   │   ├── api-client.ts        # Fetch wrapper with auto-refresh on 401
@@ -136,53 +141,90 @@ copmet-food-service/
 
 ## Getting Started
 
+The same codebase runs in two configurations:
+
+- **Local development** — a local PostgreSQL (or a Neon dev branch) via the discrete `DB_*` variables, served by `npm run dev`.
+- **Production** — a single pooled `DATABASE_URL` (e.g. Neon) with the app deployed on Vercel.
+
+The connection is chosen automatically: when `DATABASE_URL` is set it takes precedence (and TLS is enabled); otherwise the app falls back to the discrete `DB_*` variables.
+
 ### Prerequisites
 
-- **Node.js** 18.17 or later
-- **PostgreSQL** 14 or later (local or remote)
+- **Node.js** 20 or later (the migration runner uses top-level `await`)
 - **npm** (included with Node.js)
+- A **PostgreSQL** database — either local PostgreSQL 14+, or a free [Neon](https://neon.tech) project (recommended for production, and usable locally too)
 
 ### Environment Variables
 
-Copy the example environment file and fill in all values:
+Copy the template and fill in the values:
 
 ```bash
 cp .env.example .env.local
 ```
 
-| Variable | Required | Description |
-| --- | --- | --- |
-| `JWT_ACCESS_SECRET` | ✅ | Secret for signing access JWTs (minimum 32 characters) |
-| `JWT_REFRESH_SECRET` | ✅ | Secret for signing refresh JWTs (minimum 32 characters, must differ from access secret) |
-| `APP_URL` | ✅ | Public URL of the application (e.g., `http://localhost:3000`) |
-| `ADMIN_EMAIL` | ✅ | Email address for the environment-based admin account |
-| `ADMIN_PASSWORD` | ✅ | Password for the environment-based admin account |
-| `DB_HOST` | ✅ | PostgreSQL host (e.g., `localhost`) |
-| `DB_PORT` | ✅ | PostgreSQL port (e.g., `5432`) |
-| `DB_NAME` | ✅ | Database name |
-| `DB_USER` | ✅ | Database user |
-| `DB_PASSWORD` | ✅ | Database password |
-| `DB_SSL` | ❌ | Set to `true` to enable SSL connections (default: `false`) |
+| Variable | Required | Used in | Description |
+| --- | --- | --- | --- |
+| `JWT_ACCESS_SECRET` | ✅ | both | Secret for signing access JWTs (min 32 chars) |
+| `JWT_REFRESH_SECRET` | ✅ | both | Secret for signing refresh JWTs (min 32 chars, must differ from the access secret) |
+| `APP_URL` | ✅ | both | Public URL used for same-origin checks — `http://localhost:3000` locally, your `https://…` URL in production |
+| `ADMIN_EMAIL` | ✅ | both | Email for the environment-based admin account |
+| `ADMIN_PASSWORD` | ✅ | both | Password for the environment-based admin account |
+| `ADMIN_WHATSAPP` | ❌ | both | Operator WhatsApp number placed orders are sent to (international format, digits only, e.g. `923001234567`). Hand-off is skipped when empty |
+| `DATABASE_URL` | ⬩ | **prod** | Single pooled Postgres connection string. When set it takes precedence over `DB_*` and TLS is forced. Use Neon's **pooled** (`-pooler`) host on Vercel |
+| `DB_HOST` | ⬩ | local | PostgreSQL host (e.g. `localhost`) — used only when `DATABASE_URL` is empty |
+| `DB_PORT` | ⬩ | local | PostgreSQL port (e.g. `5432`) |
+| `DB_NAME` | ⬩ | local | Database name |
+| `DB_USER` | ⬩ | local | Database user |
+| `DB_PASSWORD` | ⬩ | local | Database password |
+| `DB_SSL` | ❌ | local | Set to `true` to enable TLS for the `DB_*` connection (default `false`) |
 
-> **Security note**: Generate JWT secrets with a cryptographically secure password generator. Each secret must be unique and at least 32 characters long.
+> Provide **either** `DATABASE_URL` **or** the five `DB_*` variables.
 
-### Installation
+> **Security note**: generate JWT secrets with a cryptographically secure generator (e.g. `openssl rand -base64 48`). Use **different** secrets in every environment.
+
+### Run Locally
 
 ```bash
-# Install dependencies
+# 1. Install dependencies
 npm install
 
-# Create the database (PostgreSQL CLI)
+# 2. Point .env.local at a database (choose ONE):
+#    a) Local PostgreSQL — create the DB, then set DB_HOST/DB_PORT/DB_NAME/DB_USER/DB_PASSWORD
 createdb copmet_food_service
+#    b) Neon — set DATABASE_URL instead (leave DB_* empty)
 
-# Run database migrations
+# 3. Create the schema and seed the catalog (5 categories, 18 products)
 npm run db:migrate
 
-# Start the development server
+# 4. Start the dev server
 npm run dev
 ```
 
-The application will be available at [http://localhost:3000](http://localhost:3000).
+The app will be available at [http://localhost:3000](http://localhost:3000).
+To check a production build locally, run `npm run build` then `npm start`.
+
+### Deploy to Production (Vercel + Neon)
+
+The app is a standard Next.js project; deploy it on Vercel with Neon as the database. Vercel runs it on serverless functions, so use Neon's connection pooler.
+
+1. **Create a Neon project** and copy its connection string. You'll use two forms of it:
+   - the **pooled** string (host contains `-pooler`) → for the running app
+   - the **direct** string (no `-pooler`) → for running migrations
+2. **Apply migrations to the Neon database** (once, and again whenever you add migrations). Set the **direct** string as `DATABASE_URL` locally, then:
+   ```bash
+   npm run db:migrate
+   ```
+   Migrations are idempotent — already-applied ones are skipped.
+3. **Import the repo into Vercel** (New Project → select the GitHub repo). Next.js is auto-detected; leave the build settings at their defaults.
+4. **Add Environment Variables** in Vercel (Production scope):
+   - `DATABASE_URL` → the **pooled** Neon string
+   - `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET` → fresh ≥32-char secrets
+   - `APP_URL` → your production URL (e.g. `https://your-app.vercel.app`)
+   - `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_WHATSAPP`
+5. **Deploy.** Do **not** run migrations on Vercel — they're applied directly to Neon in step 2.
+6. **Set `APP_URL` to the assigned URL** after the first deploy (it's needed for the same-origin checks), then redeploy. Each push to `main` triggers a new production deploy.
+
+> Database routes require the Node.js runtime (the default). Don't set `export const runtime = "edge"` on any route that touches the database — `pg` needs TCP sockets.
 
 ---
 
@@ -283,21 +325,6 @@ The checkout page combines a frozen order summary with a customer information fo
 - **Store** (`cart.store.ts`): Zustand store with `persist` middleware, saving to `localStorage` under the key `copmet-cart`
 - **Operations**: `addItem`, `increaseQuantity`, `decreaseQuantity`, `removeItem`, `clearCart`
 - **Calculations** (`cart.ts`): Free delivery threshold, configurable delivery fee, and reward points per dollar
-
----
-
-### Order Tracking
-
-> **Path**: `/track-order`
-
-A real-time order tracking interface with four components:
-
-| Component | Description |
-| --- | --- |
-| `ArrivalStatus` | Estimated arrival time and delivery progress steps (Packed Frozen -> Out for Delivery -> In Your Freezer) |
-| `CourierCard` | Courier profile with name, rating, total deliveries, and contact action |
-| `TrackingMap` | Map placeholder for live delivery visualization |
-| `TrackingSummary` | Order ID, item breakdown, and total |
 
 ---
 
