@@ -1,10 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { brandName } from "@/constants/navigation";
+import { getAdminInitial, useAdminProfile } from "@/components/admin/AdminProfileProvider";
 import { Icon } from "@/components/common/Icon";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 export function AdminHeader({ onMenuOpen }: { onMenuOpen: () => void }) {
+  const { profile } = useAdminProfile();
+
   return (
     <header className="sticky top-0 z-30 border-b border-border/60 bg-background/90 backdrop-blur-xl">
       <div className="flex h-16 items-center gap-3 px-4 sm:h-20 sm:px-6 lg:px-8 xl:px-10">
@@ -29,9 +34,15 @@ export function AdminHeader({ onMenuOpen }: { onMenuOpen: () => void }) {
           <Link aria-label="Settings" className="hidden h-10 w-10 place-items-center rounded-full text-muted-foreground hover:bg-surface-low hover:text-primary min-[380px]:grid" href="/admin/settings">
             <Icon className="h-5 w-5" name="settings" />
           </Link>
-          <div className="ml-1 flex items-center gap-2 rounded-full border border-border bg-card p-1 pr-2">
-            <Image alt="Admin profile" className="h-8 w-8 rounded-full object-cover" height={32} src="/images/tracking/alex-img.png" width={32} />
-            <span className="hidden text-xs font-semibold md:inline">Admin</span>
+          <div className="ml-1 flex items-center gap-2 rounded-full border border-border bg-card p-1 pr-3">
+            <span className="grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-full bg-surface-low text-xs font-bold text-primary">
+              {profile?.avatarUrl ? (
+                <Image alt="Admin profile" className="h-full w-full object-cover" height={32} src={profile.avatarUrl} unoptimized width={32} />
+              ) : (
+                getAdminInitial(profile?.name)
+              )}
+            </span>
+            <span className="hidden text-xs font-semibold md:inline">{profile?.name ?? "Admin"}</span>
           </div>
         </div>
       </div>
