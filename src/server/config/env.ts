@@ -44,6 +44,15 @@ export const env = {
       ssl: process.env.DB_SSL === "true",
     };
   },
+  // Cloudinary credentials for hosting uploaded images (avatars, admin photo).
+  // Required only when an upload/delete is actually attempted.
+  get cloudinary() {
+    return {
+      cloudName: required("CLOUDINARY_CLOUD_NAME"),
+      apiKey: required("CLOUDINARY_API_KEY"),
+      apiSecret: required("CLOUDINARY_API_SECRET"),
+    };
+  },
   get accessSecret() {
     return secret("JWT_ACCESS_SECRET");
   },
