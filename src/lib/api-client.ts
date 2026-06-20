@@ -34,7 +34,10 @@ export async function apiRequest<T>(
     ...options,
     credentials: "include",
     headers: {
-      ...(options.body ? { "Content-Type": "application/json" } : {}),
+      // Only force JSON for plain bodies. For FormData (e.g. avatar upload) the
+      // browser must set Content-Type itself so it includes the multipart
+      // boundary — overriding it here breaks server-side formData() parsing.
+      ...(options.body && !(options.body instanceof FormData) ? { "Content-Type": "application/json" } : {}),
       ...options.headers,
     },
   });
