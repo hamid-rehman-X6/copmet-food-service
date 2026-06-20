@@ -13,7 +13,7 @@ import { useCurrency } from "@/components/providers/CurrencyProvider";
 import { AuthFormAlert } from "@/components/auth/AuthFormAlert";
 import { Button } from "@/components/common/Button";
 import { Icon } from "@/components/common/Icon";
-import type { OrderDetail } from "@/types/order.types";
+import type { OrderDetail, WhatsappOrderLink } from "@/types/order.types";
 import type { DeliveryDefaults } from "@/types/profile.types";
 
 const initialForm = {
@@ -46,7 +46,7 @@ export function CheckoutForm() {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [placedOrder, setPlacedOrder] = useState<OrderDetail | null>(null);
-  const [whatsappUrl, setWhatsappUrl] = useState<string | null>(null);
+  const [whatsappLinks, setWhatsappLinks] = useState<WhatsappOrderLink[]>([]);
 
   // Pre-fill the delivery fields from the customer's saved defaults. Only empty
   // fields are filled, so anything the customer has already typed is preserved.
@@ -106,18 +106,19 @@ export function CheckoutForm() {
     setSubmitting(true);
 
     try {
-      const response = await apiRequest<{ order: OrderDetail; whatsappUrl: string | null }>("/api/v1/orders", {
+      const response = await apiRequest<{ order: OrderDetail; whatsappLinks: WhatsappOrderLink[] }>("/api/v1/orders", {
         method: "POST",
         body: JSON.stringify(parsed.data),
       });
       clearCart();
       setPlacedOrder(response.data.order);
-      setWhatsappUrl(response.data.whatsappUrl);
+      setWhatsappLinks(response.data.whatsappLinks);
 
-      // Best-effort hand-off to the admin's WhatsApp with the full order. The
-      // confirmation screen also shows a button in case the browser blocks this.
-      if (response.data.whatsappUrl) {
-        window.open(response.data.whatsappUrl, "_blank", "noopener,noreferrer");
+      // Best-effort hand-off: auto-open the first active number's chat. The
+      // confirmation screen lists a button per number in case more than one is
+      // active or the browser blocks this popup.
+      if (response.data.whatsappLinks.length > 0) {
+        window.open(response.data.whatsappLinks[0].url, "_blank", "noopener,noreferrer");
       }
     } catch (requestError) {
       setError(requestError instanceof ApiClientError ? requestError.message : "Unable to place your order right now.");
@@ -140,20 +141,27 @@ export function CheckoutForm() {
         </p>
         <p className="heading-font mt-4 text-3xl font-bold text-primary">{format(placedOrder.total)}</p>
 
-        {whatsappUrl ? (
+        {whatsappLinks.length > 0 ? (
           <>
             <p className="mx-auto mt-6 max-w-sm text-sm text-muted-foreground">
-              Tap below to send your order details to us on WhatsApp and confirm your delivery.
+              {whatsappLinks.length > 1
+                ? "Send your order to us on WhatsApp using any of the numbers below."
+                : "Tap below to send your order details to us on WhatsApp and confirm your delivery."}
             </p>
-            <a
-              className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-tertiary px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-              href={whatsappUrl}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <Icon className="h-5 w-5" name="message" />
-              Send Order on WhatsApp
-            </a>
+            <div className="mt-4 flex flex-col items-center gap-2">
+              {whatsappLinks.map((link) => (
+                <a
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-tertiary px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                  href={link.url}
+                  key={link.phone}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <Icon className="h-5 w-5" name="message" />
+                  Send on WhatsApp{whatsappLinks.length > 1 ? ` — ${link.label || `+${link.phone}`}` : ""}
+                </a>
+              ))}
+            </div>
           </>
         ) : null}
 

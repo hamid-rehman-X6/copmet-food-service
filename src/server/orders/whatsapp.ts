@@ -1,19 +1,10 @@
 import { formatMoney } from "@/lib/money";
-import { env } from "@/server/config/env";
-import type { OrderDetail } from "@/types/order.types";
+import type { AdminWhatsappNumber } from "@/types/admin.types";
+import type { OrderDetail, WhatsappOrderLink } from "@/types/order.types";
 import type { PublicSettings } from "@/types/settings.types";
 
-// Build a WhatsApp click-to-chat URL that opens a chat with the admin number,
-// prefilled with the full order details. Uses the wa.me deep link (works on
-// mobile and web, no WhatsApp Business API required). Returns null when the
-// admin number is not configured, so the caller can skip the hand-off cleanly.
-export function buildOrderWhatsappUrl(order: OrderDetail, settings: PublicSettings): string | null {
-  const number = env.adminWhatsapp;
-
-  if (!number) {
-    return null;
-  }
-
+// Compose the order message sent to the admin on WhatsApp.
+function buildOrderMessage(order: OrderDetail, settings: PublicSettings): string {
   // Format money in the order's snapshot currency for an accurate record.
   const money = (amount: number) => formatMoney(amount, order.currencyCode, settings.currencyLocale);
   const cityLine = order.delivery.postalCode
@@ -40,5 +31,26 @@ export function buildOrderWhatsappUrl(order: OrderDetail, settings: PublicSettin
     `*Total:* ${money(order.total)}`,
   ].filter(Boolean);
 
-  return `https://wa.me/${number}?text=${encodeURIComponent(lines.join("\n"))}`;
+  return lines.join("\n");
+}
+
+// Build a WhatsApp click-to-chat link (the wa.me deep link, no Business API
+// needed) for every active admin number, each prefilled with the order details.
+// Returns an empty array when no active numbers are configured.
+export function buildOrderWhatsappLinks(
+  order: OrderDetail,
+  settings: PublicSettings,
+  numbers: AdminWhatsappNumber[],
+): WhatsappOrderLink[] {
+  if (numbers.length === 0) {
+    return [];
+  }
+
+  const text = encodeURIComponent(buildOrderMessage(order, settings));
+
+  return numbers.map((number) => ({
+    phone: number.phone,
+    label: number.label,
+    url: `https://wa.me/${number.phone}?text=${text}`,
+  }));
 }

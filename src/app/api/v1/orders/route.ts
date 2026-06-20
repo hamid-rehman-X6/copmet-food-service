@@ -5,8 +5,9 @@ import { getPagination } from "@/server/api/pagination";
 import { assertTrustedOrigin, parseJson } from "@/server/api/request";
 import { success } from "@/server/api/response";
 import { requireAccessToken } from "@/server/auth/authenticate";
+import { listActiveWhatsappNumbersService } from "@/server/admin/whatsapp.service";
 import { listOrdersService, placeOrder } from "@/server/orders/orders.service";
-import { buildOrderWhatsappUrl } from "@/server/orders/whatsapp";
+import { buildOrderWhatsappLinks } from "@/server/orders/whatsapp";
 import { getSettings } from "@/server/settings/settings.service";
 
 // GET /api/v1/orders
@@ -28,7 +29,8 @@ export const POST = withApiHandler(async (request: NextRequest) => {
   const session = await requireAccessToken(request);
   const input = await parseJson(request, placeOrderSchema);
   const order = await placeOrder(input, session.userId);
-  const whatsappUrl = buildOrderWhatsappUrl(order, await getSettings());
+  const [settings, activeNumbers] = await Promise.all([getSettings(), listActiveWhatsappNumbersService()]);
+  const whatsappLinks = buildOrderWhatsappLinks(order, settings, activeNumbers);
 
-  return success({ order, whatsappUrl }, "Your frozen order has been placed.", 201);
+  return success({ order, whatsappLinks }, "Your frozen order has been placed.", 201);
 });

@@ -1,6 +1,14 @@
 // Order fulfilment lifecycle (mirrors the order_status DB enum).
 export type OrderStatus = "PENDING" | "PACKING" | "OUT_FOR_DELIVERY" | "DELIVERED" | "CANCELLED";
 
+// A WhatsApp click-to-chat link for one active admin number, returned after an
+// order is placed so the customer can send the details.
+export type WhatsappOrderLink = {
+  phone: string;
+  label: string | null;
+  url: string;
+};
+
 export type OrderCustomer = {
   id: string;
   name: string;
