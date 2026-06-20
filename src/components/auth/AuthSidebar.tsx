@@ -9,7 +9,7 @@ const servicePoints = [
 
 export function AuthSidebar() {
   return (
-    <aside className="relative hidden min-h-screen overflow-hidden bg-inverse text-inverse-foreground lg:flex lg:flex-col lg:justify-between">
+    <aside className="relative hidden min-h-screen overflow-hidden bg-inverse text-inverse-foreground dark:bg-black dark:text-white lg:flex lg:flex-col lg:justify-between">
       <Image
         alt="A prepared meal shared around a warm dining table."
         className="object-cover"
@@ -18,19 +18,19 @@ export function AuthSidebar() {
         sizes="45vw"
         src="/images/home-page/hero-section-img-3.png"
       />
-      <div className="absolute inset-0 bg-linear-to-b from-inverse/45 via-inverse/65 to-inverse/95" />
+      <div className="absolute inset-0 bg-linear-to-b from-inverse/45 via-inverse/65 to-inverse/95 dark:from-black/60 dark:via-black/80 dark:to-black/95" />
       <div className="absolute -right-28 -top-28 h-80 w-80 rounded-full border border-white/15" />
       <div className="absolute -right-16 -top-16 h-56 w-56 rounded-full border border-white/15" />
 
       <div className="relative z-10 p-10 xl:p-14">
         <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] backdrop-blur">
-          <Icon className="h-4 w-4 text-secondary-container" name="shield" />
+          <Icon className="h-4 w-4 text-secondary-container dark:text-secondary" name="shield" />
           Trusted frozen food service
         </div>
       </div>
 
       <div className="relative z-10 max-w-2xl p-10 xl:p-14">
-        <p className="mb-5 text-xs font-bold uppercase tracking-[0.28em] text-secondary-container">Welcome to Copmet</p>
+        <p className="mb-5 text-xs font-bold uppercase tracking-[0.28em] text-secondary-container dark:text-secondary">Welcome to Copmet</p>
         <h2 className="heading-font text-3xl font-semibold leading-tight xl:text-5xl">
           Homemade frozen meals and dependable service, all in one place.
         </h2>
@@ -53,7 +53,7 @@ export function AuthSidebar() {
           <p className="text-sm italic leading-7 text-white/85">
             &quot;Copmet makes stocking the freezer feel considered, reliable, and refreshingly simple.&quot;
           </p>
-          <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-secondary-container">
+          <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-secondary-container dark:text-secondary">
             A service built around your freezer
           </p>
         </div>
