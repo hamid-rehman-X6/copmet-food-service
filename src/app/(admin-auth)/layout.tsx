@@ -29,7 +29,7 @@ export default function AdminAuthLayout({ children }: Readonly<{ children: React
         </footer>
       </section>
 
-      <aside className="relative hidden min-h-screen overflow-hidden bg-inverse text-inverse-foreground lg:flex lg:flex-col lg:justify-between">
+      <aside className="relative hidden min-h-screen overflow-hidden bg-inverse text-inverse-foreground dark:bg-black dark:text-white lg:flex lg:flex-col lg:justify-between">
         <Image
           alt="Freshly plated food on a warm table setting."
           className="object-cover"
@@ -38,17 +38,17 @@ export default function AdminAuthLayout({ children }: Readonly<{ children: React
           sizes="42vw"
           src="/images/home-page/hero-section-img-3.png"
         />
-        <div className="absolute inset-0 bg-linear-to-b from-inverse/35 via-inverse/65 to-inverse/95" />
+        <div className="absolute inset-0 bg-linear-to-b from-inverse/35 via-inverse/65 to-inverse/95 dark:from-black/60 dark:via-black/80 dark:to-black/95" />
 
         <div className="relative z-10 p-10 xl:p-14">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] backdrop-blur">
-            <Icon className="h-4 w-4 text-secondary-container" name="shield" />
+            <Icon className="h-4 w-4 text-secondary-container dark:text-secondary" name="shield" />
             Admin only
           </div>
         </div>
 
         <div className="relative z-10 max-w-xl p-10 xl:p-14">
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.24em] text-secondary-container">Copmet operations</p>
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.24em] text-secondary-container dark:text-secondary">Copmet operations</p>
           <h2 className="heading-font text-3xl font-semibold leading-tight xl:text-5xl">Keep the service moving with focused admin access.</h2>
 
           <div className="mt-8 grid gap-3">
