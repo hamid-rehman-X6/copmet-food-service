@@ -16,6 +16,13 @@ export type AdminWhatsappNumber = {
   createdAt: string;
 };
 
+// Editable profile for the env-based admin account, shown in the admin navbar.
+export type AdminProfile = {
+  name: string;
+  email: string;
+  avatarUrl: string | null;
+};
+
 export type AdminStatusTone = "success" | "warning" | "danger" | "neutral" | "primary";
 
 export type AdminMetric = {

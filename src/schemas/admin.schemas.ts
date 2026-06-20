@@ -25,3 +25,9 @@ export const updateWhatsappNumberSchema = z
 
 export type CreateWhatsappNumberInput = z.infer<typeof createWhatsappNumberSchema>;
 export type UpdateWhatsappNumberInput = z.infer<typeof updateWhatsappNumberSchema>;
+
+export const updateAdminProfileSchema = z.object({
+  name: z.string().trim().min(1, "Name is required.").max(80, "Name is too long."),
+});
+
+export type UpdateAdminProfileInput = z.infer<typeof updateAdminProfileSchema>;
