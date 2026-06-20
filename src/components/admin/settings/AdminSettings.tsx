@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { AdminProfileTab } from "@/components/admin/settings/AdminProfileTab";
 import { StoreSettingsTab } from "@/components/admin/settings/StoreSettingsTab";
 import { WhatsappNumbersTab } from "@/components/admin/settings/WhatsappNumbersTab";
 
@@ -13,15 +14,6 @@ const TABS = [
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
-
-// Placeholder shown until a tab's feature is wired up.
-function ComingUp({ title }: { title: string }) {
-  return (
-    <div className="max-w-2xl rounded-2xl border border-dashed border-border bg-surface-low px-5 py-10 text-center text-sm text-muted-foreground">
-      {title} settings appear here.
-    </div>
-  );
-}
 
 // Tabbed admin settings: store pricing, WhatsApp ordering numbers, admin profile.
 export function AdminSettings() {
@@ -54,7 +46,7 @@ export function AdminSettings() {
 
       {tab === "store" ? <StoreSettingsTab /> : null}
       {tab === "whatsapp" ? <WhatsappNumbersTab /> : null}
-      {tab === "profile" ? <ComingUp title="Admin profile" /> : null}
+      {tab === "profile" ? <AdminProfileTab /> : null}
     </div>
   );
 }
