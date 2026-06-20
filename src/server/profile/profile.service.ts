@@ -1,6 +1,7 @@
 import { errors } from "@/server/api/errors";
 import { envAdminUserId } from "@/server/auth/admin-auth.service";
 import { hashPassword, verifyPassword } from "@/server/auth/password";
+import { deleteImage, uploadImage } from "@/server/media/cloudinary";
 import { validateAvatarImage } from "@/server/profile/image-validation";
 import {
   deleteAvatar,
@@ -57,22 +58,34 @@ export async function changePassword(userId: string, input: ChangePasswordInput)
   await updateUserPassword(userId, await hashPassword(input.newPassword));
 }
 
-export async function setAvatar(userId: string, buffer: Buffer): Promise<{ avatarUpdatedAt: string }> {
+const AVATAR_FOLDER = "copmet/avatars";
+
+export async function setAvatar(userId: string, buffer: Buffer): Promise<{ avatarUrl: string }> {
   assertDatabaseUser(userId);
 
   const { mimeType } = validateAvatarImage(buffer);
-  const avatarUpdatedAt = await upsertAvatar(userId, { mimeType, byteSize: buffer.length, data: buffer });
 
-  return { avatarUpdatedAt };
+  // Remember the existing asset so it can be cleaned up after a successful swap.
+  const existing = await getAvatar(userId);
+
+  const uploaded = await uploadImage(buffer, mimeType, AVATAR_FOLDER);
+  const avatarUrl = await upsertAvatar(userId, { imageUrl: uploaded.url, publicId: uploaded.publicId });
+
+  // Best-effort: drop the previous Cloudinary asset (ignore failures).
+  if (existing && existing.publicId !== uploaded.publicId) {
+    await deleteImage(existing.publicId).catch(() => undefined);
+  }
+
+  return { avatarUrl };
 }
 
 export async function removeAvatar(userId: string): Promise<void> {
   assertDatabaseUser(userId);
-  await deleteAvatar(userId);
-}
 
-export async function getAvatarForServing(userId: string) {
-  return getAvatar(userId);
+  const publicId = await deleteAvatar(userId);
+  if (publicId) {
+    await deleteImage(publicId).catch(() => undefined);
+  }
 }
 
 const EMPTY_DELIVERY_DEFAULTS: DeliveryDefaults = {

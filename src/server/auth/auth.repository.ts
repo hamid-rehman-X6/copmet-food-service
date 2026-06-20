@@ -12,7 +12,7 @@ type UserRow = QueryResultRow & {
   is_active: boolean;
   created_at: Date;
   // Populated via LEFT JOIN on user_avatars; null when the user has no avatar.
-  avatar_updated_at: Date | null;
+  avatar_image_url: string | null;
 };
 
 export type RefreshSessionRow = QueryResultRow & {
@@ -39,15 +39,15 @@ export function toAuthUser(row: UserRow): AuthUser {
     email: row.email,
     role: row.role,
     createdAt: row.created_at.toISOString(),
-    avatarUpdatedAt: row.avatar_updated_at ? row.avatar_updated_at.toISOString() : null,
+    avatarUrl: row.avatar_image_url,
   };
 }
 
 // Shared column list. Avatars live in a separate table, so a LEFT JOIN exposes
-// the avatar timestamp without ever loading the image bytes.
+// the Cloudinary URL without bloating the users row.
 const USER_COLUMNS = `
   u.id, u.first_name, u.last_name, u.email, u.password_hash, u.role, u.is_active, u.created_at,
-  a.updated_at AS avatar_updated_at
+  a.image_url AS avatar_image_url
 `;
 
 export async function findUserByEmail(email: string, executor?: PoolClient) {
@@ -87,7 +87,7 @@ export async function createUser(
     `INSERT INTO users (first_name, last_name, email, password_hash, terms_accepted_at)
      VALUES ($1, $2, $3, $4, NOW())
      RETURNING id, first_name, last_name, email, password_hash, role, is_active, created_at,
-       NULL::timestamptz AS avatar_updated_at`,
+       NULL::text AS avatar_image_url`,
     [input.firstName, input.lastName, input.email, input.passwordHash],
   );
 

@@ -15,7 +15,7 @@ export function getEnvAdminUser(): AuthUser {
     email: env.adminEmail,
     role: "ADMIN",
     createdAt: new Date(0).toISOString(),
-    avatarUpdatedAt: null,
+    avatarUrl: null,
   };
 }
 

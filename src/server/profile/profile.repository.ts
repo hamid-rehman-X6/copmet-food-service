@@ -51,37 +51,41 @@ export async function updateUserPassword(userId: string, passwordHash: string): 
 
 // --- Avatar ---------------------------------------------------------------
 
-/** Insert or replace the user's avatar; returns the new updated_at timestamp. */
+/** Insert or replace the user's avatar; returns the stored Cloudinary URL. */
 export async function upsertAvatar(
   userId: string,
-  input: { mimeType: string; byteSize: number; data: Buffer },
+  input: { imageUrl: string; publicId: string },
 ): Promise<string> {
-  const result = await query<{ updated_at: Date }>(
-    `INSERT INTO user_avatars (user_id, mime_type, byte_size, data, updated_at)
-     VALUES ($1, $2, $3, $4, NOW())
+  const result = await query<{ image_url: string }>(
+    `INSERT INTO user_avatars (user_id, image_url, public_id, updated_at)
+     VALUES ($1, $2, $3, NOW())
      ON CONFLICT (user_id)
-     DO UPDATE SET mime_type = EXCLUDED.mime_type, byte_size = EXCLUDED.byte_size,
-       data = EXCLUDED.data, updated_at = NOW()
-     RETURNING updated_at`,
-    [userId, input.mimeType, input.byteSize, input.data],
+     DO UPDATE SET image_url = EXCLUDED.image_url, public_id = EXCLUDED.public_id, updated_at = NOW()
+     RETURNING image_url`,
+    [userId, input.imageUrl, input.publicId],
   );
 
-  return result.rows[0].updated_at.toISOString();
+  return result.rows[0].image_url;
 }
 
-export async function getAvatar(userId: string): Promise<{ mimeType: string; data: Buffer; updatedAt: Date } | null> {
-  const result = await query<{ mime_type: string; data: Buffer; updated_at: Date }>(
-    "SELECT mime_type, data, updated_at FROM user_avatars WHERE user_id = $1 LIMIT 1",
+export async function getAvatar(userId: string): Promise<{ imageUrl: string; publicId: string } | null> {
+  const result = await query<{ image_url: string; public_id: string }>(
+    "SELECT image_url, public_id FROM user_avatars WHERE user_id = $1 LIMIT 1",
     [userId],
   );
 
   const row = result.rows[0];
-  return row ? { mimeType: row.mime_type, data: row.data, updatedAt: row.updated_at } : null;
+  return row ? { imageUrl: row.image_url, publicId: row.public_id } : null;
 }
 
-export async function deleteAvatar(userId: string): Promise<boolean> {
-  const result = await query("DELETE FROM user_avatars WHERE user_id = $1", [userId]);
-  return (result.rowCount ?? 0) > 0;
+/** Delete the avatar row; returns the removed public id for Cloudinary cleanup. */
+export async function deleteAvatar(userId: string): Promise<string | null> {
+  const result = await query<{ public_id: string }>(
+    "DELETE FROM user_avatars WHERE user_id = $1 RETURNING public_id",
+    [userId],
+  );
+
+  return result.rows[0]?.public_id ?? null;
 }
 
 // --- Delivery defaults ----------------------------------------------------

@@ -33,9 +33,9 @@ export const POST = withApiHandler(async (request: NextRequest) => {
   }
 
   const buffer = Buffer.from(await file.arrayBuffer());
-  const { avatarUpdatedAt } = await setAvatar(session.userId, buffer);
+  const { avatarUrl } = await setAvatar(session.userId, buffer);
 
-  return success({ avatarUpdatedAt }, "Your profile photo has been updated.");
+  return success({ avatarUrl }, "Your profile photo has been updated.");
 });
 
 // DELETE /api/v1/profile/avatar — remove the current avatar (idempotent).
@@ -44,5 +44,5 @@ export const DELETE = withApiHandler(async (request: NextRequest) => {
   const session = await requireAccessToken(request);
   await removeAvatar(session.userId);
 
-  return success({ avatarUpdatedAt: null }, "Your profile photo has been removed.");
+  return success({ avatarUrl: null }, "Your profile photo has been removed.");
 });

@@ -7,7 +7,7 @@ export type AuthUser = {
   email: string;
   role: UserRole;
   createdAt: string;
-  // ISO timestamp of the latest avatar upload, or null if the user has none.
-  // The client uses it to build a cache-busting avatar URL.
-  avatarUpdatedAt: string | null;
+  // Cloudinary-hosted avatar URL, or null if the user has none. The version in
+  // the URL changes on every upload, so it cache-busts itself.
+  avatarUrl: string | null;
 };
