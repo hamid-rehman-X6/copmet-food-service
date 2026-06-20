@@ -7,6 +7,15 @@ export type AdminNavItem = {
   icon: IconName;
 };
 
+// A WhatsApp number that can receive placed orders (managed in admin settings).
+export type AdminWhatsappNumber = {
+  id: string;
+  label: string | null;
+  phone: string;
+  isActive: boolean;
+  createdAt: string;
+};
+
 export type AdminStatusTone = "success" | "warning" | "danger" | "neutral" | "primary";
 
 export type AdminMetric = {
