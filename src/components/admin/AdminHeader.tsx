@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { brandName } from "@/constants/navigation";
 import { Icon } from "@/components/common/Icon";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 export function AdminHeader({ onMenuOpen }: { onMenuOpen: () => void }) {
   return (
@@ -19,6 +20,7 @@ export function AdminHeader({ onMenuOpen }: { onMenuOpen: () => void }) {
         </label>
 
         <div className="ml-auto flex items-center gap-1 sm:ml-0 sm:gap-2">
+          <ThemeToggle />
           <button aria-label="Notifications" className="relative grid h-10 w-10 place-items-center rounded-full text-muted-foreground hover:bg-surface-low hover:text-primary" type="button">
             <Icon className="h-5 w-5" name="bell" />
             <span className="absolute right-2 top-2 h-2 w-2 rounded-full border-2 border-background bg-primary" />
