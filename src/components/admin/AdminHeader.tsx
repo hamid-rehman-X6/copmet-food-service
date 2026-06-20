@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { brandName } from "@/constants/navigation";
 import { Icon } from "@/components/common/Icon";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
@@ -25,9 +26,9 @@ export function AdminHeader({ onMenuOpen }: { onMenuOpen: () => void }) {
             <Icon className="h-5 w-5" name="bell" />
             <span className="absolute right-2 top-2 h-2 w-2 rounded-full border-2 border-background bg-primary" />
           </button>
-          <button aria-label="Settings" className="hidden h-10 w-10 place-items-center rounded-full text-muted-foreground hover:bg-surface-low hover:text-primary min-[380px]:grid" type="button">
+          <Link aria-label="Settings" className="hidden h-10 w-10 place-items-center rounded-full text-muted-foreground hover:bg-surface-low hover:text-primary min-[380px]:grid" href="/admin/settings">
             <Icon className="h-5 w-5" name="settings" />
-          </button>
+          </Link>
           <div className="ml-1 flex items-center gap-2 rounded-full border border-border bg-card p-1 pr-2">
             <Image alt="Admin profile" className="h-8 w-8 rounded-full object-cover" height={32} src="/images/tracking/alex-img.png" width={32} />
             <span className="hidden text-xs font-semibold md:inline">Admin</span>
