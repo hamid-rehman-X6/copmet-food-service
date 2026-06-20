@@ -77,11 +77,11 @@ export function AvatarCard({ user }: { user: AuthUser }) {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const response = await apiRequest<{ avatarUpdatedAt: string }>("/api/v1/profile/avatar", {
+      const response = await apiRequest<{ avatarUrl: string }>("/api/v1/profile/avatar", {
         method: "POST",
         body: formData,
       });
-      setUser({ ...user, avatarUpdatedAt: response.data.avatarUpdatedAt });
+      setUser({ ...user, avatarUrl: response.data.avatarUrl });
       clearPreview();
     } catch (requestError) {
       setError(requestError instanceof ApiClientError ? requestError.message : "Unable to upload the image.");
@@ -96,7 +96,7 @@ export function AvatarCard({ user }: { user: AuthUser }) {
 
     try {
       await apiRequest("/api/v1/profile/avatar", { method: "DELETE" });
-      setUser({ ...user, avatarUpdatedAt: null });
+      setUser({ ...user, avatarUrl: null });
       clearPreview();
     } catch (requestError) {
       setError(requestError instanceof ApiClientError ? requestError.message : "Unable to remove the image.");
