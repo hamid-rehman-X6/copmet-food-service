@@ -169,7 +169,10 @@ cp .env.example .env.local
 | `APP_URL` | ✅ | both | Public URL used for same-origin checks — `http://localhost:3000` locally, your `https://…` URL in production |
 | `ADMIN_EMAIL` | ✅ | both | Email for the environment-based admin account |
 | `ADMIN_PASSWORD` | ✅ | both | Password for the environment-based admin account |
-| `ADMIN_WHATSAPP` | ❌ | both | Operator WhatsApp number placed orders are sent to (international format, digits only, e.g. `923001234567`). Hand-off is skipped when empty |
+| `ADMIN_WHATSAPP` | ❌ | both | Legacy/optional — order recipients are now managed in **Admin → Settings → WhatsApp** (stored in the database). May be left blank |
+| `CLOUDINARY_CLOUD_NAME` | ⬩ | both | Cloudinary cloud name — required to upload images (customer avatars, admin photo) |
+| `CLOUDINARY_API_KEY` | ⬩ | both | Cloudinary API key |
+| `CLOUDINARY_API_SECRET` | ⬩ | both | Cloudinary API secret |
 | `DATABASE_URL` | ⬩ | **prod** | Single pooled Postgres connection string. When set it takes precedence over `DB_*` and TLS is forced. Use Neon's **pooled** (`-pooler`) host on Vercel |
 | `DB_HOST` | ⬩ | local | PostgreSQL host (e.g. `localhost`) — used only when `DATABASE_URL` is empty |
 | `DB_PORT` | ⬩ | local | PostgreSQL port (e.g. `5432`) |
@@ -220,7 +223,8 @@ The app is a standard Next.js project; deploy it on Vercel with Neon as the data
    - `DATABASE_URL` → the **pooled** Neon string
    - `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET` → fresh ≥32-char secrets
    - `APP_URL` → your production URL (e.g. `https://your-app.vercel.app`)
-   - `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `ADMIN_WHATSAPP`
+   - `ADMIN_EMAIL`, `ADMIN_PASSWORD`
+   - `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` → for image uploads (avatars, admin photo)
 5. **Deploy.** Do **not** run migrations on Vercel — they're applied directly to Neon in step 2.
 6. **Set `APP_URL` to the assigned URL** after the first deploy (it's needed for the same-origin checks), then redeploy. Each push to `main` triggers a new production deploy.
 
