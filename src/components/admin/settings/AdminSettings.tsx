@@ -4,6 +4,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { StoreSettingsTab } from "@/components/admin/settings/StoreSettingsTab";
+import { WhatsappNumbersTab } from "@/components/admin/settings/WhatsappNumbersTab";
 
 const TABS = [
   { id: "store", label: "Store" },
@@ -52,7 +53,7 @@ export function AdminSettings() {
       </div>
 
       {tab === "store" ? <StoreSettingsTab /> : null}
-      {tab === "whatsapp" ? <ComingUp title="WhatsApp number" /> : null}
+      {tab === "whatsapp" ? <WhatsappNumbersTab /> : null}
       {tab === "profile" ? <ComingUp title="Admin profile" /> : null}
     </div>
   );
