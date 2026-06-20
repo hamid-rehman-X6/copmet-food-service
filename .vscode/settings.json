@@ -1,0 +1,6 @@
+{
+  // Tailwind CSS IntelliSense: stop suggesting the v4 shorthand for arbitrary
+  // CSS variables (e.g. shadow-[var(--shadow-soft)] -> shadow-(--shadow-soft)).
+  // Editor-only hint; it does not affect eslint, tsc, or the production build.
+  "tailwindCSS.lint.suggestCanonicalClasses": "ignore"
+}
